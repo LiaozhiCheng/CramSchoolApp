@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-22T15:59:12.807Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="U8fxZW_9e0GH5Pyu16Ai" version="13.8.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-22T16:00:58.363Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="k-A_uX8_H1S4cwr8rPov" version="13.8.1" type="github">
   <diagram id="y-0cmg7VaYRoWeIbfK26" name="Page-1">
     <mxGraphModel dx="881" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -107,7 +107,7 @@
             <mxPoint x="1000" y="190" as="sourcePoint" />
             <mxPoint x="415" y="80" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1050" y="190" />
+              <mxPoint x="1270" y="190" />
               <mxPoint x="405" y="190" />
             </Array>
           </mxGeometry>
@@ -116,7 +116,13 @@
           <mxGeometry x="345" y="110" width="120" height="41" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---59" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;span&gt;*家長端&lt;/span&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;shadow=1;strokeColor=#6c8ebf;strokeWidth=2;gradientDirection=west;fillColor=#dae8fc;fontStyle=1;labelBackgroundColor=none;" vertex="1" parent="1">
-          <mxGeometry x="990" y="210" width="120" height="50" as="geometry" />
+          <mxGeometry x="1210" y="210" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="uTZFLyO1zt8zuTEsig---60" value="*作業提醒推播" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="900" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uTZFLyO1zt8zuTEsig---61" value="*linebot通知學生出席" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="280" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

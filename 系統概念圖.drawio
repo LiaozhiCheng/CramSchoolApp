@@ -1,17 +1,17 @@
-<mxfile host="app.diagrams.net" modified="2020-10-22T16:13:26.452Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="Mb0I9JwyLZqoNZxO0tfl" version="13.8.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-22T16:17:58.686Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="2IdkKUNgkrdT7wut2j-c" version="13.8.1" type="github">
   <diagram id="y-0cmg7VaYRoWeIbfK26" name="Page-1">
     <mxGraphModel dx="881" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="uTZFLyO1zt8zuTEsig---56" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=2;glass=0;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="560" y="340" width="140" height="250" as="geometry" />
+          <mxGeometry x="560" y="340" width="140" height="310" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---54" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=2;glass=0;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="260" y="340" width="140" height="300" as="geometry" />
+          <mxGeometry x="260" y="340" width="140" height="360" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---55" value="" style="rounded=0;whiteSpace=wrap;html=1;shadow=0;labelBackgroundColor=none;strokeWidth=2;glass=0;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="50" y="270" width="140" height="490" as="geometry" />
+          <mxGeometry x="50" y="270" width="140" height="420" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---25" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="100" y="110" width="610" height="150" as="geometry" />
@@ -88,13 +88,13 @@
           <mxGeometry x="270" y="470" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---50" value="開放補課時段" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="60" y="690" width="120" height="40" as="geometry" />
+          <mxGeometry x="60" y="640" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---51" value="教室分配" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="60" y="630" width="120" height="40" as="geometry" />
+          <mxGeometry x="60" y="580" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---52" value="紀錄出缺席&lt;br&gt;（*NFC）" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="60" y="570" width="120" height="40" as="geometry" />
+          <mxGeometry x="60" y="520" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="uTZFLyO1zt8zuTEsig---53" value="新增、刪除使用者" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="60" y="280" width="120" height="40" as="geometry" />
@@ -136,8 +136,14 @@
         <mxCell id="uTZFLyO1zt8zuTEsig---65" value="檢查重複註冊" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="60" y="340" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="uTZFLyO1zt8zuTEsig---66" value="調整課程人員&lt;br&gt;（*NFC）" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="uTZFLyO1zt8zuTEsig---66" value="調整課程人員" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="60" y="460" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uTZFLyO1zt8zuTEsig---67" value="撰寫聯絡簿&lt;br&gt;（*NFC）" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="270" y="650" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uTZFLyO1zt8zuTEsig---68" value="查看聯絡簿" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;labelBackgroundColor=none;strokeColor=#CC6600;strokeWidth=2;fillColor=#FFB366;gradientColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="570" y="600" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,1 +1,25 @@
-<mxfile host="app.diagrams.net" modified="2020-10-23T10:08:33.224Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" version="13.8.1" etag="zbVSQQ5CHNz0PDGcLCN8" type="github"><diagram id="KjAJDcUenq3D609lwIE-">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2020-10-23T10:12:26.550Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="fgl4VCqOHPUGjYcSl78H" version="13.8.1" type="github">
+  <diagram id="KjAJDcUenq3D609lwIE-" name="Page-1">
+    <mxGraphModel dx="881" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-1" value="補習班" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="399" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-2" value="新增、刪除使用者" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="190" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-3" value="新增、刪除課程" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="100" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-4" value="調整課程人員" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="130" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-5" value="紀錄出缺席&lt;br&gt;（*NFC）" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="210" width="120" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

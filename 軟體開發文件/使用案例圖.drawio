@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-24T03:54:20.803Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="ZzDPOwDUKRLMKPjWm_-Z" version="13.8.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-24T03:55:13.442Z" agent="5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36" etag="mGqAjNbz_BdPhUKUzFTr" version="13.8.1" type="github">
   <diagram id="KjAJDcUenq3D609lwIE-" name="Page-1">
     <mxGraphModel dx="881" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -64,7 +64,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bYV7ASIVTbc_70zCA1bl-38" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="199" y="460" width="430" height="275" as="geometry" />
+          <mxGeometry x="199" y="510" width="430" height="275" as="geometry" />
         </mxCell>
         <mxCell id="bYV7ASIVTbc_70zCA1bl-21" value="老師" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-38">
           <mxGeometry x="200" y="110" width="30" height="60" as="geometry" />
@@ -132,43 +132,46 @@
             <mxPoint x="300" y="215" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-39" value="學生" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="399" y="880" width="30" height="60" as="geometry" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-55" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="211" y="890" width="405" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-45" value="查課表、個人資料" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="220" y="830" width="120" height="50" as="geometry" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-39" value="學生" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-55">
+          <mxGeometry x="189" y="50" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-46" value="查詢聯絡簿、學習進度表" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="210" y="970" width="140" height="50" as="geometry" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-45" value="查課表、個人資料" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-55">
+          <mxGeometry x="10" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-47" value="查詢成績、作業、出席" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="485" y="970" width="130" height="50" as="geometry" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-46" value="查詢聯絡簿、學習進度表" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-55">
+          <mxGeometry y="140" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-49" value="預約補課" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="490" y="830" width="120" height="50" as="geometry" />
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-47" value="查詢成績、作業、出席" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-55">
+          <mxGeometry x="275" y="140" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-51" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="bYV7ASIVTbc_70zCA1bl-49">
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-49" value="預約補課" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="bYV7ASIVTbc_70zCA1bl-55">
+          <mxGeometry x="280" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-51" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="bYV7ASIVTbc_70zCA1bl-55" target="bYV7ASIVTbc_70zCA1bl-49">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="440" y="880" as="sourcePoint" />
-            <mxPoint x="530" y="980" as="targetPoint" />
+            <mxPoint x="230" y="50" as="sourcePoint" />
+            <mxPoint x="320" y="150" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-52" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="bYV7ASIVTbc_70zCA1bl-47">
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-52" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="bYV7ASIVTbc_70zCA1bl-55" target="bYV7ASIVTbc_70zCA1bl-47">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="440" y="960" as="sourcePoint" />
-            <mxPoint x="500" y="865" as="targetPoint" />
+            <mxPoint x="230" y="130" as="sourcePoint" />
+            <mxPoint x="290" y="35" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-53" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="bYV7ASIVTbc_70zCA1bl-46">
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-53" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="bYV7ASIVTbc_70zCA1bl-55" target="bYV7ASIVTbc_70zCA1bl-46">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="390" y="960" as="sourcePoint" />
-            <mxPoint x="510" y="875" as="targetPoint" />
+            <mxPoint x="180" y="130" as="sourcePoint" />
+            <mxPoint x="300" y="45" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="bYV7ASIVTbc_70zCA1bl-54" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="bYV7ASIVTbc_70zCA1bl-45">
+        <mxCell id="bYV7ASIVTbc_70zCA1bl-54" value="" style="endArrow=classic;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="bYV7ASIVTbc_70zCA1bl-55" target="bYV7ASIVTbc_70zCA1bl-45">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="390" y="880" as="sourcePoint" />
-            <mxPoint x="520" y="885" as="targetPoint" />
+            <mxPoint x="180" y="50" as="sourcePoint" />
+            <mxPoint x="310" y="55" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

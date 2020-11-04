@@ -6,8 +6,6 @@ from views import (
     student_api,
     teacher_api,
     boss_api,
-    
-    test_api,
     # login_api__class__
 )
 
@@ -21,7 +19,6 @@ def create_app():
     app.register_blueprint(teacher_api.teacher_api,url_prefix = '/teacher')
     app.register_blueprint(boss_api.boss_api,url_prefix = '/boss')
     
-    app.register_blueprint(test_api.test_api,url_prefix = '/test')
     
     return app
 

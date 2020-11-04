@@ -1,3 +1,5 @@
+
+
 from flask import Flask
 
 from views import (
@@ -9,9 +11,13 @@ from views import (
 
 def create_app():
     app = Flask(__name__)
-    app.register_blueprint(student_api.student_api)
-    app.register_blueprint(teacher_api.teacher_api)
-    app.register_blueprint(boss_api.boss_api)
+    app.jinja_env.auto_reload = True
+    app.config.from_object('app.config')
+    
+    #register route from differemt role
+    app.register_blueprint(student_api.student_api,url_prefix = '/student')
+    app.register_blueprint(teacher_api.teacher_api,url_prefix = '/teacher')
+    app.register_blueprint(boss_api.boss_api,url_prefix = '/boss')
     return app
 
 if __name__ == '__main__':

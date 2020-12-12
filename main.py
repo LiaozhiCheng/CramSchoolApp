@@ -1,27 +1,31 @@
-
-
 from flask import Flask
 
-from views import (
-    student_api,
-    teacher_api,
-    boss_api,
-    # login_api__class__
-)
+from flask_security import Security
+
+import models
+from views import register_blueprint
+from lib import config
+
+
 
 def create_app():
     app = Flask(__name__)
     app.jinja_env.auto_reload = True
-    app.config.from_object('app.config')
-    
-    #register route from differemt role
-    app.register_blueprint(student_api.student_api,url_prefix = '/student')
-    app.register_blueprint(teacher_api.teacher_api,url_prefix = '/teacher')
-    app.register_blueprint(boss_api.boss_api,url_prefix = '/boss')
-    
-    
+    app.config.from_object(config.Config())
+
+    # models setup
+    models.setup(app)
+
+    # security setup
+
+    Security(app, models.user.USER_DATASTORE,login_form=models.user.ExtendedLoginForm)
+
+    # register app
+    register_blueprint(app)
+
     return app
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app = create_app()
     app.run()

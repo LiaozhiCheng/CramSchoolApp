@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>考試成績</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Font Awesome JS -->
+    <script defer src="js/fontawesome_solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+    
+    <!--my css-->
+    
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/menubar.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <h3>CS管理系統</h3>
+            </div>
+
+            <ul class="list-unstyled">
+                <li>
+                    <a href="student.html">首頁</a>
+                </li>
+                <li>
+                    <a href="student_lesson_make-up.html">預約補課</a>
+                </li>
+                <li class="active">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">課程相關項目</a>
+                    <ul class="list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="student_course_process.html">課程進度</a>
+                        </li>
+                        <li>
+                            <a href="student_homework.html">課程作業</a>
+                        </li>
+                        <li>
+                            <a href="student_grade.html">考試成績</a>
+                        </li>
+                        <li>
+                            <a href="student_attendence.html">出缺勤紀錄</a>
+                        </li>
+                        <li>
+                            <a href="student_learning_plan.html">個人計畫</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <!--top bar: sidebar button & logo-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+                    <!--記得更新網頁名稱-->
+                    <span class="navbar-text mx-auto">
+                        <h2 id="page-title"></h2>
+                    </span>
+                    <div class="navbar-brand py-0">
+                        <img src="data/logo.png" alt="logo" style="height: 50px">
+                    </div>
+                    
+                </div>
+            </nav>
+        
+            <div class="row justify-content-center m-2">
+                <table id="grade" class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 8%">time</th>
+                            <th>考試範圍</th>
+                            <th style="width: 15%">成績</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+
+    <!-- jQuery CDN -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+    <!--my script-->
+    <script src="js/student.js"></script>
+    <script src="js/menubar.js"></script>
+    <script src="js/student_grade.js"></script>
+</body>
+
+</html>

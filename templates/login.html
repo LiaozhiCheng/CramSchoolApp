@@ -3,30 +3,63 @@
 
 <head>
     <title>登入</title>
-
 	<meta charset="utf-8" />
  
+    <!--custom style-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Font Awesome JS -->
+    <script defer src="js/fontawesome_solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+
 </head>
 
-<body>
-	
-    <div>
-        <form class="form-signin" action="/login_user" method="POST" name="login_user_form">
-
-
-        <h1>登入</h1>
-        <label for="email">請輸入Email:
-        <input id="email" type="text" class="form-control" name="email" placeholder="Email Address" required value=""
-                autofocus="" /></label>
-        <br>
-        <label for="password">請輸入密碼: 
-        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required value=""></label>
-        <br>
-        <input type="checkbox" name="rememberMe" id="rememberMe" value="y">
-			  <label for="rememberMe"><b>記住我</b></label>
-            <br>
-            <input id="submit" name="submit" type="submit" value="登入"><br>
-		</form>
-	</div>
+<body class="login">    
+    <div id="login-wrapper" class="card col-md-6 offset-md-3">
+        <div class="card-body row justify-content-center">
+            <h2 class="card-title row justify-content-center">Login</h2>
+            <form class="form-signin col-12" action="/login_user" method="POST" name="login_user_form">
+                <div class="form-group row justify-content-center">
+                    <label for="email" class="col-10">請輸入Email:
+                        <input id="email" type="email" class="form-control" name="email" placeholder="Email Address" required value="" autofocus="">
+                    </label>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="password" class="col-10">請輸入密碼: 
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required value="">
+                    </label>
+                </div>
+                <div class="form-row justify-content-end" style="height: 100px">
+                    <div class="form-check col-auto my-1 align-self-center">
+                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" value="y">
+                        <label class="form-check-label" for="rememberMe">
+                            記住我
+                        </label>
+                    </div>
+                    <div class="col-auto my-1 align-self-center">
+                        <input class="btn btn-primary" id="submit" name="submit" value="登入" type="submit" onclick="sendLoginRequest()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    
+    <!-- jQuery CDN-->
+    <script src="js/jquery-3.5.1.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
+
+
+
+

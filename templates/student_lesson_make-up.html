@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>預約補課</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Font Awesome JS -->
+    <script defer src="js/fontawesome_solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+    <!--my css-->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/menubar.css">
+    
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <h3>CS管理系統</h3>
+            </div>
+
+            <ul class="list-unstyled">
+                <li>
+                    <a href="student.html">首頁</a>
+                </li>
+                <li class="active">
+                    <a href="student_lesson_make-up.html">預約補課</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <!--top bar: sidebar button & logo-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+                    <!--記得更新網頁名稱-->
+                    <span class="navbar-text mx-auto">
+                        <h2 id="page-title">Page Title</h2>
+                    </span>
+                    <div class="navbar-brand py-0">
+                        <img src="data/logo.png" alt="logo" style="height: 50px">
+                    </div>
+                    
+                </div>
+            </nav>
+        
+            <div class="row justify-content-center m-2">
+                <table id="valid_time" class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 8%">time</th>
+                            <th style="width: 13%">Mon.</th>
+                            <th style="width: 13%">Tue.</th>
+                            <th style="width: 13%">Wed.</th>
+                            <th style="width: 13%">Thr.</th>
+                            <th style="width: 13%">Fri.</th>
+                            <th style="width: 13%">Sat.</th>
+                            <th style="width: 13%">Sun.</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+    
+    <!--預約補習Modal-->
+    <div class="modal fade" id="reserve" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">預約補習</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--送出預約資料-->
+                <form id="lessonMake-up">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="chooseCourse">選擇課程：</label>
+                            <select class="form-control" id="chooseCourse" onchange="setLesson(this)"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>選擇課堂：</label>
+                            <select class="form-control" id="chooseLesson"></select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="getReservation()" data-dismiss="modal">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!--預約資料顯示 & 取消預約-->
+    <div class="modal fade" id="checkoutInfo" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">預約資料</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>預約課程：</label>
+                        <input type="text" class="form-control" id="courseInfo" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>預約課堂：</label>
+                        <input type="text" class="form-control" id="lessonInfo" disabled>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="cancelReservation()" data-dismiss="modal">取消預約</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+    <!--my script-->
+    <script src="js/student.js"></script>
+    <script src="js/menubar.js"></script>
+    <script src="js/student_lesson_make-up.js"></script>
+    <script src="js/student_modal_activity.js"></script>
+    <script src="js/student_set_modal.js"></script>
+</body>
+
+</html>

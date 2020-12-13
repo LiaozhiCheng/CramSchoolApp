@@ -25,7 +25,7 @@ def setup():
 
     # 使用者資訊
     class User(_db.DB.Document, UserMixin):
-        username = _db.DB.StringField(max_length=255)
+        user_id = _db.DB.StringField(max_length=255)
         email = _db.DB.StringField(max_length=255)
         password = _db.DB.StringField(max_length=255)
         phone = _db.DB.StringField(max_length=255)
@@ -53,7 +53,7 @@ def create_user():
     student_role = USER_DATASTORE.find_or_create_role("student")
     if USER_DATASTORE.get_user("Liao") is None:
         USER_DATASTORE.create_user(
-            username="Liao",
+            user_id="Liao",
             phone = "0919925648",
             email='Liao@gmail.com',
             major = ['國文'],
@@ -62,8 +62,8 @@ def create_user():
         )
 
 
-def validate_user(username: str, password: str):
-    cur_user = USER_DATASTORE.find_user(username=username)
+def validate_user(user_id: str, password: str):
+    cur_user = USER_DATASTORE.find_user(user_id=user_id)
     if cur_user is None:
         return
     if verify_password(password, cur_user.password):

@@ -1,7 +1,7 @@
 from flask import Flask
 
 from flask_security import Security
-
+from flask_cors import CORS
 import models
 from views import register_blueprint
 from lib import config
@@ -12,7 +12,7 @@ def create_app():
     app = Flask(__name__)
     app.jinja_env.auto_reload = True
     app.config.from_object(config.Config())
-
+    CORS(app)
     # models setup
     models.setup(app)
 

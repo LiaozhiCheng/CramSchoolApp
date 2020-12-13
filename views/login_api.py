@@ -11,7 +11,7 @@ login_api = Blueprint("login_api", __name__)
 
 @login_api.route("/login_user", methods=["POST"])
 def validate():
-    email = request.values.get("email")
+    email = request.values.get("user_id")
     password = request.values.get("password")
     cur_user = user.validate_user(email, password)
     remember = True if request.values.get("rememberMe", "n") == "y" else False
@@ -21,6 +21,8 @@ def validate():
 
     login_user(cur_user, remember=remember)
     return "success"
+
+
 
 @login_api.route("/register")
 def register():

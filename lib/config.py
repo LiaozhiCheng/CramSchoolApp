@@ -5,7 +5,7 @@ class Config(object):
     SECRET_KEY = "super-secret"
     SECURITY_PASSWORD_SALT = "bcrypt"
     SECURITY_LOGIN_USER_TEMPLATE = "login.html"
-    SECURITY_USER_IDENTITY_ATTRIBUTES = ('username','email')
+    SECURITY_USER_IDENTITY_ATTRIBUTES = ('user_id','email')
     # MongoDB Config
     MONGODB_HOST = (
         "mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net/CramSchool"

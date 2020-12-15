@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>教室</title>
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Font Awesome JS -->
+    <script defer src="js/fontawesome_solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
+    <!--my css-->
+    
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/menubar.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+
+            <div class="sidebar-header">
+                <h3>CS管理系統</h3>
+            </div>
+
+            <ul class="list-unstyled">
+                <li>
+                    <a href="cramschool_finish.html">首頁</a>
+                </li>
+                <li>
+                    <a href="cramschool_course_finish.html">課程</a>
+                </li>
+                <li>
+                    <a href="cramschool_attendence_finish.html">出缺勤</a>
+                </li>
+                <li>
+                    <a href="cramschool_staffstudent_finish.html">全體人員</a>
+                </li>
+                <li>
+                    <a href="cramschool_makeup_class_finish.html">補課</a>
+                </li>
+                <li>
+                    <a href="cramschool_classroom_finish.html">教室</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+            <!--top bar: sidebar button & logo-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+                    <!--記得更新網頁名稱-->
+                    <span class="navbar-text mx-auto">
+                        <h2 id="page-title">教室</h2>
+                    </span>
+                    <div class="navbar-brand py-0">
+                        <img src="logo.png" alt="logo" style="height: 50px">
+                    </div>
+                    
+                </div>
+            </nav>
+        
+            
+                <div class="row">
+                <form class="form-inline align-items-end">
+                <input class="form-control mr-sm-2" type="text" id="myval" name="name" value="教室名稱">
+                
+                <button id="searchButton" type="button" class="btn btn-outline-info" onclick="search()">搜尋</button>
+                <button type="button" class="btn btn-outline-info" onclick="init()">顯示全部</button>
+                </form>
+                
+                <div class="col-8 align-items-end">
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#example" onclick="add()">新增</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#example" onclick="del()">刪除</button>
+                    
+                </div>
+                
+                <!-- 新增刪除所使用的表單 -->
+                <div class="modal fade" id="example">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><!--表單標題--></h5>
+                                </div>
+                                <div class="modal-body" id="myContent">
+                                    <!--表單-->
+                                </div>
+                                <div class="modal-footer" id="cancleSubmit">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <br>
+            
+            
+            <div>
+            <!--table的部分-->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>教室名稱</th>
+                        <th>教室ID</th>
+                        <th>容納人數</th>
+                        <th>編輯</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <!-- 表格內容 -->
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <!-- Popper.JS -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    
+    <!--my script-->
+    <script src="js/menubar.js"></script>
+    <script src="js/cramschool_classroom.js"></script>
+</body>
+
+</html>

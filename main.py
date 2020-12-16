@@ -28,6 +28,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run("192.168.111.128",port=55001)
+    app.run("192.168.111.128",port=55001,ssl_context ='adhoc' )
     
-#"140.121.197.130",port=8080
+#"192.168.111.128",port=55001

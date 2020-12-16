@@ -8,48 +8,49 @@ var courseID;
 
 var courseName;
 
+var ngrok = "";
+
 //api url
-var api_student_schedule = "/schedule";
-var api_student_personal_info = "/personal_info";
-var api_student_course_info = "/course_info?course_id=";
-var api_student_reschedule_list = "/student_reschedule_list";
-var api_student_missed_lesson = "/student_miss_lesson";
-var api_student_add_reservation = "/student_add_reservation";
-var api_student_cancel_reservation = "/student_cancel_reservation";
-var api_student_course_progress = "/student_course_progress?course_id=";
-var api_student_course_hw = "/student_course_homework?course_id=";
-var api_student_course_grade = "/student_course_grade?course_id=";
-var api_student_course_attendence = "/student_course_attendence?course_id=";
-var api_student_course_personal_plan = "/student_course_personal_plan?course_id=";
+var api_student_schedule = ngrok + "/schedule";
+var api_student_personal_info = ngrok + "/personal_info";
+var api_student_course_info = ngrok + "/course_info?course_id=";
+var api_student_reschedule_list = ngrok + "/student_reschedule_list";
+var api_student_missed_lesson = ngrok + "/student_miss_lesson";
+var api_student_add_reservation = ngrok + "/student_add_reservation";
+var api_student_cancel_reservation = ngrok + "/student_cancel_reservation";
+var api_student_course_progress = ngrok + "/student_course_progress?course_id=";
+var api_student_course_hw = ngrok + "/student_course_homework?course_id=";
+var api_student_course_grade = ngrok + "/student_course_grade?course_id=";
+var api_student_course_attendence = ngrok + "/student_course_attendence?course_id=";
+var api_student_course_personal_plan = ngrok + "/student_course_personal_plan?course_id=";
 
 //web url
-var url_student = "student/student";
-var url_student_attendence = "student/student_attendence";
-var url_student_course_process = "student/student_course_process";
-var url_student_grade = "student/student_grade";
-var url_student_homework = "student/student_homework";
-var url_student_learning_plan = "student/student_learning_plan";
-var url_student_lesson_makeup = "student/student_lesson_makeup";
+var url_student = "student";
+var url_student_attendence = "student_attendence";
+var url_student_course_process = "student_course_process";
+var url_student_grade = "student_grade";
+var url_student_homework = "student_homework";
+var url_student_learning_plan = "student_learning_plan";
+var url_student_lesson_makeup = "student_lesson_makeup";
 
+
+//<div id='dismiss'><i class='fas fa-arrow-left'></i></div>
 function setSideBar(version){
     var obj = document.getElementById("sidebar");
     if(version == "main"){
-        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
-                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li class='active'><a href='" + url_student +
                         "'>首頁</a></li><li><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li></ul>";
     }
     else if(version == "makeup"){
-        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
-                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li><a href='" + url_student +
                         "'>首頁</a></li><li class='active'><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li></ul>";
     }
     else{
-        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
-                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li><a href='" + url_student +
                         "'>首頁</a></li><li><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li><li class='active'><a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>課程相關項目</a>" + 

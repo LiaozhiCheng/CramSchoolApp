@@ -26,6 +26,6 @@ var url_teacher_student_attendenceB = "/teacher_student_attendenceB";
 
 
 function setSideBar(){
-	var obj = document.getElementByIs("sidebar");
+	var obj = document.getElementByI("sidebar");
 	obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div><div class='sidebar-header'><h3>CS管理系統</h3></div><ul class='list-unstyled'><li class='active'><a href='"+url_teacher+"'>首頁</a></li><li><a href='"+url_teacher_courseinfo+"'>課程資訊</a></li><li><a href='"+url_teacher_class_student+"'>學生</a></li><li><a href='"+url_teacher_grade+"'>成績</a></li><li><a href='"+url_teacher_student_attendence+"'>出缺勤</a></li><li><a href='"+url_teacher_communication_book+"'>聯絡簿</a></li></ul>"
 }

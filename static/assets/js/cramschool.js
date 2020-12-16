@@ -1,4 +1,3 @@
-var ngrok="https://af55163ad559.ngrok.io/cs/";
 var myURL = ngrok + "cs_schedule";
 function createTable(data){
     console.log("data: "+data);

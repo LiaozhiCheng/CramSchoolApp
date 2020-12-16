@@ -68,7 +68,7 @@ function showStudent(course_id){
             content += '</form>';
             document.getElementById("myContent").innerHTML = content;
             document.getElementById("exampleModalLabel").innerHTML = "學生清單";
-            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>';
+            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>';
             
         },
         error: function(){
@@ -148,7 +148,7 @@ function add(){
             console.log("error");
         }
     });
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button type="button" class="btn btn-primary" onclick="addCourse()" data-dismiss="modal">Submit</button>';
 }
 
@@ -310,7 +310,7 @@ function del(){
     
     document.getElementById("myContent").innerHTML = content;
     document.getElementById("exampleModalLabel").innerHTML = "刪除課程";
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="delCourse()" data-dismiss="modal">Submit</button>';
 }
 

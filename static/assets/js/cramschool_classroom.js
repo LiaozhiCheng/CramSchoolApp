@@ -139,9 +139,10 @@ function sendData(id, name, capacity, choice){
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            init();
+        }
     });
-    
-    init();
 }
 
 //刪除課程
@@ -167,8 +168,10 @@ function delRoom(){
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            init();
+        }
     });
-    init();
 }
 
 function start(){

@@ -10,7 +10,7 @@ var courseName;
 
 //api url
 var api_student_schedule = "/schedule";
-var api_student_personal_info = "/student_personal_info";
+var api_student_personal_info = "/personal_info";
 var api_student_course_info = "/course_info?course_id=";
 var api_student_reschedule_list = "/student_reschedule_list";
 var api_student_missed_lesson = "/student_miss_lesson";
@@ -29,7 +29,7 @@ var url_student_course_process = "student/student_course_process";
 var url_student_grade = "student/student_grade";
 var url_student_homework = "student/student_homework";
 var url_student_learning_plan = "student/student_learning_plan";
-var url_student_lesson_make-up = "student/student_lesson_make-up";
+var url_student_lesson_makeup = "student/student_lesson_makeup";
 
 
 function setCourseID(obj){

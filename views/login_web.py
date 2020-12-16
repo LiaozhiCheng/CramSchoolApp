@@ -10,7 +10,7 @@ def logout():
     logout_user()
     return redirect(url_for("index"))
 
-
+@login_web.route("/", methods=["GET", "POST"])
 @login_web.route("/login", methods=["GET", "POST"])
 def login():
     return render_template("login.html")

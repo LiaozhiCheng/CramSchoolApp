@@ -1,6 +1,7 @@
-from flask import request, Blueprint
-from flask_security import login_user,current_user
+from flask import request, Blueprint, redirect
+from flask_security import login_user, current_user
 from models import user
+from models import build_data
 
 login_api = Blueprint("login_api", __name__)
 
@@ -20,13 +21,17 @@ def validate():
         return "帳密錯誤"
 
     login_user(cur_user, remember=remember)
+    if current_user.role == 'teacher':
+        return redirect('teacher')
+    elif current_user.role == 'student':
+        return redirect('student')
     return "success"
 
 
 
 @login_api.route("/register")
 def register():
-    user.create_user()
+    build_data.add_users()
     return "regist success"
 
 @login_api.route("/my_user")

@@ -10,7 +10,7 @@ from .user_api import user_api
 
 
 
-blueprint_prefix = [(login_api, ""), (login_web, ""), (user_api, ""), (student_api, ""), (student_web, "/student"), (teacher_api, ""), (teacher_web, "/teacher"), (cs_api, ""), (cramschool_web, "/cramschool")]
+blueprint_prefix = [(login_api, ""), (login_web, ""), (user_api, ""), (student_api, ""), (student_web, ""), (teacher_api, ""), (teacher_web, ""), (cs_api, ""), (cramschool_web, "")]
 
 
 def register_blueprint(app):

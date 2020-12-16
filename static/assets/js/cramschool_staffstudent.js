@@ -1,14 +1,16 @@
+var ngrok = "https://d6bd30a7b604.ngrok.io/cs/";
+
 //初始
 function init(role){
     //判斷是拿誰的
-    var myURL ="https://0d71af81d7eb.ngrok.io/cs/";
+    var myURL =ngrok;
     if(role=="student"){
         myURL += "stu_member_list";
     }
     else if(role=="teacher"){
         myURL += "tea_member_list";
     }
-    
+    console.log("myURL: "+myURL);
     //放心去拿
     $.ajax({
         url: myURL,
@@ -63,9 +65,10 @@ function createTable(data, role){
     
 }
 
+//按點我之後拿到，他有上/教的課
 function showCourse(name, role){
     var content = "";
-    var myURL = "http://0d71af81d7eb.ngrok.io/cs/user_detail_info?name="+name;
+    var myURL = ngrok + "user_detail_info?name="+name;
     $.ajax({
         url: myURL,
         type: "GET",
@@ -105,7 +108,7 @@ function showCourse(name, role){
 function search(){
     console.log("search");
     console.log($("#myval").val());
-    var myURL="https://0d71af81d7eb.ngrok.io/cs/user_detail_info?name="+$("#myval").val();
+    var myURL = ngrok+"user_detail_info?name="+$("#myval").val();
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -153,8 +156,9 @@ function add(){
     
     //拿到course&teacher
     temp="";
+    var myURL = ngrok +"cs_course_list"
     $.ajax({
-        url:"https://0d71af81d7eb.ngrok.io/cs/cs_course_list",
+        url: myURL,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
@@ -184,9 +188,10 @@ function setForm(temp){
         change= '<label class="col-form-label">課程：<select class="form-control" id="choose"></select></label>';
         
     //拿到course&teacher
-    temp="";
+    var temp="";
+    var myURL=ngrok + "cs_course_list";
     $.ajax({
-        url:"https://0d71af81d7eb.ngrok.io/cs/cs_course_list",
+        url: myURL,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
@@ -264,34 +269,32 @@ function edit(id, role){
             }
         });
         
-//        //顯示有上的課程 的按鈕
-//        $.ajax({
-//            url:"https://af55163ad559.ngrok.io/cs/user_detail_info?name="+name,
-//            dataType: "json",
-//            contentType: 'application/json; charset=utf-8',
-//            success: function(response){
-//                content +='<div class="form-group" id="dynamite"><label class="col-form-label">';
-//                //console.log("length: "+response[0].course_list[0]);
-//                content += '<button type="button" class="btn btn-primary" onclick="editCourseList('+"'"+response[0].course_list[0]+"'"+')">'+response[0].course_list[0]+'</button>';
-//                
-////                for(var i=0; i<(response[0].course_list).length; i++){
-////                    console.log("id: "+response[0].course_list[i]);
-////                    content += '<button type="button" class="btn btn-primary" onclick="editCourseList('+"'"+response[0].course_list[i]+"'"+')">'+response[0].course_list[i]+'</button>';
-////                }
-//                
-//                content +='</label></div>';
-//            },
-//            error: function(){
-//                console.log("error");
-//            }
-//        });
+        //顯示有上的課程 的按鈕
+        $.ajax({
+            url:"https://0d71af81d7eb.ngrok.io/cs/user_detail_info?name="+name,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                
+                console.log("it is success");
+                
+                content += '123<input type="text" class="form-control" value="hello">';
+                console.log("content: "+content);
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
     }
     else if(role=="teacher"){
         //填專業科目 id="choose"
         content += '<div class="form-group"><label class="col-form-label">專業科目：<input type="text" class="form-control" id="choose" value="專業科目"></label></div>'; 
     }
-    
+    content += "</form>";
+
     document.getElementById("myContent").innerHTML = content;
+    
+    
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button type="button" class="btn btn-primary" onclick="editUser('+"'"+id+"'"+')" data-dismiss="modal">Submit</button>';
     
@@ -310,10 +313,10 @@ function sendData(id, password, name, course_list, phone, email, major, personal
     else if(role=="老師")
         role = "teacher";
     
-    var myURL="";
+    var myURL="https://969a5c4a8dfb.ngrok.io";
     //新增
     if(choice=="add"){
-        myURL = "https://0d71af81d7eb.ngrok.io/cs/insert_user_detail_info";
+        myURL = myURL + "insert_user_detail_info";
         var send={
             "name" : name,
             "password": password,
@@ -327,7 +330,7 @@ function sendData(id, password, name, course_list, phone, email, major, personal
     }
     //未完成
     else if(choice=="edit"){
-        myURL = "https://0d71af81d7eb.ngrok.io/cs/edit_cs_course_info";
+        myURL = myURL + "edit_cs_course_info";
         
         var send={
             "course_id": id,
@@ -367,7 +370,7 @@ function del(){
 
 //傳刪除成員的資料到後端
 function delUser(){
-    var myURL="https://0d71af81d7eb.ngrok.io/cs/delete_user_detail_info?user_id="+$("#user_id").val();
+    var myURL=ngrok+"delete_user_detail_info?user_id="+$("#user_id").val();
     console.log("URL: "+myURL);
     
     $.ajax({

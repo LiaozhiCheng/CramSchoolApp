@@ -59,7 +59,7 @@ function getReservation(){
     }
     //完成選擇，傳送資料
     else{
-        sendReservation(missedCourse[courseIdx-1], missedLessonID[courseIdx-1][lessonIdx-1]);
+        sendReservation(missedCourse[parseInt(courseIdx)-1], missedLessonID[parseInt(courseIdx)-1][parseInt(lessonIdx)-1]);
         var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
         var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
         var l_id = missedLessonID[missedCourse.indexOf(C_Name)][missedLesson[missedCourse.indexOf(C_Name)].indexOf(L_Name)];

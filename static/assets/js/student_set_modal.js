@@ -25,7 +25,6 @@ function getMissedLesson(){
                     missedLessonID[i].push(data[i].miss_lessons[j].lesson_id);
                 }
             }
-            console.log(missedLessonID);
             setReserveModal();
         },
         

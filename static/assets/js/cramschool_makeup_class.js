@@ -125,6 +125,7 @@ function start(){
         tbody.innerHTML=content;
     }
     init();
+    setSideBar();
 }
 
 window.addEventListener("load", start, false);

@@ -2,6 +2,9 @@ window.onload = function(){
     //courseID & name
     getSavedData();
     
+    //set sidebar
+    setSideBar("all");
+    
     //set page title
     document.getElementById("page-title").innerHTML = courseName + "-個人計畫";
     

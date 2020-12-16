@@ -2,6 +2,9 @@ window.onload = function init() {
     //get student's missed lessons
     getMissedLesson();
     
+    //set sidebar
+    setSideBar("makeup");
+    
     //set page title
     document.getElementById("page-title").innerHTML = "預約補課";
     

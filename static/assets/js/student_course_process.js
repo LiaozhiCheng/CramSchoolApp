@@ -2,6 +2,9 @@ window.onload = function init(){
     //courseID & name
     getSavedData();
     
+    //set sidebar
+    setSideBar("all");
+    
     //set page title
     document.getElementById("page-title").innerHTML = "課程進度";
     

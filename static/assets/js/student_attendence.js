@@ -2,6 +2,9 @@ window.onload = function init(){
     //courseID & name
     getSavedData();
     
+    //set sidebar
+    setSideBar("all");
+    
     //set nav title
     document.getElementById("page-title").innerHTML = courseName + "-出缺勤紀錄";
     

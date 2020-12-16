@@ -1,7 +1,15 @@
 window.onload = function init(){
+    //set sidebar
+    setSideBar("main");
+    
+    //set schedule
     setSchedule();
     getSchedule();
+    
+    //set student info
     getStudentInfo();
+    
+    //set page title
     document.getElementById("page-title").innerHTML = "首頁";
 }
 

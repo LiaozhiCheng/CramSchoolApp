@@ -1,4 +1,4 @@
-var ngrok = "";
+var ngrok = "127.0.0.1:5000";
 
 //web url
 var url_cramschool = "/cramschool";

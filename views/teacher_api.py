@@ -14,7 +14,7 @@ teacher_api = Blueprint('teacher_api', __name__)
 
 #####################################################################
 # teacher communication book
-@teacher_api.route('/course_communication_book', methods=['GET','POST'])
+@teacher_api.route('/teacher_course_communication_book', methods=['GET','POST'])
 def course_communication_book():
     course_id = request.values.get('course_id')
     items = lesson.get_by_courseid(course_id)
@@ -32,7 +32,7 @@ def course_communication_book():
 
 #####################################################################
 # teacher edit communication book
-@teacher_api.route('/edit_course_communication_book', methods=['POST'])
+@teacher_api.route('/teacher_edit_course_communication_book', methods=['POST'])
 def edit_course_communication_book():
     data = request.get_json()
     try:
@@ -55,7 +55,7 @@ def edit_course_communication_book():
 
 #####################################################################
 # teacher communication book
-@teacher_api.route('/course_personal_plan', methods=['GET','POST'])
+@teacher_api.route('/teacher_course_personal_plan', methods=['GET','POST'])
 def course_personal_plan():
     course_id = request.values.get('course_id')
     student_id = request.values.get('student_id')
@@ -76,7 +76,7 @@ def course_personal_plan():
 
 #####################################################################
 # teacher edit course personal plan
-@teacher_api.route('/edit_course_personal_plan', methods=['GET','POST'])
+@teacher_api.route('/teacher_edit_course_personal_plan', methods=['GET','POST'])
 def edit_course_personal_plan():
     data = request.get_json()
     try:
@@ -106,7 +106,7 @@ def edit_course_personal_plan():
    
 #####################################################################
 # teacher course student list
-@teacher_api.route('/course_student_list', methods=['GET','POST'])
+@teacher_api.route('/teacher_course_student_list', methods=['GET','POST'])
 def course_student_list():
     course_id = request.values.get('course_id')
     target_course = course.get_by_courseid(course_id)
@@ -123,7 +123,7 @@ def course_student_list():
     return jsonify(student_list)
 #####################################################################
 # teacher course student info
-@teacher_api.route('/student_personal_info', methods=['GET'])
+@teacher_api.route('/teacher_student_personal_info', methods=['GET'])
 def user_personal_info():
     student_id = request.values.get('student_id')
     target_student = user.get_by_userid(student_id)
@@ -139,7 +139,7 @@ def user_personal_info():
 
 #####################################################################
 # teacher course attendence
-@teacher_api.route('/course_attendence', methods=['GET','POST'])
+@teacher_api.route('/teacher_course_attendence', methods=['GET','POST'])
 def course_attendence():
     course_id = request.values.get('course_id')
     target_course = course.get_by_courseid(course_id)
@@ -167,7 +167,7 @@ def course_attendence():
         
 #####################################################################
 # teacher course grade
-@teacher_api.route('/course_grade', methods=['GET','POST'])
+@teacher_api.route('/teacher_course_grade', methods=['GET','POST'])
 def course_grade():
     course_id = request.values.get('course_id')
     target_course = course.get_by_courseid(course_id)
@@ -202,7 +202,7 @@ def course_grade():
     return jsonify(whole_list)
 #####################################################################
 # teacher edit course grade
-@teacher_api.route('/edit_course_grade', methods=['POST'])
+@teacher_api.route('/teacher_edit_course_grade', methods=['POST'])
 def edit_course_grade():
     data = request.get_json()
     new_info = {
@@ -213,7 +213,7 @@ def edit_course_grade():
     return jsonify(new_info)
 #####################################################################
 # teacher delete course grade    
-@teacher_api.route('/delete_course_grade', methods=['GET'])
+@teacher_api.route('/teacher_delete_course_grade', methods=['GET'])
 def delete_course_grade():
     lesson_id = request.values.get('lesson_id')
     item = lesson.get_by_lessonid(lesson_id)

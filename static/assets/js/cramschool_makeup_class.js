@@ -1,6 +1,5 @@
 var tbody = document.getElementById("tbody");
 var week=["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
-var ngrok="https://d6bd30a7b604.ngrok.io/cs/";
 
 //初始
 function init(){

@@ -173,6 +173,7 @@ function delRoom(){
 
 function start(){
     init();
+    setSideBar();
 }
 
 window.addEventListener("load", start, false);

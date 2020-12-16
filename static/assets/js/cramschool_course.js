@@ -316,7 +316,7 @@ function del(){
 
 //把刪除的課程ID傳到後端
 function delCourse(){
-    var myURL = myURL + "delete_cs_course_info?course_id="+$("#course_id").val();
+    var myURL = ngrok + "delete_cs_course_info?course_id="+$("#course_id").val();
     console.log("URL: "+myURL);
     $.ajax({
         url: myURL,

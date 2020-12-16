@@ -331,6 +331,7 @@ function delCourse(){
 //start
 function start(){
     init();
+    setSideBar();
 }
 
 window.addEventListener("load", start, false);

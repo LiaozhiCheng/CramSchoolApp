@@ -11,7 +11,7 @@ var courseName;
 var ngrok = "";
 
 //api url
-var api_student_schedule = "/schedule";
+var api_student_schedule = ngrok + "/schedule";
 var api_student_personal_info = ngrok + "/personal_info";
 var api_student_course_info = ngrok + "/course_info?course_id=";
 var api_student_reschedule_list = ngrok + "/student_reschedule_list";
@@ -38,19 +38,22 @@ var url_student_lesson_makeup = "student_lesson_makeup";
 function setSideBar(version){
     var obj = document.getElementById("sidebar");
     if(version == "main"){
-        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
+                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li class='active'><a href='" + url_student +
                         "'>首頁</a></li><li><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li></ul>";
     }
     else if(version == "makeup"){
-        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
+                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li><a href='" + url_student +
                         "'>首頁</a></li><li class='active'><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li></ul>";
     }
     else{
-        obj.innerHTML = "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
+        obj.innerHTML = "<div id='dismiss'><i class='fas fa-arrow-left'></i></div>" + 
+                        "<div class='sidebar-header'><h3>CS管理系統</h3></div>" + 
                         "<ul class='list-unstyled'><li><a href='" + url_student +
                         "'>首頁</a></li><li><a href='" + url_student_lesson_makeup + 
                         "'>預約補課</a></li><li class='active'><a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false'>課程相關項目</a>" + 

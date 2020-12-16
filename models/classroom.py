@@ -43,3 +43,8 @@ def delete_classroom(classroomid):
 #編輯教室資訊
 def update_classroom(classroomid, classroomdict):
     _db.CLASSROOM_COLLECTION.update_one(classroomid, {'$set':classroomdict})
+    
+# 依據 user_id 找單一物件
+def get_by_classroomid(classroom_id):
+    item = _db.CLASSROOM_COLLECTION.find_one({'classroom_id' : classroom_id})
+    return item

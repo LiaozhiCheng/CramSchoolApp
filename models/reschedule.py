@@ -65,6 +65,11 @@ def update_reschedule_state(weekday, time, new_state):
     
     reservation_time=datetime(year=this_week_start.year, month=this_week_start.month, day=this_week_start.day)+ timedelta(days=Myweekday, hours=int(hour), minutes=int(minute))
     _db.RESCHEDULE_COLLECTION.update({'datetime':reservation_time}, {'$set':{'state':new_state}})
+
+
+def get_all():
+    return _db.RESCHEDULE_COLLECTION.find()
+
     
     
     

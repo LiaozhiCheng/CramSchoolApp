@@ -120,3 +120,16 @@ def delete_user(userid):
 #編輯成員 
 def update_user(userid, userdict):
     _db.USER_COLLECTION.update_one(userid, {'$set':userdict})
+    
+    
+# 依據 user_id 找單一物件
+def get_by_userid(user_id):
+    item = _db.USER_COLLECTION.find_one({'user_id' : user_id})
+    return item
+
+def update_personal_plan(user_id,data):
+    _db.USER_COLLECTION.update_one({'user_id':user_id},{'$push':{'personal_plan':data}})
+    
+
+def delete_personal_plan(user_id,data):
+    _db.USER_COLLECTION.update_one({'user_id':user_id},{'$pull':{'personal_plan':data}})

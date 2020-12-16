@@ -24,10 +24,10 @@ function setTimeData(currID){
 //send reservation to db
 function sendReservation(courseName, lessonId){
     var myTime = setTimeData(currID);
-    var reservation = { "datetime" : myTime , "course_name" : "1100歷史" , "lesson_id" : "L-001-000" };
+    var reservation = { "datetime" : myTime , "course_name" : courseName , "lesson_id" : lessonId };
     
     $.ajax({
-        url: "/student_add_reservation",
+        url: api_student_add_reservation,
         //url: "https://38049d8c9137.ngrok.io/student/add_reservation",
         type: "POST",
         data: JSON.stringify(reservation),
@@ -76,11 +76,14 @@ function cancelReservation(){
     
     //create delete data
     var myTime = setTimeData(currID);
-    var cancelData = { "datetime" : myTime , "course_name" : "1100歷史" , "lesson_id" : "L-001-000" };
+    var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
+    var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
+    var l_id = missedLessonID[missedCourse.indexOf(C_Name)][missedLesson[missedCourse.indexOf(C_Name)].indexOf(L_Name)];
+    var cancelData = { "datetime" : myTime , "course_name" : C_Name , "lesson_id" : l_id };
     
     //call delete API
     $.ajax({
-        url: "/student_cancel_reservation",
+        url: api_student_cancel_reservation,
         //url: "https://38049d8c9137.ngrok.io/student/cancel_reservation",
         type: "POST",
         data: JSON.stringify(cancelData),

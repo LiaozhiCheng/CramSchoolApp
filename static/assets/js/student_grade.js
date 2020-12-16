@@ -13,7 +13,7 @@ window.onload = function init(){
 //get student grades
 function getGrade(){
     $.ajax({
-        url: "/student_course_grade?course_id" + courseID,
+        url: api_student_course_grade + courseID,
         //url: "https://38049d8c9137.ngrok.io/student/course_grade?course_id=" + courseID,
         type: "GET",
         dataType: "json",

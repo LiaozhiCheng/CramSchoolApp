@@ -7,9 +7,8 @@ window.onload = function init(){
 
 //get & set student information
 function getStudentInfo(){
-    var apiURL = "/student_personal_info";
     $.ajax({
-        url: apiURL,
+        url: api_student_personal_info,
         //url: "https://38049d8c9137.ngrok.io/user/personal_info",
         type: "GET",
         dataType: "json",

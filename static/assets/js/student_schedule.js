@@ -39,7 +39,7 @@ function addCourse(course, time, id){
     temp = temp[0].split("~");
     temp = temp[1].split(":");
     var idx = defTime(temp[0]) + '-' + days[time.split("-")[1]-1];
-    document.getElementById(idx).innerHTML = "<a href='student_course_process.html'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a>";
+    document.getElementById(idx).innerHTML += "<a href='student_course_process.html'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a>";
 }
 
 //when does the course take

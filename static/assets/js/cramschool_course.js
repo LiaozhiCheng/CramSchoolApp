@@ -1,5 +1,4 @@
 var weekday=['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
-var ngrok = "https://0d71af81d7eb.ngrok.io/";
 
 function init(){
     var myURL = ngrok + "cs_course_list";

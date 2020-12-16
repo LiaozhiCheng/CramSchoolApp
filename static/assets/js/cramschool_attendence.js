@@ -1,11 +1,14 @@
 //用名字查的-> sessionStorage的有：user_id, course_id
 //用course_id查的-> 
 
+var ngrok = "https://0d71af81d7eb.ngrok.io/cs/";
+
 function init(){    
     //拿到course&teacher
     var temp="";
+    var myURL = ngrok + "cs_course_list";
     $.ajax({
-        url:"https://0d71af81d7eb.ngrok.io/cs/cs_course_list",
+        url: myURL,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
@@ -30,7 +33,7 @@ function getLesson(data){
     var course_id = $(data).find("option:checked").attr("id");
     
     
-    var temp="", myURL = "https://0d71af81d7eb.ngrok.io/cs/cs_lesson_id_and_time?course_id="+course_id;
+    var temp="", myURL = ngrok + "cs_lesson_id_and_time?course_id="+course_id;
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -67,7 +70,7 @@ function searchByLesson(){
 
 function getByLesson(){
     var lesson_id = sessionStorage.getItem("lesson_id");
-    var temp="", myURL="https://0d71af81d7eb.ngrok.io/cs/cs_course_attendence?lesson_id="+lesson_id;
+    var temp="", myURL=ngrok+"cs_course_attendence?lesson_id="+lesson_id;
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -108,7 +111,8 @@ function getByLesson(){
 //sessionStorage: user_id
 function getCourseByName(){
     
-    var temp="", myURL="https://0d71af81d7eb.ngrok.io/cs/user_detail_info?name="+$("#searchName").val();
+    var temp="", myURL=ngrok+"user_detail_info?name="+$("#searchName").val();
+    console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
         dataType: "json",
@@ -152,7 +156,7 @@ function getByName(){
     //編輯表格所需的變數
     var time, attend, lesson_id, content="";
     
-    var temp="", myURL = "https://0d71af81d7eb.ngrok.io/cs/cs_student_attendence?user_id="+sessionStorage.getItem("user_id")+"&course_id="+course_id;
+    var temp="", myURL = ngrok + "cs_student_attendence?user_id="+sessionStorage.getItem("user_id")+"&course_id="+course_id;
     
     console.log("myURL: "+myURL);
     $.ajax({
@@ -249,7 +253,7 @@ function editAtt(myID){
         isAttendence = 0;
     }
     
-    var myURL = "https://0d71af81d7eb.ngrok.io/cs/edit_cs_course_attendence?user_id="+user_id+"&lesson_id="+lesson_id+"&isAttendence="+isAttendence;
+    var myURL = ngrok + "edit_cs_course_attendence?user_id="+user_id+"&lesson_id="+lesson_id+"&isAttendence="+isAttendence;
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,

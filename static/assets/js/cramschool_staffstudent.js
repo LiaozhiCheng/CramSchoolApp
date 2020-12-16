@@ -213,6 +213,7 @@ function setForm(temp){
 
 //傳新增的成員資料到後端
 function addUser(){
+    document.getElementById("myContent").innerHTML = "";
     var major=null, course_list=[]; 
     //判斷是誰
     if($("#role").val()=="學生"){

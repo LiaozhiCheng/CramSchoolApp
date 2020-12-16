@@ -28,6 +28,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run("140.121.197.130",port=8080)
+    app.run("140.121.196.88",port=8080)
     
 #"140.121.197.130",port=8080

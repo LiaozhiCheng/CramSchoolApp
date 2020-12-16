@@ -1,10 +1,13 @@
 var tbody = document.getElementById("tbody");
-var week=["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var week=["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"];
+var ngrok="https://d6bd30a7b604.ngrok.io/cs/";
 
 //初始
 function init(){
+    var myURL=ngrok + "cs_reschedule_list";
+    console.log("myURL: "+myURL);
     $.ajax({
-        url: "https://af55163ad559.ngrok.io/cs/cs_reschedule_list",
+        url: myURL,
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -43,10 +46,9 @@ function init(){
 function show(id){
     console.log("show id: "+id);
     
-    var content="", myURL = "https://af55163ad559.ngrok.io/cs/cs_reschedule_info?weekday="+week[id%7]+"&time="+(Math.floor(id/7)*2+17)+":00";
+    var content="", myURL = ngrok+"cs_reschedule_info?weekday="+week[id%7]+"&time="+(Math.floor(id/7)*2+17)+":00";
     console.log("myURL: "+myURL);
     
-    //content += '<div class="form-group">123</div>';
     $.ajax({
         url: myURL,
         type: "GET",
@@ -90,7 +92,7 @@ function miss(){
 function makeup(id){
     console.log("open id: "+id);
     
-    var myURL = "https://af55163ad559.ngrok.io/cs/edit_cs_reschedule_list?weekday="+week[id%7]+"&time="+(Math.floor(id/7)*2+17)+":00&new_state=1";
+    var myURL = ngrok+"edit_cs_reschedule_list?weekday="+week[id%7]+"&time="+(Math.floor(id/7)*2+17)+":00&new_state=1";
     
     console.log("myURL: "+myURL);
     $.ajax({
@@ -121,9 +123,7 @@ function start(){
         if(i%7==6){
             content+='</tr>';
         }
-        //console.log("build_i: "+i);
         tbody.innerHTML=content;
-        //document.getElementById("0").innerHTML="test";
     }
     init();
 }

@@ -19,8 +19,8 @@
                         }
 
                         $.ajax({
-                        //url: "https://3aac3445b286.ngrok.io/teacher/course_communication_book?course_id="+temp,
-                        url: "cb.json", //放你的url，這裡先放本地端檔案
+                        url: "https://595c59d359e3.ngrok.io/teacher_course_communication_book?course_id="+temp,
+                        //url: "cb.json", //放你的url，這裡先放本地端檔案
                         type: "GET",
                         dataType: "json",
                         contentType: 'application/json; charset=utf-8',
@@ -94,7 +94,7 @@
                             var cb = { "lesson_id" : lessonid[ss] , "lesson_time" : date[ss]  , "deadline" : submitdeadline , "progress" : submitprogress, "context" : submitcontext };
                             console.log(cb);
                             $.ajax({
-                        url: "https://3aac3445b286.ngrok.io/teacher/edit_course_communication_book",
+                        url: "https://595c59d359e3.ngrok.io/edit course communication book",
                         type: "POST",
                         data: JSON.stringify(cb),
                         dataType: "json",

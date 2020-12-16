@@ -14,7 +14,7 @@ DB = MongoClient('mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net')['CramSc
 
 USER_DATA_COLLECTION = DB['User']
 
-USER_COLLECTION=DB['User']
+USER_COLLECTION=DB['user']
 
 COURSE_COLLECTION=DB['Course']
 

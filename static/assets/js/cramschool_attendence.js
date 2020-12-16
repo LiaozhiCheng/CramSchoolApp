@@ -1,8 +1,5 @@
 //用名字查的-> sessionStorage的有：user_id, course_id
 //用course_id查的-> 
-
-var ngrok = "https://0d71af81d7eb.ngrok.io/cs/";
-
 function init(){    
     //拿到course&teacher
     var temp="";

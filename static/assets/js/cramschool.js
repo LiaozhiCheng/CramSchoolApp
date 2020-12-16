@@ -1,4 +1,5 @@
 var myURL = ngrok + "cs_schedule";
+setSideBar();
 function createTable(data){
     console.log("data: "+data);
     var content = "";

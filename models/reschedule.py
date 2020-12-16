@@ -6,10 +6,13 @@ Created on Sun Dec 13 15:47:03 2020
 @author: linxiangling
 """
 
-
+from bson.objectid import ObjectId
 from models import _db
+
+from flask_bcrypt import Bcrypt
 import sys
-from datetime import datetime,timedelta
+
+from datetime import datetime,timezone,timedelta
 
 
 sys.path.insert(0, './models')
@@ -31,23 +34,18 @@ def get_day_reservation(weekday, time):
     for i in range(len(weeks)):
         if weeks[i]==weekday:
             Myweekday=i
-    #print(time)
-    
+
     Mytime=time.split(':')
     
-    #print("----------------------------------------")
-    #for i in Mytime:
-    #    print(i)
-        
     hour=Mytime[0]
     minute=Mytime[1]
     now=datetime.now()
     this_week_start_day=(now - timedelta(days=now.weekday()))
     this_week_start = datetime(year=this_week_start_day.year, month=this_week_start_day.month, day=this_week_start_day.day, hour=0, minute=0)
     reservation_time=this_week_start+ timedelta(days=Myweekday, hours=int(hour), minutes=int(minute))
-    #print("----------------------------------------")
-    #print(reservation_time)
+
     return _db.RESCHEDULE_COLLECTION.find_one({'datetime':reservation_time})
+    
 
 #開放補課時段
 def update_reschedule_state(weekday, time, new_state):
@@ -65,11 +63,6 @@ def update_reschedule_state(weekday, time, new_state):
     
     reservation_time=datetime(year=this_week_start.year, month=this_week_start.month, day=this_week_start.day)+ timedelta(days=Myweekday, hours=int(hour), minutes=int(minute))
     _db.RESCHEDULE_COLLECTION.update({'datetime':reservation_time}, {'$set':{'state':new_state}})
-
-
-def get_all():
-    return _db.RESCHEDULE_COLLECTION.find()
-
     
     
     

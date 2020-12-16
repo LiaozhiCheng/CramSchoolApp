@@ -67,16 +67,5 @@ def update_reschedule_state(weekday, time, new_state):
     _db.RESCHEDULE_COLLECTION.update({'datetime':reservation_time}, {'$set':{'state':new_state}})
     
     
-def get_all():
-    items = db.RESCHEDULE_COLLECTION.find()
-    return items
-
-def get_by_datetime(time):
-    item = db.RESCHEDULE_COLLECTION.find_one({'datetime' : time})
-    return item
-
-def add_reservation(data):
-    db.RESCHEDULE_COLLECTION.update_one({'datetime' : data['datetime']},{'$push':{'reservation_list':data}})
-
-def delete_reservation(data):
-    db.RESCHEDULE_COLLECTION.update_one({'datetime' : data['datetime']},{'$pull':{'reservation_list':data}})
+    
+    

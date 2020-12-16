@@ -13,14 +13,17 @@ window.onload = function init(){
 //getHW
 function getStudentHW(){
     $.ajax({
-        url: "testContent/studentHW.json",
+        //url: "testContent/studentHW.json",
+        url: "https://38049d8c9137.ngrok.io/student/course_homework?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
             for(var i=0; i<data.length; i++){
-                setHW(data[i].time, data[i].lesson, data[i].homework, data[i].deadline);
+                var startTime = setLessonDate(data[i].lesson_time);
+                var deadline = setLessonDate(data[i].deadline);
+                setHW(startTime, data[i].progress, data[i].homework, deadline);
             }
         },
         

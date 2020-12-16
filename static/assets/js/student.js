@@ -15,6 +15,11 @@ function setCourseID(obj){
     sessionStorage.setItem("course", info);
 }
 
+//set lessons date
+function setLessonDate(str){
+    var time = str.split(' ');
+    return time[3] + '-' + time[2] + '-' + time[1];
+}
 
 function getSavedData(){
     try{

@@ -1,12 +1,14 @@
 //get schedule data
 function getSchedule(){
     $.ajax({
-        url: "testContent/studentSchedule.json",
+        //url: "testContent/studentSchedule.json",
+        url: "https://38049d8c9137.ngrok.io/user/schedule",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
+            console.log(data);
             for(var i=0; i<data.length; i++){
                 addCourse(data[i].course, data[i].time, data[i].course_id);
             }
@@ -38,8 +40,8 @@ function addCourse(course, time, id){
     var temp = time.split("-");
     temp = temp[0].split("~");
     temp = temp[1].split(":");
-    var idx = defTime(temp[0]) + '-' + days[time.split("-")[1]-1];
-    document.getElementById(idx).innerHTML += "<a href='student_course_process.html'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a>";
+    var idx = defTime(temp[0]) + '-' + time.split("-")[1].toLowerCase();
+    document.getElementById(idx).innerHTML = "<a href='student_course_process.html'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a>";
 }
 
 //when does the course take

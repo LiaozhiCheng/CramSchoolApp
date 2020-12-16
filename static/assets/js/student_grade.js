@@ -13,14 +13,15 @@ window.onload = function init(){
 //get student grades
 function getGrade(){
     $.ajax({
-        url: "testContent/studentGrade.json",
+        //url: "testContent/studentGrade.json",
+        url: "https://38049d8c9137.ngrok.io/student/course_grade?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
             for(var i=0; i<data.length; i++){
-                setGrade(data[i].time, data[i].quiz_name, data[i].grade);
+                setGrade(setLessonDate(data[i].quiz_date), data[i].quiz_name, data[i].grade);
             }
         },
         

@@ -5,7 +5,7 @@ window.onload = function init() {
     //set page title
     document.getElementById("page-title").innerHTML = "預約補課";
     
-    //::test::
+    //get opened time for 
     getValidTime();
     
     //set valid reserve time
@@ -45,37 +45,43 @@ function getTimeRange(time){
     var hour = parseInt(tempTime[1]);
     var weekDay = parseInt(tempTime[0]);
     if(weekDay == 0){ weekDay = 7; }
+    
+    var td_id = "";
     if(hour == 17){
-        return days[weekDay-1] + '-0';
+        td_id = days[weekDay-1] + '-0';
     }
     else if(hour == 19){
-        return days[weekDay-1] + '-1';
+        td_id = days[weekDay-1] + '-1';
     }
     else if(hour == 21){
-        return days[weekDay-1] + '-2';
+        td_id = days[weekDay-1] + '-2';
     }
+    return td_id;
 }
 
 //get available time
 function getValidTime(){
     $.ajax({
-        url: "testContent/rescheduleList.json",
+        //url: "testContent/rescheduleList.json",
+        url: "https://38049d8c9137.ngrok.io/student/reschedule_list",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
+            console.log("getVaildTime: ", data);
             for(var i=0; i<data.length; i++){
-                var td_id = getTimeRange(data[i].datetime);
+                var time = data[i].datetime.split('+');
+                var td_id = getTimeRange(time[1]);
                 switch(data[i].state){
                     case 'available':
-                        resetTd(td_id);
+                        resetTd(td_id, time[0]);
                         break;
                     case 'full':
-                        fullTd(td_id);
+                        fullTd(td_id, time[0]);
                         break;
                     case 'reserved':
-                        reservedTd(td_id, data[i].course_name, data[i].lesson_progress, data[i].lesson_id);
+                        reservedTd(td_id, data[i].course_name, data[i].lesson_progress, data[i].lesson_id, time[0]);
                 }
             }
         },
@@ -88,40 +94,33 @@ function getValidTime(){
 }
 
 //set to unreserve state
-function resetTd(td_id){
+function resetTd(td_id, date){
     var target = document.getElementById(td_id);
-    var str = "<a href='#' class='normal' name='" + td_id + "' " 
+    var str = "<a href='#' class='normal' name='" + td_id + "+" + date + "' " 
             + "data-toggle='modal' data-target='#reserve' " 
             + "onclick='setCurr(this)'>預約補課</a>";
     target.innerHTML = str;
 }
 
 //set to full state
-function fullTd(td_id){
+function fullTd(td_id, date){
     var target = document.getElementById(td_id);
-    var str = "<a href='#' class='disabled' name='" + td_id 
+    var str = "<a href='#' class='disabled' name='" + td_id + '+' + date
             + "'>預約已滿</a>";
     target.innerHTML = str;
 }
 
 //set to reserved state
-function reservedTd(td_id, c_name, l_name, l_id){
+function reservedTd(td_id, c_name, l_name, l_id, date){
     var target = document.getElementById(td_id);
-    var str = "<a href='#' class='normal' name='" + td_id + "' " 
+    var str = "<a href='#' class='normal' name='" + td_id + '+' + date + "' " 
             + "data-toggle='modal' data-target='#checkoutInfo' " 
             + "onclick='setCheckInfo(this)' id='" + l_id + "'>" 
-            + c_name + "-" + l_name + "</a>";
+            + c_name + "/" + l_name + "</a>";
     target.innerHTML = str;
 }
 
-//test: testing available time
-function testing(){
-    resetTd("mon-2");
-    resetTd("sun-0");
-    resetTd("sun-1");
-    resetTd("sat-0");
-    resetTd("sat-1");
-}
+
 
 
 

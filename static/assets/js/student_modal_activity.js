@@ -4,16 +4,30 @@ var currID = "";
 function setCurr(theCell){
     //紀錄目前選擇的時間段
     currID = theCell.name;
-    console.log(currID);
+}
+
+function setTimeData(currID){
+    var tempTime = currID.split("+");
+    var weekDay = tempTime[0].split('-');
+    var index = days.indexOf(weekDay[0]);
+    if(index == 6){ index = 0; }
+    else{ index += 1; }
+    
+    var time = parseInt(weekDay[1]);
+    if(time == 0){ time = 17; }
+    else if(time == 1){ time = 19; }
+    else{ time = 21; }
+    
+    return tempTime[1] + '+' + index + '-' + time;
 }
 
 //send reservation to db
 function sendReservation(courseName, lessonId){
-    var myTime = new Date();
-    var reservation = { "datetime" : myTime , "course_name" : courseName , "lesson_id" : lessonId };
+    var myTime = setTimeData(currID);
+    var reservation = { "datetime" : myTime , "course_name" : "1100歷史" , "lesson_id" : "L-001-000" };
     
     $.ajax({
-        url: "https://8555e032bdb5.ngrok.io/student/test",
+        url: "https://38049d8c9137.ngrok.io/student/add_reservation",
         type: "POST",
         data: JSON.stringify(reservation),
         dataType: "json",
@@ -47,8 +61,8 @@ function getReservation(){
         sendReservation(missedCourse[courseIdx-1], missedLessonID[courseIdx-1][lessonIdx]);
         var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
         var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
-        
-        reservedTd(currID, C_Name, L_Name);
+        var l_id = missedLessonID[missedCourse.indexOf(C_Name)][missedLesson[missedCourse.indexOf(C_Name)].indexOf(L_Name)];
+        reservedTd(currID.split('+')[0], C_Name, L_Name, l_id, currID.split('+')[1]);
         currID = "";
     }
 }
@@ -60,18 +74,20 @@ function cancelReservation(){
     //double check alert;
     
     //create delete data
-    var cancelData = {};
+    var myTime = setTimeData(currID);
+    var cancelData = { "datetime" : myTime , "course_name" : "1100歷史" , "lesson_id" : "L-001-000" };
     
     //call delete API
     $.ajax({
-        url: "",
+        url: "https://38049d8c9137.ngrok.io/student/cancel_reservation",
         type: "POST",
         data: JSON.stringify(cancelData),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
-        success: function(){
-            console.log("cancel successfully!!!");
+        success: function(data){
+            console.log(data);
+            alert("cancel successfully!!!");
         },
         
         error: function(){
@@ -80,11 +96,11 @@ function cancelReservation(){
     });
     
     //
-    resetTd(currID);
+    resetTd(currID.split('+')[0], "");
     
-    setTimeout(function(){
-        window.location.reload();
-    }, 3000);
+//    setTimeout(function(){
+//        window.location.reload();
+//    }, 3000);
     
 }
 

@@ -8,12 +8,13 @@ var missedLessonID = new Array();
 //get student missed lesson
 function getMissedLesson(){
     $.ajax({
-        url: "testContent/studentMissedLesson.json",
+        url: "https://38049d8c9137.ngrok.io/student/miss_lesson",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
+            console.log(data);
             for(var i=0; i<data.length; i++){
                 missedCourse.push(data[i].course_name);
                 missedLesson[i] = new Array();
@@ -23,6 +24,7 @@ function getMissedLesson(){
                     missedLessonID[i].push(data[i].miss_lessons[j].lesson_id);
                 }
             }
+            console.log(missedLessonID);
             setReserveModal();
         },
         
@@ -47,7 +49,15 @@ function setLesson(ch){
     var t = document.getElementById("chooseLesson");
     var ops = "<option value='' disabled selected>選擇課堂</option>";
     for(var i in missedLesson[index-1]){
-        ops += "<option value='" + i + "'>" + missedLesson[index-1][i] + "</option>";
+        var info = "";
+        if(missedLesson[index-1][i].length > 0){
+            info = missedLesson[index-1][i];
+        }
+        else{
+            info = missedLessonID[index-1][i];
+        }
+        
+        ops += "<option value='" + i + "'>" + info + "</option>";
     }
     t.innerHTML = ops;
 }
@@ -61,7 +71,7 @@ function resetReserve(){
 //set checkout info
 function setCheckInfo(info){
     console.log(info.text);
-    var list = info.text.split('-');
+    var list = info.text.split('/');
     document.getElementById("courseInfo").placeholder = list[0]; document.getElementById("lessonInfo").placeholder = list[1];
     currID = info.name;
 }

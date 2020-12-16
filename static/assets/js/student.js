@@ -11,7 +11,7 @@ var courseName;
 //api url
 var api_student_schedule = "/schedule";
 var api_student_personal_info = "/student_personal_info";
-var api_student_course_info = "/course_info";
+var api_student_course_info = "/course_info?course_id=";
 var api_student_reschedule_list = "/student_reschedule_list";
 var api_student_missed_lesson = "/student_miss_lesson";
 var api_student_add_reservation = "/student_add_reservation";

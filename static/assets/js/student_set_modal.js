@@ -8,7 +8,7 @@ var missedLessonID = new Array();
 //get student missed lesson
 function getMissedLesson(){
     $.ajax({
-        url: "/student_miss_lesson",
+        url: api_student_missed_lesson,
         //url: "https://38049d8c9137.ngrok.io/student/miss_lesson",
         type: "GET",
         dataType: "json",

@@ -13,7 +13,7 @@ window.onload = function init(){
 function getAttendency(){
     //load json
     $.ajax({
-        url: "/student_course_attendence?course_id=" + courseID,
+        url: api_student_course_attendence + courseID,
         //url: "https://38049d8c9137.ngrok.io/student/course_attendence?course_id=" + courseID,
         type: "GET",
         dataType: "json",

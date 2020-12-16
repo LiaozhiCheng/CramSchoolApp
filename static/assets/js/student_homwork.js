@@ -13,7 +13,7 @@ window.onload = function init(){
 //getHW
 function getStudentHW(){
     $.ajax({
-        url: "/student_course_homework?course_id=" + courseID,
+        url: api_student_course_hw + courseID,
         //url: "https://38049d8c9137.ngrok.io/student/course_homework?course_id=" + courseID,
         type: "GET",
         dataType: "json",

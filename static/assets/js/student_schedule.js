@@ -1,7 +1,7 @@
 //get schedule data
 function getSchedule(){
     $.ajax({
-        url: "/schedule",
+        url: api_student_schedule,
         //url: "https://38049d8c9137.ngrok.io/user/schedule",
         type: "GET",
         dataType: "json",

@@ -25,7 +25,7 @@ function setTimeData(currID){
 function sendReservation(courseName, lessonId){
     var myTime = setTimeData(currID);
     var reservation = { "datetime" : myTime , "course_name" : courseName , "lesson_id" : lessonId };
-    
+    console.log(lessonId);
     $.ajax({
         url: api_student_add_reservation,
         //url: "https://38049d8c9137.ngrok.io/student/add_reservation",

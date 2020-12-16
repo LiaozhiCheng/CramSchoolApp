@@ -1,0 +1,18 @@
+td,th {
+    text-align: center;
+    min-width: 170px;
+}
+
+input.gradeTextDisabled {
+    border-style: none none none none;
+    /*上 右 下  左 */
+    background-color: transparent;
+    color: black;
+    width: 110px;
+    text-align: center;
+}
+
+input.gradeText {
+    width: 110px;
+    text-align: center;
+}

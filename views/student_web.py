@@ -34,6 +34,6 @@ def learning_plan():
 	return render_template('student_learning_plan.html')
 
 #####################################################################
-@student_web.route('/student_lesson_make-up', methods=["GET", "POST"])
+@student_web.route('/student_lesson_makeup', methods=["GET", "POST"])
 def lesson_makeup():
 	return render_template('student_lesson_make-up.html')

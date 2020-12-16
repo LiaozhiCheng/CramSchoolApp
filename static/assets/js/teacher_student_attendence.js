@@ -1,11 +1,11 @@
 function doClick(op) {
     iframe = document.getElementById("iframe");
     if (op == "一天") {
-        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher/teacher_student_attendenceA");
+        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher_student_attendenceA");
         day.setAttribute("class", "click");
         semester.setAttribute("class", "attendence");
     } else if (op == "一學期") {
-        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher/teacher_student_attendenceB");
+        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher_student_attendenceB");
         day.setAttribute("class", "attendence");
         semester.setAttribute("class", "click");
     }

@@ -23,10 +23,10 @@ function getAttendency(){
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
-            console.log(data);
             for(var i=0; i<data.length; i++){
                 setAttendenceState(setLessonDate(data[i].lesson_time), data[i].progress, data[i].state);
             }
+            console.log(data);
         },
         
         error: function(){

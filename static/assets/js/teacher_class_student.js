@@ -9,7 +9,7 @@ function createTable(data) {
     var content = "";
 
     for (var i = 0; i < data.length; i++) {
-        content += "<tr><td><a href='https://595c59d359e3.ngrok.i/teacher/teacher_personal_plan' onclick='Click(" + i + ")'>" + data[i].student_name + "</a></td>"
+        content += "<tr><td><a href='https://595c59d359e3.ngrok.i/teacher_personal_plan' onclick='Click(" + i + ")'>" + data[i].student_name + "</a></td>"
             + "<td>" + data[i].student_id + "</td>"
             + "<td>" + data[i].email + "</td>"
             + "<td>" + data[i].phone + "</td>"

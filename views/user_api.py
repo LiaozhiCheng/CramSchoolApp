@@ -3,15 +3,12 @@ from flask import request
 from flask_security import current_user
 
 # ---------- import models -----------------------------------------
-from models import user
 from models import course
 # ------------------------------------------------------------------
 
 user_api = Blueprint('user_api', __name__)
 
 # ------------------------------------------------------------------
-
-TESTUSER = user.get_by_userid("110-T-003")
 
 # user schedule
 @user_api.route('/schedule', methods=['GET'])

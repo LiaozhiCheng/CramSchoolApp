@@ -101,12 +101,13 @@ function makeup(id){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             console.log("success");
+            init();
         },
         error: function(){
             console.log("error");
         }
         });
-    init();
+    
 }
 
 //start

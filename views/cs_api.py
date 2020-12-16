@@ -190,15 +190,14 @@ def cs_course_attendence():
     
     temp=[]
     for i in all_student:
+        user_info=user.get_user_info(i)
         if i in lesson_attendence:
             #print(i+"in")
-            user_info=user.get_user_info(i)
             temp.append({user_info['name']:'出席', 'user_id':user_info['user_id']})
         else:
             #print(i+"not in")
             temp.append({user_info['name']:'缺席', 'user_id':user_info['user_id']})
     return jsonify(temp)
-
 
 @cs_api.route('cs_student_attendence', methods=['get'])    
 #出缺席紀錄(依student)        ok

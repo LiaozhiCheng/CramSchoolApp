@@ -55,8 +55,11 @@ def insert_user_detail_info():
     phone=user_json['phone']
     email=user_json['email']
     major=user_json['major']
-    personal_plan=user_json['personal_plan']
+    personal_plan=""
     role=user_json['role']
+    
+    if major=="null":
+        major=[]
     
     user.insert_user(password, name, course_list, phone, email, major, personal_plan, role)
     return jsonify({'0':0})   #之後redirect

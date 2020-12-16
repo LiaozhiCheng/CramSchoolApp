@@ -58,9 +58,6 @@ function getReservation(){
     }
     //完成選擇，傳送資料
     else{
-        console.log(missedCourse);
-        console.log(missedLessonID);
-        console.log(courseIdx, lessonIdx);
         sendReservation(missedCourse[parseInt(courseIdx)-1], missedLessonID[parseInt(courseIdx)-1][parseInt(lessonIdx)-1]);
         var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
         var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
@@ -72,15 +69,15 @@ function getReservation(){
 
 //cancel reservation
 function cancelReservation(){
-    console.log("target: " + currID + "呼叫刪除補課API");
+    //console.log("target: " + currID + "呼叫刪除補課API");
     
     //double check alert;
     
     //create delete data
+    var obj = document.getElementsByName(currID).innerHTML;
     var myTime = setTimeData(currID);
-    var C_Name = currID.split('/')[0];
-    var l_id = currID.split('/')[1];
-    console.log(C_Name, l_id);
+    var C_Name = obj.split('/')[0];
+    var l_id = obj.split('/')[1];
     var cancelData = { "datetime" : myTime , "course_name" : C_Name , "lesson_id" : l_id };
     
     //call delete API

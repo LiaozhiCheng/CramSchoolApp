@@ -70,7 +70,6 @@ function resetReserve(){
 
 //set checkout info
 function setCheckInfo(info){
-    console.log(info.text);
     var list = info.text.split('/');
     document.getElementById("courseInfo").placeholder = list[0]; document.getElementById("lessonInfo").placeholder = list[1];
     currID = info.name;

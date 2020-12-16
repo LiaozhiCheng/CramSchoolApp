@@ -59,6 +59,9 @@ function getReservation(){
     }
     //完成選擇，傳送資料
     else{
+        console.log(courseIdx, lessonIdx);
+        console.log(missedCourse);
+        console.log(missedLessonID);
         sendReservation(missedCourse[parseInt(courseIdx)-1], missedLessonID[parseInt(courseIdx)-1][parseInt(lessonIdx)-1]);
         var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
         var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;

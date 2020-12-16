@@ -9,7 +9,7 @@ function createTable(data) {
     var content = "";
 
     for (var i = 0; i < data.length; i++) {
-        content += "<tr><td><a href='https://595c59d359e3.ngrok.i/teacher_personal_plan' onclick='Click(" + i + ")'>" + data[i].student_name + "</a></td>"
+        content += "<tr><td><a href='"+url_teacher_personal_plan+"' onclick='Click(" + i + ")'>" + data[i].student_name + "</a></td>"
             + "<td>" + data[i].student_id + "</td>"
             + "<td>" + data[i].email + "</td>"
             + "<td>" + data[i].phone + "</td>"
@@ -18,10 +18,11 @@ function createTable(data) {
 }
 
 function start() {
+    setSideBar()
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
     $.ajax({
-        url: "https://595c59d359e3.ngrok.io/teacher_course_student_list?course_id=C-" + course_id, //放你的url，這裡先放本地端檔案
+        url: api_course_student_list + course_id, //放你的url，這裡先放本地端檔案
         //url: "https://38049d8c9137.ngrok.io/teacher/course_student_list?course_id=C-001", 之後長這樣
         type: "GET",
         dataType: "json",

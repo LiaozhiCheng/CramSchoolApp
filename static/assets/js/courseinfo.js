@@ -1,5 +1,6 @@
         window.onload = function(){
             getSavedData();
+            setSideBar();
         }
         //window.addEventListener("load", getSavedData());
         function setCourseinfo(data){
@@ -17,7 +18,7 @@
                 var temp = sessionStorage.getItem('course');
                 console.log(temp);
                 $.ajax({
-                url: "https://595c59d359e3.ngrok.io/course_info?course_id="+temp,
+                url: api_course_info + temp,
                 //url: "courseinfo.json", //放你的url，這裡先放本地端檔案
                 type: "GET",
                 dataType: "json",

@@ -1,22 +1,23 @@
 function doClick(op) {
     iframe = document.getElementById("iframe");
     if (op == "一天") {
-        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher_student_attendenceA");
+        iframe.setAttribute("src", url_teacher_student_attendenceA);
         day.setAttribute("class", "click");
         semester.setAttribute("class", "attendence");
     } else if (op == "一學期") {
-        iframe.setAttribute("src", "https://595c59d359e3.ngrok.io/teacher_student_attendenceB");
+        iframe.setAttribute("src", url_teacher_student_attendenceB);
         day.setAttribute("class", "attendence");
         semester.setAttribute("class", "click");
     }
 }
 
 function start() {
+    setSideBar()
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
     $.ajax({
 
-        url: "https://595c59d359e3.ngrok.io/teacher_course_attendence?course_id=C-" + course_id, //放你的url，這裡先放本地端檔案
+        url: api_course_attendence + course_id, //放你的url，這裡先放本地端檔案
         //url: "https://3aac3445b286.ngrok.io/teacher/course_attendence?course_id=C-001", 之後長這樣
         //student_attendence.json
         type: "GET",

@@ -3,6 +3,7 @@
                 var lessonid= new Array();
                 window.onload = function(){
                     getSavedData();
+                    setSideBar();
                 }
                     function getSavedData(){
                         
@@ -19,7 +20,7 @@
                         }
 
                         $.ajax({
-                        url: "https://595c59d359e3.ngrok.io/teacher_course_communication_book?course_id="+temp,
+                        url: api_communication_book + temp,
                         //url: "cb.json", //放你的url，這裡先放本地端檔案
                         type: "GET",
                         dataType: "json",
@@ -94,7 +95,7 @@
                             var cb = { "lesson_id" : lessonid[ss] , "lesson_time" : date[ss]  , "deadline" : submitdeadline , "progress" : submitprogress, "context" : submitcontext };
                             console.log(cb);
                             $.ajax({
-                        url: "https://595c59d359e3.ngrok.io/teacher_edit_course_communication_book",
+                        url: api_edit_communication_book,
                         type: "POST",
                         data: JSON.stringify(cb),
                         dataType: "json",

@@ -4,6 +4,7 @@
                 var studentid;
                 window.onload = function(){
                         getSavedData();
+                        setSideBar();
                     }
                     function getSavedData(){
                             console.log("sss");
@@ -13,7 +14,7 @@
                             studentid = sessionStorage.getItem('studentId');
                             console.log(studentid);
                             $.ajax({
-                            url: "https://595c59d359e3.ngrok.io/teacher_course_personal_plan?student_id="+studentid+"&course_id="+temp,
+                            url: api_personal_plan+studentid+"&course_id="+temp,
                             //url: "personalplan.json", //放你的url，這裡先放本地端檔案
                             type: "GET",
                             dataType: "json",
@@ -37,7 +38,7 @@
                         });
                             $.ajax({
                         //url: "studentinfo.json",
-                        url: "https://595c59d359e3.ngrok.io/student_personal_info?student_id="+studentid, //放你的url，這裡先放本地端檔案
+                        url: api_student_personal_info+studentid, //放你的url，這裡先放本地端檔案
                         type: "GET",
                         dataType: "json",
                         contentType: 'application/json; charset=utf-8',
@@ -82,7 +83,7 @@
                                 var pp = { "lesson_id" : lessonid[ss], "student_id" : studentid , "deadline" : submitdeadline , "context" : submitcontext };
                                 console.log(pp);
                                 $.ajax({
-                            url: "https://595c59d359e3.ngrok.io/teacher_edit_course_personal_plan",
+                            url: api_edit_personal_plan,
                             type: "POST",
                             data: JSON.stringify(pp),
                             dataType: "json",

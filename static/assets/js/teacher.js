@@ -2,9 +2,10 @@
         var courseidArray= new Array();
         window.onload = function init(){
                     setSchedule();
+                    setSideBar();
                     $.ajax({
                 
-                url: "https://595c59d359e3.ngrok.io/schedule", //放你的url，這裡先放本地端檔案
+                url: api_schedule, //放你的url，這裡先放本地端檔案
                 //url: "teacher.json",
                 type: "GET",
                 dataType: "json",
@@ -32,7 +33,7 @@
                     //test();
                     $.ajax({
                 
-               url: "https://595c59d359e3.ngrok.io/personal_info", //放你的url，這裡先放本地端檔案
+               url: api_personal_info, //放你的url，這裡先放本地端檔案
                  //url: "info.json",
                 type: "GET",
                 dataType: "json",

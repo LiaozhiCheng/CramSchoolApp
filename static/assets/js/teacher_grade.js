@@ -3,7 +3,7 @@ var globalData;
 function uploadData(grade_no) {
     var data = JSON.stringify(globalData[grade_no]);
     $.ajax({
-        url: "https://595c59d359e3.ngrok.io/teacher_edit_course_grade",   //後端的URL
+        url: api_edit_course_grade,   //後端的URL
         type: "POST",   //用POST的方式
         dataType: "json",   //response的資料格式
         contentType: 'application/json; charset=utf-8',
@@ -21,7 +21,7 @@ function uploadData(grade_no) {
 
 function deleteGrade(grade_no) {
     $.ajax({
-        url: "https://595c59d359e3.ngrok.io/teacher_delete_course_grade?lesson_id=" + globalData[grade_no].lesson_id, //放你的url，這裡先放本地端檔案
+        url: api_delete_course_grade + globalData[grade_no].lesson_id, //放你的url，這裡先放本地端檔案
         //url: "grade.json", 之後長這樣
         type: "GET",
         dataType: "json",
@@ -130,10 +130,11 @@ function createTable(data) {
 }
 
 function start() {
+    setSideBar()
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
     $.ajax({
-        url: "https://595c59d359e3.ngrok.io/teacher_course_grade?course_id=C-" + course_id, //放你的url，這裡先放本地端檔案
+        url: api_course_grade + course_id, //放你的url，這裡先放本地端檔案
         //url: "grade.json", 之後長這樣
         //https://3aac3445b286.ngrok.io/teacher/course_grade?course_id=C-001
         type: "GET",

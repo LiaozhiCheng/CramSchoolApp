@@ -383,6 +383,7 @@ function delUser(){
 
 function start(){
     init("student");
+    setSideBar();
 }
 
 window.addEventListener("load", start, false);

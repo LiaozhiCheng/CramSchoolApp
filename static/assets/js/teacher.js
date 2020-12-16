@@ -117,7 +117,7 @@
                         //onclick='setCourseID(courseidArray[document.getElementById("0-"+ data[i].course_time.slice(-3)).value])'
                         var tempID = courseidArray[i];
                         //console.log("this.id: "+"0-"+ data[i].course_time.slice(-3));<a href="test2.html"
-                        document.getElementById("0-"+ data[i].time.slice(-3)).innerHTML += '<a href="courseinfo.html" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
+                        document.getElementById("0-"+ data[i].time.slice(-3)).innerHTML += '<a href="url_teacher_courseinfo" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
                         
                         
                     }

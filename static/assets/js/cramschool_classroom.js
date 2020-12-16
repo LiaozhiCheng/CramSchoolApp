@@ -1,10 +1,12 @@
+var ngrok="https://d6bd30a7b604.ngrok.io/cs/";
+
 //有ajax
 function init(){
     console.log("init");
-    
+    var myURL = ngrok + "cs_classroom_list";
     //初始
     $.ajax({
-        url:"https://af55163ad559.ngrok.io/cs/cs_classroom_list",
+        url: myURL,
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -46,9 +48,7 @@ function createTable(data){
 
 //搜尋教室名稱＆顯示 有ajax
 function search(){
-    console.log("search");
-    console.log("roomName: "+$("#myval").val());
-    var myURL="https://af55163ad559.ngrok.io/cs/cs_classroom_info_by_name?name="+$("#myval").val();
+    var myURL=ngrok + "cs_classroom_info_by_name?name="+$("#myval").val();
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -56,7 +56,12 @@ function search(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            createTable(response);
+            if(response[0]==0){
+                document.getElementById("table").innerHTML = "<h5>查無此教室</h5>";
+            }
+            else{
+                createTable(response);
+            }
         },
         error: function(){
             console.log("error");
@@ -120,14 +125,8 @@ function edit(id){
 
 //傳新增｜編輯資料到後端 有ajax
 function sendData(id, name, capacity, choice){
-    console.log("send");
-    console.log("id: "+id);
-    console.log("name: "+name);
-    console.log("capacity: "+capacity);
-    console.log("choice: "+choice);
     
-    
-    var myURL="https://71b319ef9bad.ngrok.io/cs/";
+    var myURL=ngrok;
     if(choice=="add"){
         myURL += "insert_cs_classroom_info?name="+name+"&capacity="+capacity+"&classroom_id="+id;
     }
@@ -163,7 +162,7 @@ function del(){
 //把刪除的教室ID傳到後端 有ajax
 function delRoom(){
     console.log("id: "+$("#classroom_id").val());
-    var myURL = "https://71b319ef9bad.ngrok.io/cs/delete_cs_classroom_info?classroom_id="+$("#classroom_id").val();
+    var myURL = ngrok + "delete_cs_classroom_info?classroom_id="+$("#classroom_id").val();
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -173,8 +172,6 @@ function delRoom(){
     });
     init();
 }
-
-
 
 function start(){
     init();

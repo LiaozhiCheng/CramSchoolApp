@@ -17,7 +17,7 @@
                 var temp = sessionStorage.getItem('course');
                 console.log(temp);
                 $.ajax({
-                url: "https://3aac3445b286.ngrok.io/user/course_info?course_id="+temp,
+                url: "https://595c59d359e3.ngrok.io/course_infoo?course_id="+temp,
                 //url: "courseinfo.json", //放你的url，這裡先放本地端檔案
                 type: "GET",
                 dataType: "json",

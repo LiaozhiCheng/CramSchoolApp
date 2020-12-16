@@ -6,8 +6,10 @@ Created on Sun Dec 13 15:43:44 2020
 @author: linxiangling
 """
 
+from bson.objectid import ObjectId
 from models import _db
 
+from flask_bcrypt import Bcrypt
 import sys
 
 from datetime import datetime,timezone,timedelta
@@ -37,7 +39,7 @@ def get_course_info_by_name(name):
 
 #課程詳細資訊(id)
 def get_course_info(course_id):
-    return  _db.COURSE_COLLECTION.find_one({'course_id':course_id})
+    return _db.COURSE_COLLECTION.find_one({'course_id':course_id})
 
 
 #新增課程
@@ -83,10 +85,6 @@ def update_course(courseid, coursedict):
     
     
 #課程學生清單   
-def get_course_student_list(course_id):
-    return _db.COURSE_COLLECTION.find_one({'course_id':course_id})['student_list']
-
-# 依據 course_id 找特定課程
-def get_by_courseid(course_id):
-    item = _db.COURSE_COLLECTION.find_one({'course_id' : course_id})
-    return item
+#def get_course_student_list(course_id):
+#    return db.COURSE_COLLECTION.find_one({'course_id':course_id})['student_list']
+    

@@ -21,7 +21,7 @@ function start() {
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
     $.ajax({
-        url: "class_student.json", //放你的url，這裡先放本地端檔案
+        url: "https://38049d8c9137.ngrok.io/teacher/course_student_list?course_id=C-" + course_id, //放你的url，這裡先放本地端檔案
         //url: "https://38049d8c9137.ngrok.io/teacher/course_student_list?course_id=C-001", 之後長這樣
         type: "GET",
         dataType: "json",

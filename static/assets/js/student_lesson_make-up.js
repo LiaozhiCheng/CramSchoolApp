@@ -117,7 +117,7 @@ function fullTd(td_id, date){
 function reservedTd(td_id, c_name, l_name, l_id, date){
     var target = document.getElementById(td_id);
     var display = l_name;
-    if(l_name == ""){ display = l_id; }
+    if(l_name === undefined){ display = l_id; }
     var str = "<a href='#' class='normal' name='" + td_id + '+' + date + "' " 
             + "data-toggle='modal' data-target='#checkoutInfo' " 
             + "onclick='setCheckInfo(this)' id='" + l_id + "'>" 

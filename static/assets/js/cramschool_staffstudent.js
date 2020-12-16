@@ -65,6 +65,7 @@ function createTable(data, role){
 
 //按點我之後拿到，他有上/教的課
 function showCourse(name, role){
+    document.getElementById("myContent").innerHTML = "";
     var content = "";
     var myURL = ngrok + "user_detail_info?name="+name;
     $.ajax({
@@ -125,6 +126,7 @@ function search(){
 
 //新增成員
 function add(){
+    document.getElementById("myContent").innerHTML = "";
     var temp = "";
     
     //跳出表單
@@ -355,6 +357,7 @@ function sendData(id, password, name, course_list, phone, email, major, personal
 
 //刪除成員
 function del(){
+    document.getElementById("myContent").innerHTML = "";
     //跳出表單
     var content="";
     content += '<form>';

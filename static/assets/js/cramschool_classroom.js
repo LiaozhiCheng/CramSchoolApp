@@ -1,5 +1,3 @@
-var ngrok="https://d6bd30a7b604.ngrok.io/cs/";
-
 //有ajax
 function init(){
     console.log("init");

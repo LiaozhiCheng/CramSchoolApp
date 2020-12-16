@@ -311,7 +311,7 @@ function sendData(id, password, name, course_list, phone, email, major, personal
     else if(role=="老師")
         role = "teacher";
     
-    var myURL="https://969a5c4a8dfb.ngrok.io";
+    var myURL=ngrok;
     //新增
     if(choice=="add"){
         myURL = myURL + "insert_user_detail_info";

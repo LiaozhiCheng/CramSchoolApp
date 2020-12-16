@@ -6,22 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>學生出缺勤</title>
+    <title>課堂學生</title>
 
-     <!-- Bootstrap CSS CDN -->
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <!-- Scrollbar Custom CSS -->
-     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
- 
-     <!-- Font Awesome JS -->
-     <script defer src="js/fontawesome_solid.js"></script>
-     <script defer src="js/fontawesome.js"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="js/fontawesome_solid.js"></script>
+    <script defer src="js/fontawesome.js"></script>
 
     <!--my css-->
-    <link rel="stylesheet" href="css/student_attendence.css">
+    <link rel="stylesheet" href="css/class_student.css">
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="menubar.css">
+
 </head>
 
 <body>
@@ -63,7 +64,7 @@
                     </button>
                     <!--記得更新網頁名稱-->
                     <span class="navbar-text mx-auto">
-                        <h2 id="page-title">學生出缺勤</h2>
+                        <h2 id="page-title">課堂學生</h2>
                     </span>
                     <div class="navbar-brand py-0">
                         <img id="cram-logo" src="data/logo.png" alt="logo" style="height: 50px">
@@ -71,19 +72,23 @@
                 </div>
             </nav>
             <!--web page content-->
-            <div>
-                <a href="#">
-                    <nav id="day" class="click" onclick="doClick('一天')">一天</nav>
-                </a>
-                <a href="#">
-                    <nav id="semester" class="attendence" onclick="doClick('一學期')">一學期</nav>
-                </a>
-            </div>
-            <div id="iframeDiv"></div>
+            <table class="table table-bordered" , style="width: 80%;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>name</th>
+                        <th>ID</th>
+                        <th>email</th>
+                        <th>phone</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
         </div>
     </div>
 
     <div class="overlay"></div>
+
 
     <script src="js/jquery-3.5.1.js"></script>
     <!-- Popper.JS -->
@@ -92,6 +97,7 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
     <!--my script-->
     <script src="menubar.js"></script>
     <script src="js/student_attendence.js"></script>

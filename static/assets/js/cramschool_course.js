@@ -1,11 +1,11 @@
 var weekday=['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
+var ngrok = "https://0d71af81d7eb.ngrok.io/";
 
-//有ajax
 function init(){
+    var myURL = ngrok + "cs_course_list";
     //初始
     $.ajax({
-        url:"https://71b319ef9bad.ngrok.io/cs/cs_course_list",
-        //url: "coursetest.json",
+        url: myURL,
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
@@ -35,24 +35,42 @@ function createTable(data){
         +'<td id="'+data[i].course_id+'_startdate">'+data[i].start_time.slice(8,11)+' '+data[i].start_time.slice(5,7)+'</td>'
         //+'<td id="'+data[i].course_id+'_startdate">'+data[i].start_time+'</td>'
         +'<td id="'+data[i].course_id+'_teacher">'+data[i].teacher+"</td>"
-        +'<td id="'+data[i].course_id+'_student">'+"點我"+"</td>"
+        +'<td id="'+data[i].course_id+'_student">'+'<button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#example"  onclick="showStudent('+"'"+data[i].course_id+"'"+')">點我</button>'+"</td>"
         +'<td id="'+data[i].course_id+'_classroom">'+(data[i].classroom).name+"</td>"
         +'<td id="'+data[i].course_id+'"><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#example" onclick="edit('+"'"+data[i].course_id+"'"+')">編輯</button></td></tr>';
     }
     document.getElementById("tbody").innerHTML = content;
 }
 
-//拿到某課程學生清單 未完成
-function getStdList(id){
-    var content="";
+//按點我後，顯示有修課之學生清單
+function showStudent(course_id){
+    var content = "";
+    var myURL = ngrok + "cs_course_student_list?course_id="+course_id;
+    console.log("myURL: "+myURL);
     $.ajax({
-        //url:"https://f48f9286d0b6.ngrok.io/test/cs_course_list",
-        //url: "coursetest.json",
+        url: myURL,
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             console.log("success");
+            console.log("student: "+response[0]);
+            //跳出表單
+            var content="";
+            content += '<form>';
+            content += '<div class="form-group"><label class="col-form-label">';
+
+            for(var i=0; i<response.length; i++){
+                content += response[i] +"<br>";
+            }
+            
+            content += '</label></div>';
+
+            content += '</form>';
+            document.getElementById("myContent").innerHTML = content;
+            document.getElementById("exampleModalLabel").innerHTML = "學生清單";
+            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>';
+            
         },
         error: function(){
             console.log("error");
@@ -64,7 +82,7 @@ function getStdList(id){
 function search(){
     console.log("search");
     console.log($("#myval").val());
-    var myURL="https://71b319ef9bad.ngrok.io/cs/cs_course_info?name="+$("#myval").val();
+    var myURL = ngrok+"cs_course_info_by_name?name="+$("#myval").val();
     console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
@@ -116,15 +134,14 @@ function add(){
     //拿到教室的選項
     temp="";
     $.ajax({
-        url:"https://71b319ef9bad.ngrok.io/cs/cs_classroom_list",
-        //type: "GET",
+        url: ngrok+"cs_classroom_list",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             console.log("success");
             for(var i=0; i<response.length; i++){
                 console.log("roomName: "+response[i].name);
-                    temp += "<option>"+ response[i].name +"</option>"
+                    temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>"
             }
             document.getElementById("classroom").innerHTML = temp;
         },
@@ -132,31 +149,21 @@ function add(){
             console.log("error");
         }
     });
-    
-    
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button type="button" class="btn btn-primary" onclick="addCourse()" data-dismiss="modal">Submit</button>';
 }
 
-//把新增的課程資料傳到後端（拿教室資訊）
+//把新增的課程資料傳到後端
 function addCourse(){
     var setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val();
     
-     var myURL = "https://71b319ef9bad.ngrok.io/cs/cs_classroom_info_by_name?name="+$("#classroom").val();
-    //拿到教室的dic
-    $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            //把所有參數傳到send
-            sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, $("#teacher").val(), $("#summary").val(), response, "add");
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    var myselect=document.getElementById("classroom");
+    var index=myselect.selectedIndex;
+    var classroom_id = myselect.options[index].id;
+    
+    //把所有參數傳到send
+    sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, $("#teacher").val(), $("#summary").val(), classroom_id, "add");
+
 }
 
 //編輯課程
@@ -204,12 +211,11 @@ function edit(id){
         }
     }
     document.getElementById("week").innerHTML = choice;
-    //$("#week").val(week);
     
     //拿到教室的選項
     temp="";
     $.ajax({
-        url:"https://71b319ef9bad.ngrok.io/cs/cs_classroom_list",
+        url: ngrok + "cs_classroom_list",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
@@ -218,7 +224,7 @@ function edit(id){
                    temp += "<option selected>"+ response[i].name +"</option>";
                 }
                 else{
-                    temp += "<option>"+ response[i].name +"</option>";
+                    temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
                 }
             }
             document.getElementById("classroom").innerHTML = temp;
@@ -232,36 +238,20 @@ function edit(id){
         +'<button type="button" class="btn btn-primary" onclick="editCourse('+"'"+id+"'"+')" data-dismiss="modal">Submit</button>';
 }
 
-//把編輯的課程資料傳到後端（拿教室資訊）
+//把編輯的課程資料傳到後端
 function editCourse(id){
     
-    console.log("room: "+$("#classroom").val());
-    var myURL = "https://71b319ef9bad.ngrok.io/cs/cs_classroom_info_by_name?name="+$("#classroom").val();
-    
-    console.log("myURL: "+myURL);
-    
-    //拿到教室的名字
-    $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            
-            var name=document.getElementById(id+"_name").innerText,
-                startdate = $("#start_date").val(),
-                setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val(),
-                teacher = $("#teacher").val(),
-                summary = $("#summary").val(),
-                classroom = response;
-                //console.log("editstartdate: "+startdate);
-                sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
-        },
-        error: function(){
-            console.log("error");
-        }
-    });    
-    
+    var myselect=document.getElementById("classroom");
+    var index=myselect.selectedIndex;
+    var classroom_id = myselect.options[index].id;
+           
+    var name=document.getElementById(id+"_name").innerText,
+        startdate = $("#start_date").val(),
+        setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val(),
+        teacher = $("#teacher").val(),
+        summary = $("#summary").val(),
+        classroom = classroom_id;
+        sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
 }
 
 //傳新增｜編輯的資料到後端
@@ -269,7 +259,7 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
     
     var myURL="";
     if(choice=="add"){
-        myURL = "https://71b319ef9bad.ngrok.io/cs/insert_cs_course_info";
+        myURL = ngrok + "insert_cs_course_info";
         var send={
             "name" : name,
             "start_time": start_time,
@@ -280,7 +270,7 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
         };
     }
     else if(choice=="edit"){
-        myURL = "https://71b319ef9bad.ngrok.io/cs/edit_cs_course_info";
+        myURL = ngrok + "edit_cs_course_info";
         console.log("course_id: "+id);
         console.log("name: "+name);
         console.log("start_time: "+start_time);
@@ -327,7 +317,7 @@ function del(){
 
 //把刪除的課程ID傳到後端
 function delCourse(){
-    var myURL = "https://71b319ef9bad.ngrok.io/cs/delete_cs_course_info?course_id="+$("#course_id").val();
+    var myURL = myURL + "delete_cs_course_info?course_id="+$("#course_id").val();
     console.log("URL: "+myURL);
     $.ajax({
         url: myURL,

@@ -94,7 +94,7 @@ function showCourse(name, role){
             document.getElementById("myContent").innerHTML = content;
             document.getElementById("exampleModalLabel").innerHTML = "課程清單";
             
-            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>';
+            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>';
             
         },
         error: function(){
@@ -173,7 +173,7 @@ function add(){
         }
     });
     
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button type="button" class="btn btn-primary" onclick="addUser()" data-dismiss="modal">Submit</button>';
 }
 
@@ -296,7 +296,7 @@ function edit(id, role){
     document.getElementById("myContent").innerHTML = content;
     
     
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button type="button" class="btn btn-primary" onclick="editUser('+"'"+id+"'"+')" data-dismiss="modal">Submit</button>';
     
 }
@@ -366,7 +366,7 @@ function del(){
     
     document.getElementById("myContent").innerHTML = content;
     document.getElementById("exampleModalLabel").innerHTML = "刪除成員";
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="delUser()" data-dismiss="modal">Submit</button>';
 }
 

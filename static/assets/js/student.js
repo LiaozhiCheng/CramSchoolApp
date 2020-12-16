@@ -11,7 +11,7 @@ var courseName;
 var ngrok = "";
 
 //api url
-var api_student_schedule = ngrok + "/schedule";
+var api_student_schedule = "/schedule";
 var api_student_personal_info = ngrok + "/personal_info";
 var api_student_course_info = ngrok + "/course_info?course_id=";
 var api_student_reschedule_list = ngrok + "/student_reschedule_list";

@@ -1,0 +1,13 @@
+
+        table.table-bordered td{
+         vertical-align:middle;
+         text-align: center;
+        }
+        table.table-bordered tr{
+         height:150px;
+        }
+        table.table-bordered th{
+         text-align: center;
+         width: 12%;
+        }
+   

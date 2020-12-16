@@ -87,4 +87,11 @@ def update_course(courseid, coursedict):
 #課程學生清單   
 def get_course_student_list(course_id):
     return db.COURSE_COLLECTION.find_one({'course_id':course_id})['student_list']
-    
+
+
+
+# 依據 course_id 找特定課程
+def get_by_courseid(course_id):
+    item = db.COURSE_COLLECTION.find_one({'course_id' : course_id})
+    return item
+

@@ -123,8 +123,10 @@ def cs_course_info_by_name():
 #課程學生清單   ok
 def cs_course_student_list():
     course_id=request.values.get('course_id')
-    #print(course.get_course_student_list(course_id))
-    return jsonify(course.get_course_student_list(course_id))
+    temp=[]
+    for i in course.get_course_info(course_id)['student_list']:
+        temp.append(user.get_user_info(i)['name'])
+    return jsonify(temp)
 
 @cs_api.route('insert_cs_course_info', methods=['post'])
 #新增課程   ok
@@ -250,7 +252,7 @@ def cs_classroom_info_by_name():
 #新增教室資訊  ok
 def insert_cs_classroom_info():
     name=request.values.get('name')
-    capacity=request.values.get('capacity')
+    capacity=int(request.values.get('capacity'))
     classroom.insert_classroom(name, capacity)
     return jsonify({'0':0})   #之後redirect
 
@@ -268,7 +270,7 @@ def delete_cs_classroom_info():
 def edit_cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
     name=request.values.get('name')
-    capacity=request.values.get('capacity')
+    capacity=int(request.values.get('capacity'))
     classroomid={'classroom_id':classroom_id}
     classroomdict={'classroom_id':classroom_id, 'name':name, 'capacity':capacity}
     classroom.update_classroom(classroomid, classroomdict)
@@ -283,6 +285,7 @@ def cs_reschedule_list():
     temp=[]
     for i in reschedule.get_week_reschedule():
         Myweekday=weeks[i['datetime'].weekday()]
+        
         if len(i['reservation_list']) >= classroom.get_classroom_info(i['classroom_id'])['capacity']:
             temp.append({'weekday':Myweekday, 'full':True, 'datetime':i['datetime'], 'state':i['state'], 'reservation_list':i['reservation_list'], 'classroom_id':i['classroom_id']})
         else:

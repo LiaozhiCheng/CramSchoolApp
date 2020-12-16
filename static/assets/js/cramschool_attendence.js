@@ -1,5 +1,6 @@
 //用名字查的-> sessionStorage的有：user_id, course_id
 //用course_id查的-> 
+
 function init(){    
     //拿到course&teacher
     var temp="";
@@ -222,7 +223,7 @@ function edit(myID, choice){
     
     document.getElementById("myContent").innerHTML = content;
     document.getElementById("exampleModalLabel").innerHTML = "編輯出缺席";
-    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
+    document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="editAtt('+"'"+myID+"'"+')" data-dismiss="modal">Submit</button>';
 }
 

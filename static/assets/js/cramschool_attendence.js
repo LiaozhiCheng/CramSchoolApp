@@ -257,13 +257,16 @@ function editAtt(myID){
         url: myURL,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            if(method=="name"){
+            getByName();
+            }
+            else{
+                searchByLesson();
+            }
+        }
     });
-    if(method=="name"){
-        getByName();
-    }
-    else{
-        searchByLesson();
-    }
+    
     
 }
 

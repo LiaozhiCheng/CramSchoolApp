@@ -74,7 +74,7 @@ function cancelReservation(){
     //double check alert;
     
     //create delete data
-    var obj = document.getElementsByName(currID).id;
+    var obj = document.getElementsByName(currID)[0].id;
     console.log(obj);
     var myTime = setTimeData(currID);
     var C_Name = obj.split('/')[0];

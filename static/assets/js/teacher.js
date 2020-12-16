@@ -117,7 +117,7 @@
                         //onclick='setCourseID(courseidArray[document.getElementById("0-"+ data[i].course_time.slice(-3)).value])'
                         var tempID = courseidArray[i];
                         //console.log("this.id: "+"0-"+ data[i].course_time.slice(-3));<a href="test2.html"
-                        document.getElementById("0-"+ data[i].time.slice(-3)).innerHTML += '<a href="url_teacher_courseinfo" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
+                        document.getElementById("0-"+ data[i].time.slice(-3)).innerHTML += '<a href="+url_teacher_courseinfo+" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
                         
                         
                     }
@@ -127,14 +127,14 @@
                         var tempID = courseidArray[i];
                         //console.log(document.getElementById("1-"+ data[i].time.slice(-3)).value);
                         console.log(tempID);
-                        document.getElementById("1-"+ data[i].time.slice(-3)).innerHTML += '<a href="courseinfo.html" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
+                        document.getElementById("1-"+ data[i].time.slice(-3)).innerHTML += '<a href="+url_teacher_courseinfo+" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
                     }
                     else {
                         //document.getElementById("2-"+ data[i].time.slice(-3)).value=i;
                         //console.log(document.getElementById("2-"+ data[i].time.slice(-3)).value);
                         //courseid=courseidArray[document.getElementById("2-"+ data[i].course_time.slice(-3)).value];
                         var tempID = courseidArray[i];
-                        document.getElementById("2-"+ data[i].time.slice(-3)).innerHTML += '<a href="courseinfo.html" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
+                        document.getElementById("2-"+ data[i].time.slice(-3)).innerHTML += '<a href="+url_teacher_courseinfo+" id="' + courseidArray[i] + '" onclick="setCourseID('+"'"+tempID+"'"+')" >'+data[i].time.slice(0,11)+"<br>"+data[i].course+"</a>";
                     }
                     //weekArray[i]=data[i].course_time.slice(-3);
                     

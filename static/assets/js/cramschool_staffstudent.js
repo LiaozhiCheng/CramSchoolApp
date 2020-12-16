@@ -1,5 +1,3 @@
-var ngrok = "https://d6bd30a7b604.ngrok.io/cs/";
-
 //初始
 function init(role){
     //判斷是拿誰的

@@ -13,7 +13,7 @@
                             studentid = sessionStorage.getItem('studentId');
                             console.log(studentid);
                             $.ajax({
-                            url: "https://3aac3445b286.ngrok.io/teacher/course_personal_plan?student_id="+studentid+"&course_id="+temp,
+                            url: "https://595c59d359e3.ngrok.io/teacher_course_personal_plan?student_id="+studentid+"&course_id="+temp,
                             //url: "personalplan.json", //放你的url，這裡先放本地端檔案
                             type: "GET",
                             dataType: "json",
@@ -37,7 +37,7 @@
                         });
                             $.ajax({
                         //url: "studentinfo.json",
-                        url: "https://3aac3445b286.ngrok.io/teacher/student_personal_info?student_id="+studentid, //放你的url，這裡先放本地端檔案
+                        url: "https://595c59d359e3.ngrok.io/student_personal_info?student_id="+studentid, //放你的url，這裡先放本地端檔案
                         type: "GET",
                         dataType: "json",
                         contentType: 'application/json; charset=utf-8',
@@ -82,7 +82,7 @@
                                 var pp = { "lesson_id" : lessonid[ss], "student_id" : studentid , "deadline" : submitdeadline , "context" : submitcontext };
                                 console.log(pp);
                                 $.ajax({
-                            url: "https://3aac3445b286.ngrok.io/teacher/edit_course_personal_plan",
+                            url: "https://595c59d359e3.ngrok.io/teacher_edit_course_communication_book",
                             type: "POST",
                             data: JSON.stringify(pp),
                             dataType: "json",

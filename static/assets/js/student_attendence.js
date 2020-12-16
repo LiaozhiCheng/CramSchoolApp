@@ -1,45 +1,40 @@
-window.onload = function init(){
-    //courseID & name
-    getSavedData();
-    
-    //set nav title
-    document.getElementById("page-title").innerHTML = courseName + "-出缺勤紀錄";
-    
-    //set table
-    getAttendency();
+function doClick(op) {
+    iframe = document.getElementById("iframe");
+    if (op == "一天") {
+        iframe.setAttribute("src", "student_attendenceA.html");
+        day.setAttribute("class", "click");
+        semester.setAttribute("class", "attendence");
+    } else if (op == "一學期") {
+        iframe.setAttribute("src", "student_attendenceB.html");
+        day.setAttribute("class", "attendence");
+        semester.setAttribute("class", "click");
+    }
 }
 
-//get attendence data from db
-function getAttendency(){
-    //load json
+function start() {
+    var course_id = sessionStorage.getItem("course");
+    console.log(course_id);
     $.ajax({
-        url: "testContent/studentAttendence.json",
+
+        url: "student_attendence.json", //放你的url，這裡先放本地端檔案
+        //url: "https://3aac3445b286.ngrok.io/teacher/course_attendence?course_id=C-001", 之後長這樣
+        //student_attendence.json
         type: "GET",
         dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        
-        success: function(data){
-            for(var i=0; i<data.length; i++){
-                setAttendenceState(data[i].time, data[i].lesson, data[i].state);
-            }
+        contentType: 'application/json; charset=utf-8',
+
+        //如果成功的話
+        success: function (data) {//這裡拿到的data是一個Object陣列
+            console.log("success");//看到時候有沒有成功
+            sessionStorage.setItem("data", JSON.stringify(data));
+            document.getElementById("iframeDiv").innerHTML = "<iframe id='iframe' src='student_attendenceA.html' width='100%' height='600' overflow='scroll'></iframe>";
         },
-        
-        error: function(){
-            console.log("getAttendence error!!!");
+
+        //如果失敗的話
+        error: function () {
+            console.log("error");
         }
-        
     });
 }
 
-//set attendence table state
-function setAttendenceState(time, lesson, state){
-    var row = "<tr><td>" + time + "</td><td>" + lesson + "</td>";
-    if(state){
-        row += "<td class='text-success'>出席</td>";
-    }
-    else{
-        row += "<td class='text-danger'>缺席</td>";
-    }
-    
-    document.getElementById("student-attend").getElementsByTagName("tbody")[0].innerHTML += row;
-}
+window.addEventListener("load", start, false);

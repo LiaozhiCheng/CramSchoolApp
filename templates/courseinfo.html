@@ -1,0 +1,117 @@
+    <!DOCTYPE html>
+    <html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>menubar template</title>
+        
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="static/assets/css/bootstrap.min.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="static/assets/css/jquery.mCustomScrollbar.min.css">
+
+        <!-- Font Awesome JS -->
+        <script defer src="static/assets/js/fontawesome_solid.js"></script>
+        <script defer src="static/assets/js/fontawesome.js"></script>
+        
+        <!--my css-->
+        <link rel="stylesheet" href="static/assets/css/courseinfo.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="static/assets/css/menubar.css">
+
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div id="dismiss">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+
+                <div class="sidebar-header">
+                    <h3>CS管理系統</h3>
+                </div>
+
+                <ul class="list-unstyled">
+                    <li class="active">
+                        <a href="teacher.html">首頁</a>
+                    </li>
+                    <li>
+                        <a href="courseinfo.html">課程資訊</a>
+                    </li>
+                    <li>
+                        <a href="class_student.html">學生</a>
+                    </li>
+                    <li>
+                        <a href="grade.html">成績</a>
+                    </li>
+                    <li>
+                        <a href="student_attendence.html">出缺勤</a>
+                    </li>
+                    <li>
+                        <a href="communication_book.html">聯絡簿</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content">
+                <!--top bar: sidebar button & logo-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn">
+                            <i class="fas fa-align-left"></i>
+                            <span></span>
+                        </button>
+                        <!--記得更新網頁名稱-->
+                        <span class="navbar-text mx-auto">
+                            <h2 id="page-title">課程資訊</h2>
+                        </span>
+                        <div class="navbar-brand py-0">
+                            <img id="cram-logo" src="data/logo.png" alt="logo" style="height: 50px">
+                        </div>
+                        
+                    </div>
+                </nav>
+                <!--web page content-->
+                <div id="courseinfo" style="text-align:center; margin-top: 80px;">
+                <!--<h2 class="card-title">課程:國文課</h2>
+                <h2 class="card-text">時間:9:00～12:00</h2>
+                <h2 class="card-text">老師:王小名</h2>
+                 <h2 class="card-text">教室:205</h2>-->
+            </div>
+            <div id="buttons">
+            <div id="button1"><button type="button" class="btn btn-outline-info " style = "width:300px; height: 150px; border-width: thick" onclick="location.href='class_student.html'">學生</button></div>
+            <div id="button2"><button type="button" class="btn btn-outline-info " style = "width:300px; height: 150px; border-width: thick" onclick="location.href='student_attendence.html'">出缺勤</button></div>  
+            <div id="button3"><button type="button" class="btn btn-outline-info " style = "width:300px; height: 150px; border-width: thick" onclick="location.href='grade.html'">成績</button></div>
+            <div id="button4"><button type="button" class="btn btn-outline-info " style = "width:300px; height: 150px; border-width: thick" onclick="location.href='communication_book.html'">聯絡簿</button></div>
+        </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="overlay"></div>
+
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="static/assets/js/jquery-3.5.1.js"></script>
+        <!-- Popper.JS -->
+        <script src="static/assets/js/popper.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="static/assets/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="static/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        
+        <!--my script-->
+        <script src="static/assets/js/menubar.js"></script>
+        <script src="static/assets/js/courseinfo.js"></script>
+            
+            
+            
+
+    </body>
+
+    </html>

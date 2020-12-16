@@ -1,0 +1,14 @@
+
+            #button1,#button2{
+                    width:50%;
+                    text-align: center;
+                    float: left;
+                    margin-top: 80px;
+                }
+            #button3,#button4{
+                    width:50%;
+                    text-align: center;
+                    float: left;
+                    margin-top: 60px;
+                }
+    

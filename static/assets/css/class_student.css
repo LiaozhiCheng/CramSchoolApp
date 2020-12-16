@@ -1,0 +1,8 @@
+table {
+    margin-left: 10vw;
+}
+
+a:hover {
+    background-color: rgb(116, 219, 197);
+    font-weight: bolder;
+}

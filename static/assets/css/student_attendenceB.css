@@ -1,0 +1,12 @@
+table {
+    margin-left: 2.5vw;
+    margin-top: 1vw;
+}
+
+td.attend{
+    color: green;
+}
+
+td.absent{
+    color: red;
+}

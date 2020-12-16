@@ -6,10 +6,11 @@ from .teacher_api import teacher_api
 from .teacher_web import teacher_web
 from .cs_api import cs_api
 from .cramschool_web import cramschool_web
+from .user_api import user_api
 
 
 
-blueprint_prefix = [(login_api, ""), (login_web, ""),(student_api, ""), (student_web, "/student"), (teacher_api, ""), (teacher_web, "/teacher"), (cs_api, ""), (cramschool_web, "/cramschool")]
+blueprint_prefix = [(login_api, ""), (login_web, ""), (user_api, ""), (student_api, ""), (student_web, "/student"), (teacher_api, ""), (teacher_web, "/teacher"), (cs_api, ""), (cramschool_web, "/cramschool")]
 
 
 def register_blueprint(app):

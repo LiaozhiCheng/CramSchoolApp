@@ -94,7 +94,7 @@
                             var cb = { "lesson_id" : lessonid[ss] , "lesson_time" : date[ss]  , "deadline" : submitdeadline , "progress" : submitprogress, "context" : submitcontext };
                             console.log(cb);
                             $.ajax({
-                        url: "https://595c59d359e3.ngrok.io/edit course communication book",
+                        url: "https://595c59d359e3.ngrok.io/teacher_edit_course_communication_book",
                         type: "POST",
                         data: JSON.stringify(cb),
                         dataType: "json",

@@ -62,8 +62,8 @@ function getTimeRange(time){
 //get available time
 function getValidTime(){
     $.ajax({
-        //url: "testContent/rescheduleList.json",
-        url: "https://38049d8c9137.ngrok.io/student/reschedule_list",
+        url: "/student_reschedule_list",
+        //url: "https://38049d8c9137.ngrok.io/student/reschedule_list",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

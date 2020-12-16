@@ -15,8 +15,8 @@ window.onload = function init(){
 //get course information
 function getCourseInfo(){
     $.ajax({
-        //url: "testContent/courseInfo.json",
-        url: "https://38049d8c9137.ngrok.io/user/course_info?course_id=" + courseID,
+        url: "/course_info?course_id=" + courseID,
+        //url: "https://38049d8c9137.ngrok.io/user/course_info?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -40,8 +40,8 @@ function getCourseInfo(){
 //get lessons data
 function getLessonInfo(){
     $.ajax({
-        //url: "testContent/studentCourseProgress.json",
-        url: "https://38049d8c9137.ngrok.io/student/course_progress?course_id=" + courseID,
+        url: "/student_course_progress?course_id=" + courseID,
+        //url: "https://38049d8c9137.ngrok.io/student/course_progress?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

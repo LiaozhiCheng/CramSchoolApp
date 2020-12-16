@@ -7,10 +7,10 @@ window.onload = function init(){
 
 //get & set student information
 function getStudentInfo(){
-    var apiURL = "testContent/studentInfo.json";
+    var apiURL = "/student_personal_info";
     $.ajax({
-        //url: apiURL,
-        url: "https://38049d8c9137.ngrok.io/user/personal_info",
+        url: apiURL,
+        //url: "https://38049d8c9137.ngrok.io/user/personal_info",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

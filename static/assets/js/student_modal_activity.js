@@ -27,7 +27,8 @@ function sendReservation(courseName, lessonId){
     var reservation = { "datetime" : myTime , "course_name" : "1100歷史" , "lesson_id" : "L-001-000" };
     
     $.ajax({
-        url: "https://38049d8c9137.ngrok.io/student/add_reservation",
+        url: "/student_add_reservation",
+        //url: "https://38049d8c9137.ngrok.io/student/add_reservation",
         type: "POST",
         data: JSON.stringify(reservation),
         dataType: "json",
@@ -79,7 +80,8 @@ function cancelReservation(){
     
     //call delete API
     $.ajax({
-        url: "https://38049d8c9137.ngrok.io/student/cancel_reservation",
+        url: "/student_cancel_reservation",
+        //url: "https://38049d8c9137.ngrok.io/student/cancel_reservation",
         type: "POST",
         data: JSON.stringify(cancelData),
         dataType: "json",

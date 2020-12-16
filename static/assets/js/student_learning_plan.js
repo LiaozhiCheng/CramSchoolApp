@@ -12,8 +12,8 @@ window.onload = function(){
 //get person's plan for db
 function getPlan(){
     $.ajax({
-        //url: "testContent/studentPersonalPlan.json",
-        url: "https://38049d8c9137.ngrok.io/student/course_personal_plan?course_id=" + courseID,
+        url: "/student_course_personal_plan?course_id=" + courseID,
+        //url: "https://38049d8c9137.ngrok.io/student/course_personal_plan?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

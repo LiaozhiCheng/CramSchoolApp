@@ -8,6 +8,29 @@ var courseID;
 
 var courseName;
 
+//api url
+var api_student_schedule = "/schedule";
+var api_student_personal_info = "/student_personal_info";
+var api_student_course_info = "/course_info";
+var api_student_reschedule_list = "/student_reschedule_list";
+var api_student_missed_lesson = "/student_miss_lesson";
+var api_student_add_reservation = "/student_add_reservation";
+var api_student_cancel_reservation = "/student_cancel_reservation";
+var api_student_course_progress = "/student_course_progress?course_id=";
+var api_student_course_hw = "/student_course_homework?course_id=";
+var api_student_course_grade = "/student_course_grade?course_id=";
+var api_student_course_attendence = "/student_course_attendence?course_id=";
+var api_student_course_personal_plan = "/student_course_personal_plan?course_id=";
+
+//web url
+var url_student = "student/student";
+var url_student_attendence = "student/student_attendence";
+var url_student_course_process = "student/student_course_process";
+var url_student_grade = "student/student_grade";
+var url_student_homework = "student/student_homework";
+var url_student_learning_plan = "student/student_learning_plan";
+var url_student_lesson_make-up = "student/student_lesson_make-up";
+
 
 function setCourseID(obj){
     var word = obj.innerHTML.split('<br>');

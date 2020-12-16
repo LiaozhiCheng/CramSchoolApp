@@ -4,8 +4,8 @@
                     setSchedule();
                     $.ajax({
                 
-                //url: "https://3aac3445b286.ngrok.io/user/schedule", //放你的url，這裡先放本地端檔案
-                url: "teacher.json",
+                url: "https://595c59d359e3.ngrok.io/schedule", //放你的url，這裡先放本地端檔案
+                //url: "teacher.json",
                 type: "GET",
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',
@@ -32,8 +32,8 @@
                     //test();
                     $.ajax({
                 
-                //url: "https://3aac3445b286.ngrok.io/user/personal_info", //放你的url，這裡先放本地端檔案
-                url: "info.json",
+                url: "https://595c59d359e3.ngrok.io/personal_info", //放你的url，這裡先放本地端檔案
+                //url: "info.json",
                 type: "GET",
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',

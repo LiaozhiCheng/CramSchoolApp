@@ -78,8 +78,8 @@ function cancelReservation(){
     
     //create delete data
     var myTime = setTimeData(currID);
-    var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
-    var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
+    var C_Name = document.getElementById("chooseCourse").text;
+    var L_Name = document.getElementById("chooseLesson").text;
     var l_id = missedLessonID[missedCourse.indexOf(C_Name)][missedLesson[missedCourse.indexOf(C_Name)].indexOf(L_Name)];
     var cancelData = { "datetime" : myTime , "course_name" : C_Name , "lesson_id" : l_id };
     

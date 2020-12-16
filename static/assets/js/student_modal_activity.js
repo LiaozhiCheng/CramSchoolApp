@@ -61,7 +61,7 @@ function getReservation(){
         console.log(missedCourse);
         console.log(missedLessonID);
         console.log(courseIdx, lessonIdx);
-        //sendReservation(missedCourse[parseInt(courseIdx)-1], missedLessonID[parseInt(courseIdx)-1][parseInt(lessonIdx)-1]);
+        sendReservation(missedCourse[parseInt(courseIdx)-1], missedLessonID[parseInt(courseIdx)-1][parseInt(lessonIdx)-1]);
         var C_Name = document.getElementById("chooseCourse")[courseIdx].text;
         var L_Name = document.getElementById("chooseLesson")[lessonIdx].text;
         var l_id = missedLessonID[missedCourse.indexOf(C_Name)][missedLesson[missedCourse.indexOf(C_Name)].indexOf(L_Name)];

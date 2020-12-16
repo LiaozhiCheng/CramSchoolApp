@@ -1,3 +1,5 @@
+var ngrok="https://af55163ad559.ngrok.io/cs/";
+var myURL = ngrok + "cs_schedule";
 function createTable(data){
     console.log("data: "+data);
     var content = "";
@@ -12,7 +14,7 @@ function createTable(data){
 }
 
     $.ajax({
-        url:"https://af55163ad559.ngrok.io/cs/cs_schedule",
+        url: myURL,
         //url: "coursetest.json",
         type: "GET",
         dataType: "json",

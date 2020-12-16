@@ -13,7 +13,7 @@ function sendReservation(courseName, lessonId){
     var reservation = { "datetime" : myTime , "course_name" : courseName , "lesson_id" : lessonId };
     
     $.ajax({
-        url: "https://8555e032bdb5.ngrok.io/student/test",
+        url: "/student_add_reservation",
         type: "POST",
         data: JSON.stringify(reservation),
         dataType: "json",

@@ -7,7 +7,7 @@ window.onload = function init(){
 
 //get & set student information
 function getStudentInfo(){
-    var apiURL = "testContent/studentInfo.json";
+    var apiURL = "/student_personal_info";
     $.ajax({
         url: apiURL,
         type: "GET",

@@ -1,7 +1,7 @@
 //get schedule data
 function getSchedule(){
     $.ajax({
-        url: "testContent/studentSchedule.json",
+        url: "/schedule",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

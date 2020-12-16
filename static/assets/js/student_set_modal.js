@@ -8,7 +8,7 @@ var missedLessonID = new Array();
 //get student missed lesson
 function getMissedLesson(){
     $.ajax({
-        url: "testContent/studentMissedLesson.json",
+        url: "/student_miss_lesson",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

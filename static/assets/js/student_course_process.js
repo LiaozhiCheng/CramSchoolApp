@@ -15,7 +15,7 @@ window.onload = function init(){
 //get course information
 function getCourseInfo(){
     $.ajax({
-        url: "testContent/courseInfo.json",
+        url: "/course_info",
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

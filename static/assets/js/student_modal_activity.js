@@ -75,10 +75,8 @@ function cancelReservation(){
     
     //create delete data
     var l_id = document.getElementsByName(currID)[0].id;
-    console.log(document.getElementById(l_id).innerHTML);
     var myTime = setTimeData(currID);
-    var C_Name = obj.split('/')[0];
-    var l_id = obj.split('/')[1];
+    var C_Name = document.getElementById(l_id).innerHTML.split('/')[0];
     var cancelData = { "datetime" : myTime , "course_name" : C_Name , "lesson_id" : l_id };
     
     //call delete API

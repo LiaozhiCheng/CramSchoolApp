@@ -313,12 +313,12 @@ function sendData(id, password, name, course_list, phone, email, major, personal
         role = "student";
     else if(role=="老師")
         role = "teacher";
-    
+    var send;
     var myURL=ngrok;
     //新增
     if(choice=="add"){
         myURL = myURL + "insert_user_detail_info";
-        var send={
+        send={
             "name" : name,
             "password": password,
             "course_list": course_list,
@@ -333,7 +333,7 @@ function sendData(id, password, name, course_list, phone, email, major, personal
     else if(choice=="edit"){
         myURL = myURL + "edit_cs_course_info";
         
-        var send={
+        send={
             "course_id": id,
             "name" : name,
             "start_time": start_time,

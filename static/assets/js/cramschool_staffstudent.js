@@ -133,16 +133,16 @@ function add(){
     var content="";
     content += '<form>';
     //填名字 id="user_name"
-    content += '<div class="form-group"><label class="col-form-label">名字：<input type="text" class="form-control" id="user_name" value="名字"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">名字：<input type="text" class="form-control" id="user_name" placeholder="名字"></label></div>';
     
     //填密碼 id="password"
-    content += '<div class="form-group"><label class="col-form-label">密碼：<input type="text" class="form-control" id="password" value="密碼"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">密碼：<input type="text" class="form-control" id="password" placeholder="密碼"></label></div>';
     
     //填電話 id="phone"
-    content += '<div class="form-group"><label class="col-form-label">電話：<input type="tel" class="form-control" id="phone" value="電話" pattern="\d{10}"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">電話：<input type="tel" class="form-control" id="phone" placeholder="電話" pattern="\d{10}"></label></div>';
     
     //填email id="email"
-    content += '<div class="form-group"><label class="col-form-label">email：<input type="email" class="form-control" id="email" value="email"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">email：<input type="email" class="form-control" id="email" placeholder="email"></label></div>';
     
     //選擇角色 id="role"
     content += '<div class="form-group"><label class="col-form-label">身份：<select class="form-control" id="role" onchange="setForm(this)"><option selected>學生</option><option>老師</option></select></label></div>';
@@ -243,11 +243,11 @@ function edit(id, role){
     
      content += '<form>';
     //填名字 id="user_name"
-    content += '<div class="form-group"><label class="col-form-label">名字：<input type="text" class="form-control" id="user_name" value="'+name+'"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">名字：<input type="text" class="form-control" id="user_name" placeholder="'+name+'"></label></div>';
     //填電話 id="phone"
-    content += '<div class="form-group"><label class="col-form-label">電話：<input type="tel" class="form-control" id="phone" value="'+phone+'" pattern="\d{10}"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">電話：<input type="tel" class="form-control" id="phone" placeholder="'+phone+'" pattern="\d{10}"></label></div>';
     //填email id="email"
-    content += '<div class="form-group"><label class="col-form-label">email：<input type="email" class="form-control" id="teacher" value="'+email+'"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">email：<input type="email" class="form-control" id="teacher" placeholder="'+email+'"></label></div>';
     
     //判斷是選課｜專業科目
     if(role=="student"){
@@ -291,7 +291,7 @@ function edit(id, role){
     }
     else if(role=="teacher"){
         //填專業科目 id="choose"
-        content += '<div class="form-group"><label class="col-form-label">專業科目：<input type="text" class="form-control" id="choose" value="專業科目"></label></div>'; 
+        content += '<div class="form-group"><label class="col-form-label">專業科目：<input type="text" class="form-control" id="choose" placeholder="專業科目"></label></div>'; 
     }
     content += "</form>";
 

@@ -259,6 +259,14 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
     var myURL="";
     if(choice=="add"){
         myURL = ngrok + "insert_cs_course_info";
+        console.log("course_id: "+id);
+        console.log("name: "+name);
+        console.log("start_time: "+start_time);
+        console.log("course_time: "+course_time);
+        console.log("teacher: "+teacher);
+        console.log("summary: "+summary);
+        console.log("classroom: "+classroom);
+        console.log("classroom_name: "+classroom.name);
         var send={
             "name" : name,
             "start_time": start_time,

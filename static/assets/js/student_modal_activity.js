@@ -69,7 +69,7 @@ function getReservation(){
 
 //cancel reservation
 function cancelReservation(){
-    //console.log("target: " + currID + "呼叫刪除補課API");
+    console.log("target: " + currID + "呼叫刪除補課API");
     
     //double check alert;
     

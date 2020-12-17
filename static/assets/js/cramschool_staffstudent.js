@@ -226,8 +226,9 @@ function addUser(){
     }
     
     //送資料
-    //sendData(null, $("#password").val(), $("#user_name").val(), course_list, $("#phone").val(), $("#email").val(), major, null, $("#role").val(), "add");
-    sendData(null, $("#password").text(), $("#user_name").text(), course_list, $("#phone").text(), $("#email").text(), major, null, $("#role").text(), "add");
+    console.log($("#password").val(), $("#user_name").val(), course_list, $("#phone").val(), $("#email").val(), major, $("#role").val());
+    sendData(null, $("#password").val(), $("#user_name").val(), course_list, $("#phone").val(), $("#email").val(), major, null, $("#role").val(), "add");
+    //sendData(null, $("#password").text(), $("#user_name").text(), course_list, $("#phone").text(), $("#email").text(), major, null, $("#role").text(), "add");
 }
 
 //未完成

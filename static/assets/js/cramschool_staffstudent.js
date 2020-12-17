@@ -351,8 +351,10 @@ function sendData(id, password, name, course_list, phone, email, major, personal
         dataType: "json",
         data: JSON.stringify(send),
         contentType: 'application/json; charset=utf-8',
+        success: function(){
+            init("student");
+        }
     });
-    init("student");
 }
 
 //刪除成員
@@ -361,7 +363,6 @@ function del(){
     //跳出表單
     var content="";
     content += '<form>';
-    //id="user_id"
     content += '<div class="form-group"><label class="col-form-label">成員ID：<input type="text" class="form-control" id="user_id" value="成員ID"></label></div></form>';
     
     document.getElementById("myContent").innerHTML = content;
@@ -380,9 +381,10 @@ function delUser(){
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
+        success: function(){
+            init("student");
+        }
     });
-    
-    init("student");
 }
 
 function start(){

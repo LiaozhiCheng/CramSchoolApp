@@ -221,7 +221,7 @@ function addUser(){
     if($("#role").val()=="學生"){
         course_list[0] = $("#choose").val();
     }
-    else if(("#role").val()=="老師"){
+    else if($("#role").val()=="老師"){
         major = $("#choose").val();
     }
     

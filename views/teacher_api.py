@@ -73,6 +73,25 @@ def course_personal_plan():
             }
             plan_list.append(each_plan)    
     return jsonify(plan_list)
+#####################################################################
+# teacher get lesson list
+@teacher_api.route('/teacher_no_plan_lesson_time', methods=['GET','POST'])
+def teacher_no_plan_lesson_time():
+    course_id = request.values.get('course_id')
+    student_id = request.values.get('student_id')
+    items = lesson.get_by_courseid(course_id)
+    target_student = user.get_by_userid(student_id)
+    lesson_time_list = []
+    for i in items:
+        for p in target_student['personal_plan']:
+            if datetime.strftime(p['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
+                items.remove(i)
+                break
+    for i in items:    
+        lesson_time_list.append(datetime.strftime(i['lesson_time'],"%Y-%m-%d"))
+        
+    return jsonify(lesson_time_list)
+
 
 #####################################################################
 # teacher edit course personal plan

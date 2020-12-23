@@ -48,7 +48,7 @@ def user_detail_info():
 #新增成員    ok
 def insert_user_detail_info():
     user_json=request.get_json()
-    
+    print(user_json)
     password=user_json['password']
     name=user_json['name']
     course_list=user_json['course_list']

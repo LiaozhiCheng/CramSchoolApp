@@ -3,6 +3,7 @@
                     var addlessonid= new Array();
                     var date= new Array()
                     var studentid;
+                    var courseid;
                     window.onload = function(){
                             getSavedData();
                             setSideBar();
@@ -10,13 +11,13 @@
                         function getSavedData(){
                                 console.log("sss");
                             try{
-                                temp = sessionStorage.getItem('course');
-                                console.log(temp);
+                                courseid = sessionStorage.getItem('course');
+                                console.log(courseid);
                                 studentid = sessionStorage.getItem('studentId');
                                 console.log(studentid);
 
                                 $.ajax({
-                                url: api_personal_plan+studentid+"&course_id="+temp,
+                                url: api_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "personalplan.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",
                                 dataType: "json",
@@ -165,7 +166,7 @@
                         console.log("aaa");
                         $('#exampleModal2').modal('show')
                         $.ajax({
-                                url: api_add_personal_plan+studentid+"&course_id="+temp,
+                                url: api_add_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "time.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",
                                 dataType: "json",
@@ -182,7 +183,7 @@
                                     console.log("time: "+data[i].lesson_time);
                                 }//看到時候有沒有成功
                                 temp += "</select>";
-                                document.getElementById("addlessontime").innerHTML = temp;
+                                document.getElementById("addlessontime").innerHTML = "Lesson time: "+temp;
                                 
                                 },
 

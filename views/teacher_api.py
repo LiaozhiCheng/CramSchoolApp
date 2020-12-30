@@ -93,7 +93,7 @@ def teacher_no_plan_lesson_time():
         if not exist:
             each_data = {
             "lesson_id" : i['lesson_id'],
-            "lesson_time" : datetime.strftime(i['lesson_time'])
+            "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d")
             }
             print("each_data",each_data)
             lesson_list.append(each_data)

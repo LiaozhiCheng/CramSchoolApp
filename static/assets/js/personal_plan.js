@@ -95,7 +95,8 @@
                                 success: function(){
                                     alert("send success!");
                                     //console.log(data);
-                                    location.reload();
+                                    getSavedData();
+                                    setSideBar();
                                     //setSchedule(data);
                                 },
                                 
@@ -215,7 +216,8 @@
                                 success: function(){
                                     alert("send success!");
                                     //console.log(data);
-                                    location.reload();
+                                     getSavedData();
+                                    setSideBar();
                                 },
                                 
                                 error: function(){

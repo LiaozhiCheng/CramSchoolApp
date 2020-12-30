@@ -49,7 +49,6 @@ def edit_course_communication_book():
                     "progress" : data['progress'],
                     "homework" : homework
     }
-    print(new_info)
     lesson.update_lesson_communication_book(data['lesson_id'],new_info)
     return jsonify(new_info)
 
@@ -61,16 +60,15 @@ def course_personal_plan():
     student_id = request.values.get('student_id')
     target_student = user.get_by_userid(student_id)
     plan_list = []
-    if len(target_student['personal_plan']) != 0:
-        for p in target_student['personal_plan']:
+    for p in target_student['personal_plan']:
+        if p != None:
             if p['lesson_id'][2:4]==course_id[2:4]:
                 # 要取得該 plan 所屬 lesson 的lesson_time
                 le = lesson.get_by_lessonid(p['lesson_id'])
-                
                 each_plan = {
                     "lesson_id" : p['lesson_id'],
                     "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
-                    "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
+                    "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d") if p['deadline'] != None else None,
                     "context": p['context']
                 }
                 plan_list.append(each_plan)    
@@ -85,17 +83,20 @@ def teacher_no_plan_lesson_time():
     target_student = user.get_by_userid(student_id)
     lesson_list = []
     for i in items:
+        exist = False
         for p in target_student['personal_plan']:
             if datetime.strftime(p['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
-                items.remove(i)
-                break
-    for i in items:
-        each_data = {
+              exist = True
+              print("exist : ",i)
+              break
+        if not exist:
+            each_data = {
             "lesson_id" : i['lesson_id'],
             "lesson_time" : datetime.strftime(i['lesson_time'])
             }
-        lesson_list.append(each_data)
-        
+            print("each_data",each_data)
+            lesson_list.append(each_data)
+    print("lesson_list:",lesson_list)
     return jsonify(lesson_list)
 
 

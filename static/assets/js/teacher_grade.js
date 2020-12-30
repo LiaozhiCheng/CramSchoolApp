@@ -149,7 +149,7 @@ function start() {
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
     $.ajax({
-        url: "grade.json", //放你的url，這裡先放本地端檔案
+        url: api_course_grade + course_id, //放你的url，這裡先放本地端檔案
         //url: "grade.json", 之後長這樣
         //api_course_grade + course_id
         type: "GET",

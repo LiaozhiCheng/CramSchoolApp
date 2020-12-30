@@ -25,8 +25,10 @@ def create_app():
 
     return app
 
-# def refresh_schedule():
-#     models.reschedule.refresh_schedule()
+
+def refresh_schedule():
+    models.reschedule.refresh_schedule()
+
 
 if __name__ == "__main__":
     # scheduler=APScheduler()

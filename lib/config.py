@@ -16,15 +16,16 @@ class Config(object):
     TEMPLATES_AUTO_RELOAD = True
     UPLOAD_FOLDER = UPLOAD_FOLDER
     
-    # JOBS=[
-    #     {
-    #         'id':'job1',
-    #         'func':'__main__:refresh_schedule',
-    #         'args':(1,2),
-    #         'trigger':'cron',
-    #         'day_of_week':2,
-    #         'hour':19,
-    #         'minute':32
-    #     },
 
-    # ]
+    JOBS=[
+        {
+            'id':'job1',
+            'func':'__main__:refresh_schedule',
+            'trigger':'cron',
+            'day_of_week':2,
+            'hour':19,
+            'minute':32
+        },
+
+
+    ]

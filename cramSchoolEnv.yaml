@@ -17,6 +17,7 @@ dependencies:
     - flask-mongoengine==1.0.0
     - flask-principal==0.4.0
     - flask-security-too==3.4.4
+    - flask-apscheduler==1.11.0
     - flask-wtf==0.14.3
     - itsdangerous==1.1.0
     - mongoengine==0.21.0

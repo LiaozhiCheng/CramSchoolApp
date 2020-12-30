@@ -117,7 +117,7 @@
                                for(var i=0; i<date.length; i++){
                                         rows += "<tr><td>" + date[i] + "</td>";
                                         //for(var j=0; j<4; j++){if(j==3){
-                                                rows += "<td id='" + i + "-0'>"+data[i].deadline+"</td>";
+                                                rows += "<td id='" + i + "-0'>"+String(data[i].deadline)+"</td>";
                                                 rows += "<td id='" + i + "-1'>"+data[i].context+"</td>";
                                                 rows += "<td id='" + i + "-2'><button id='e"+ i +"' type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' onclick='testedit(this.id)' >Edit</button><button id='d"+ i +"' type='button' class='btn btn-outline-danger' onclick='testdelete(this.id)'>Delete</button></td>";
                                                 //}

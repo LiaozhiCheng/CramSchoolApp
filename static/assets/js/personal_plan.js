@@ -92,10 +92,11 @@
                                 dataType: "json",
                                 contentType: "application/json; charset=utf-8",
                                 
-                                success: function(data){
+                                success: function(){
                                     alert("send success!");
                                     //console.log(data);
-                                    setSchedule(data);
+                                    location.reload();
+                                    //setSchedule(data);
                                 },
                                 
                                 error: function(){
@@ -211,10 +212,10 @@
                                 dataType: "json",
                                 contentType: "application/json; charset=utf-8",
                                 
-                                success: function(data){
+                                success: function(){
                                     alert("send success!");
                                     //console.log(data);
-                                    setSchedule(data);
+                                    location.reload();
                                 },
                                 
                                 error: function(){

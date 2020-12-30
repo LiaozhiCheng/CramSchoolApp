@@ -65,12 +65,17 @@ def course_personal_plan():
             if p['lesson_id'][2:4]==course_id[2:4]:
                 # 要取得該 plan 所屬 lesson 的lesson_time
                 le = lesson.get_by_lessonid(p['lesson_id'])
+                if p['deadline'] != None:
+                    deadline = datetime.strftime(p['deadline'],"%Y-%m-%d") 
+                else :
+                    deadline = None
                 each_plan = {
                     "lesson_id" : p['lesson_id'],
                     "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
-                    "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d") if p['deadline'] != None else None,
+                    "deadline" : deadline,
                     "context": p['context']
                 }
+                print(each_plan)
                 plan_list.append(each_plan)    
     return jsonify(plan_list)
 #####################################################################
@@ -88,16 +93,13 @@ def teacher_no_plan_lesson_time():
             le = lesson.get_by_lessonid(p['lesson_id'])
             if datetime.strftime(le['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
               exist = True
-              print("exist : ",i)
               break
         if not exist:
             each_data = {
             "lesson_id" : i['lesson_id'],
             "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d")
             }
-            print("each_data",each_data)
             lesson_list.append(each_data)
-    print("lesson_list:",lesson_list)
     return jsonify(lesson_list)
 
 

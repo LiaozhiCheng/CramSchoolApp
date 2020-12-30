@@ -61,17 +61,19 @@ def course_personal_plan():
     student_id = request.values.get('student_id')
     target_student = user.get_by_userid(student_id)
     plan_list = []
-    for p in target_student['personal_plan']:
-        if p['lesson_id'][2:4]==course_id[2:4]:
-            # 要取得該 plan 所屬 lesson 的lesson_time
-            le = lesson.get_by_lessonid(p['lesson_id'])
-            each_plan = {
-                "lesson_id" : p['lesson_id'],
-                "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
-                "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
-                "context": p['context']
-            }
-            plan_list.append(each_plan)    
+    if len(target_student['personal_plan']) != 0:
+        for p in target_student['personal_plan']:
+            if p['lesson_id'][2:4]==course_id[2:4]:
+                # 要取得該 plan 所屬 lesson 的lesson_time
+                le = lesson.get_by_lessonid(p['lesson_id'])
+                
+                each_plan = {
+                    "lesson_id" : p['lesson_id'],
+                    "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
+                    "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
+                    "context": p['context']
+                }
+                plan_list.append(each_plan)    
     return jsonify(plan_list)
 #####################################################################
 # teacher get no plan lesson time

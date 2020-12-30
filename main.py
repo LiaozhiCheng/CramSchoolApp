@@ -25,14 +25,14 @@ def create_app():
 
     return app
 
-def refresh_schedule():
-    models.reschedule.refresh_schedule()
+# def refresh_schedule():
+#     models.reschedule.refresh_schedule()
 
 if __name__ == "__main__":
-    scheduler=APScheduler()
+    # scheduler=APScheduler()
     app = create_app()
-    scheduler.init_app(app)
-    scheduler.start()
+    # scheduler.init_app(app)
+    # scheduler.start()
     app.run()
     
 #"192.168.111.128",port=55001

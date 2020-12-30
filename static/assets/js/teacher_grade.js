@@ -43,6 +43,9 @@ function deleteGrade(grade_no) {
 }
 
 function saveGrade(grade_no) {
+    globalData[grade_no].quiz_name = document.getElementById("testname" + grade_no).value;
+    document.getElementById("testname" + grade_no).disabled = true;
+    document.getElementById("testname" + grade_no).setAttribute("class", "gradeTestNameDisabled");
     document.getElementById("button" + String(grade_no)).innerHTML = "<button type='button' class='btn btn-outline-info' onclick='editGrade(" + grade_no + ")'>edit button</button>";
     for (var i = 0; i < globalData[grade_no].grade_list.length; i++) {
         globalData[grade_no].grade_list[i].student_grade = parseInt(document.getElementById("row" + String(i) + "col" + String(grade_no)).value);
@@ -53,6 +56,8 @@ function saveGrade(grade_no) {
 }
 
 function editGrade(grade_no) {
+    document.getElementById("testname" + grade_no).disabled = false;
+    document.getElementById("testname" + grade_no).setAttribute("class", "gradeTestName");
     document.getElementById("button" + String(grade_no)).innerHTML = "<div align='left' style='float:left'><button type='button' class='btn btn-outline-success' onclick='saveGrade(" + grade_no + ")'>save</button></div>"
         + "<div align='right'><button type='button' class='btn btn-outline-danger' onclick='deleteGrade(" + grade_no + ")'>delete</button></div>";
     for (var i = 0; i < globalData[grade_no].grade_list.length; i++) {
@@ -67,6 +72,11 @@ function showDate() {
     var contentBody = "";
     var minDate = document.getElementById("date1").value;
     var maxDate = document.getElementById("date2").value;
+
+    if(minDate!="" && maxDate!="" && minDate > maxDate){
+        window.alert("日期輸入錯誤")
+        return;
+    }
 
     for (var i = 0; i < globalData.length; i++) {
         var compare = new Date(globalData[i].lesson_time.replace(/-/g, "/"));
@@ -85,14 +95,16 @@ function showDate() {
         }
 
         var splitDate = globalData[i].lesson_time.split("-");
-        contentHead += "<th>" + splitDate[1] + "/" + splitDate[2] + globalData[i].quiz_name + "<br><div id=button" + i + "><button type='button' class='btn btn-outline-info' onclick='editGrade(" + i + ")'>edit button</button></div></th>";
+        contentHead += "<th>" + splitDate[1] + "/" + splitDate[2]
+                 + "<br><input id=testname" + String(i) + " class='gradeTestNameDisabled' type='text' placeholder='' value=" + globalData[i].quiz_name
+                 + " disabled><br><div id=button" + i + "><button type='button' class='btn btn-outline-info' onclick='editGrade(" + i + ")'>edit button</button></div></th>";
         rangeData.push(i);
     }
 
     for (var i = 0; i < globalData[0].grade_list.length; i++) {
         contentBody += "<tr><td>" + globalData[0].grade_list[i].student_name + "</td>";
         for (var j = 0; j < rangeData.length; j++) {
-            if (data[j].grade_list[i].student_grade == null) {
+            if (globalData[j].grade_list[i].student_grade == null) {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(rangeData[j]) + " class='gradeTextDisabled' type='text' placeholder='' value='' disabled></td>";
             } else {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(rangeData[j]) + " class='gradeTextDisabled' type='text' placeholder='' value=" + globalData[rangeData[j]].grade_list[i].student_grade + " disabled></td>";
@@ -110,7 +122,9 @@ function createTable(data) {
 
     for (var i = 0; i < data.length; i++) {
         var splitDate = data[i].lesson_time.split("-");
-        contentHead += "<th>" + splitDate[1] + "/" + splitDate[2] + " " + data[i].quiz_name + "<br><div id=button" + i + "><button type='button' class='btn btn-outline-info' onclick='editGrade(" + i + ")'>edit button</button></div></th>";
+        contentHead += "<th>" + splitDate[1] + "/" + splitDate[2]
+                 + "<br><input id=testname" + String(i) + " class='gradeTestNameDisabled' type='text' placeholder='' value=" + data[i].quiz_name
+                 + " disabled><br><div id=button" + i + "><button type='button' class='btn btn-outline-info' onclick='editGrade(" + i + ")'>edit button</button></div></th>";
     }
 
     for (var i = 0; i < data[0].grade_list.length; i++) {
@@ -126,6 +140,7 @@ function createTable(data) {
 
 
     document.getElementById("thead").innerHTML = contentHead;
+    console.log(document.getElementById("testname1"));
     document.getElementById("tbody").innerHTML = contentBody;
 }
 
@@ -136,7 +151,7 @@ function start() {
     $.ajax({
         url: api_course_grade + course_id, //放你的url，這裡先放本地端檔案
         //url: "grade.json", 之後長這樣
-        //https://3aac3445b286.ngrok.io/teacher/course_grade?course_id=C-001
+        //api_course_grade + course_id
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',

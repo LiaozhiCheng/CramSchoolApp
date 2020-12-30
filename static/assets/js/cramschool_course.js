@@ -159,9 +159,29 @@ function addCourse(){
     var myselect=document.getElementById("classroom");
     var index=myselect.selectedIndex;
     var classroom_id = myselect.options[index].id;
+    //拿到教室的詳細資訊
+    var temp="";
+    var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            console.log("myURL: "+myURL);
+            var classroom = {"capacity" : response.capacity,
+                            "classroom_id" : response.classroom_id,
+                            "name" : response.name};
+            //把所有參數傳到send
+            sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, $("#teacher").val(), $("#summary").val(), classroom, "add");
+            
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
     
-    //把所有參數傳到send
-    sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, $("#teacher").val(), $("#summary").val(), classroom_id, "add");
+    
 
 }
 
@@ -248,9 +268,27 @@ function editCourse(id){
         startdate = $("#start_date").val(),
         setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val(),
         teacher = $("#teacher").val(),
-        summary = $("#summary").val(),
-        classroom = classroom_id;
-        sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
+        summary = $("#summary").val();
+        
+    //拿到教室的詳細資訊
+    var temp="";
+    var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            var classroom = {"capacity" : response.capacity,
+                            "classroom_id" : response.classroom_id,
+                            "name" : response.name};
+            sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+        
 }
 
 //傳新增｜編輯的資料到後端
@@ -259,14 +297,6 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
     var myURL="";
     if(choice=="add"){
         myURL = ngrok + "insert_cs_course_info";
-        console.log("course_id: "+id);
-        console.log("name: "+name);
-        console.log("start_time: "+start_time);
-        console.log("course_time: "+course_time);
-        console.log("teacher: "+teacher);
-        console.log("summary: "+summary);
-        console.log("classroom: "+classroom);
-        console.log("classroom_name: "+classroom.name);
         var send={
             "name" : name,
             "start_time": start_time,
@@ -278,14 +308,6 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
     }
     else if(choice=="edit"){
         myURL = ngrok + "edit_cs_course_info";
-        console.log("course_id: "+id);
-        console.log("name: "+name);
-        console.log("start_time: "+start_time);
-        console.log("course_time: "+course_time);
-        console.log("teacher: "+teacher);
-        console.log("summary: "+summary);
-        console.log("classroom: "+classroom);
-        console.log("classroom_name: "+classroom.name);
         var send={
             "course_id": id,
             "name" : name,

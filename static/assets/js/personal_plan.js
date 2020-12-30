@@ -166,6 +166,7 @@
                         console.log("aaa");
                         $('#exampleModal2').modal('show')
                         $.ajax({
+                                courseid = sessionStorage.getItem('course');
                                 url: api_add_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "time.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",

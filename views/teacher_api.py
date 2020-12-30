@@ -85,7 +85,8 @@ def teacher_no_plan_lesson_time():
     for i in items:
         exist = False
         for p in target_student['personal_plan']:
-            if datetime.strftime(p['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
+            le = lesson.get_by_lessonid(p['lesson_id'])
+            if datetime.strftime(le['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
               exist = True
               print("exist : ",i)
               break

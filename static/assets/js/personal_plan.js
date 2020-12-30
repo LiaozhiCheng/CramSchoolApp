@@ -153,6 +153,9 @@
                         $('#submit').click(function() {
                         $('#exampleModal').modal('hide');
                     });
+                        $('#addsubmit').click(function() {
+                        $('#exampleModal2').modal('hide');
+                    });
                     function testdelete(clickedid) {
                          //var NewStringValue=document.getElementById("message-text").value;
                         ss=clickedid.slice(1,2);
@@ -165,9 +168,9 @@
                         var temp="";
                         console.log("aaa");
                         $('#exampleModal2').modal('show')
-                      courseid = sessionStorage.getItem('course');
+                         courseid = sessionStorage.getItem('course');
                         $.ajax({
-                                
+                                //courseid = sessionStorage.getItem('course');
                                 url: api_add_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "time.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",
@@ -194,8 +197,8 @@
                                 }
                                 });
                     }
-
                     function addsubmit(){
+                        
                         var  addlessontime = document.getElementById("selecttime").selectedIndex;
                         var adddeadline = document.getElementById("adddeadline").value;
                         var addcontext = document.getElementById("addcontext").value;

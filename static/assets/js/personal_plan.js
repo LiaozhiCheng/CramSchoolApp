@@ -182,7 +182,7 @@
                                     console.log("time: "+data[i].lesson_time);
                                 }//看到時候有沒有成功
                                 temp += "</select>";
-                                document.getElementById("addlessontime").innerHTML += temp;
+                                document.getElementById("addlessontime").innerHTML = temp;
                                 
                                 },
 

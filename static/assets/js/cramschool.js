@@ -1,3 +1,5 @@
+//偵測錯誤 done
+
 var myURL = ngrok + "cs_schedule";
 setSideBar();
 function createTable(data){
@@ -13,25 +15,23 @@ function createTable(data){
     document.getElementById("tbody").innerHTML = content;
 }
 
-    $.ajax({
-        url: myURL,
-        //url: "coursetest.json",
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            console.log("success");
+$.ajax({
+    url: myURL,
+    type: "GET",
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8',
+    success: function(response){
+        
+        if(response[i].message == undefined){
             createTable(response);
-            for(var i=0; i<response.length; i++){
-                console.log("time: "+response[i].course_time[3]);
-                console.log("name: "+response[i].name);
-                console.log("id: "+response[i].course_id);
-                console.log("teacher: "+response[i].teacher);
-                console.log("classroom: "+(response[i].classroom).name);
-            }
-        },
-        error: function(){
-            console.log("error");
         }
-    });
+        else{
+            window.alert("出了點錯，請稍後再試！");
+        }
+
+    },
+    error: function(){
+        console.log("error");
+    }
+});
 

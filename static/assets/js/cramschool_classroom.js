@@ -1,3 +1,5 @@
+//測試 done
+
 //有ajax
 function init(){
     console.log("init");
@@ -9,8 +11,12 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            console.log("success");
-            createTable(response);
+            if(response[i].message == undefined){
+                createTable(response);
+            }
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
             
         },
         error: function(){
@@ -21,7 +27,6 @@ function init(){
 
 //創建表格
 function createTable(data){
-    console.log("createTable");
     var content = "";
     //一筆資料
     if(data.length==null){
@@ -41,24 +46,27 @@ function createTable(data){
         }
     }
    document.getElementById("tbody").innerHTML = content;
-    console.log("改了"); 
 }
 
 //搜尋教室名稱＆顯示 有ajax
 function search(){
     var myURL=ngrok + "cs_classroom_info_by_name?name="+$("#myval").val();
-    console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[0]==0){
-                document.getElementById("table").innerHTML = "<h5>查無此教室</h5>";
+            if(response[i].message == undefined){
+                if(response[0]==0){
+                    document.getElementById("table").innerHTML = "<h5>查無此教室</h5>";
+                }
+                else{
+                    createTable(response);
+                }
             }
             else{
-                createTable(response);
+                window.alert("出了點錯，請稍後再試！");
             }
         },
         error: function(){
@@ -94,7 +102,6 @@ function add(){
 //編輯教室
 function edit(id){
     
-    console.log("id: "+id);
     var name = document.getElementById(id+"_name").innerText;
     capacity = document.getElementById(id+"_capacity").innerText;
     
@@ -140,7 +147,12 @@ function sendData(id, name, capacity, choice){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            init();
+            if(response[i].message == undefined){
+                init();
+            }
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         }
     });
 }
@@ -169,7 +181,12 @@ function delRoom(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            init();
+            if(response[i].message == undefined){
+                init();
+            }
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         }
     });
 }

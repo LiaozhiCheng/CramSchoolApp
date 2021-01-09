@@ -22,12 +22,13 @@ def create_app():
 
     # register app
     register_blueprint(app)
-
     return app
 
 
 def refresh_schedule():
     models.reschedule.refresh_schedule()
+
+
 
 
 if __name__ == "__main__":

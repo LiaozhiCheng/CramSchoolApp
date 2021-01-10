@@ -88,7 +88,8 @@ function getSavedData(){
     }
     catch(e){
         alert("未知課程，請回課表選擇課程");
-        window.location.replace("student.html");
+        window.location.replace(url_student);
+		//window.location.href = url_student;
     }
     
 }

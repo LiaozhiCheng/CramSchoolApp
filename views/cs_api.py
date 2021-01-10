@@ -43,10 +43,9 @@ def user_detail_info():
     if name == "":
         return jsonify({'message': '資料不得為空'})
     user_detail_info_list=[]
-    if len(user.get_user_info_by_name(name)):
+    if len(user.get_user_info_by_name(name))==0:
         return jsonify({'message': '此人不存在'})
     for i in user.get_user_info_by_name(name):
-        
         course_name_list=[]
         course_list=i['course_list']
         for j in course_list:

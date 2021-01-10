@@ -1,4 +1,5 @@
-var ngrok = "";
+var ngrok = "http://127.0.0.1:5000/";
+var month = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 //web url
 var url_cramschool = "/cramschool";

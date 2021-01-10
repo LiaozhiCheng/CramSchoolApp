@@ -1,3 +1,5 @@
+//測試 done
+
 //用名字查的-> sessionStorage的有：user_id, course_id
 //用course_id查的-> 
 
@@ -10,11 +12,15 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            console.log("success");
-            for(var i=0; i<response.length; i++){
-                temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
+            if(response[0].message == undefined){
+                for(var i=0; i<response.length; i++){
+                    temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
+                }
+                document.getElementById("course").innerHTML = temp;
             }
-            document.getElementById("course").innerHTML = temp;
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         },
         error: function(){
             console.log("error");
@@ -24,28 +30,25 @@ function init(){
 
 //選擇課程後，拿到lesson
 function getLesson(data){
-    console.log("getLesson");
-    console.log("val: "+data.value);
-    console.log("id: "+$(data).find("option:checked").attr("id"));
      
     var course_id = $(data).find("option:checked").attr("id");
     
-    
     var temp="", myURL = ngrok + "cs_lesson_id_and_time?course_id="+course_id;
-    console.log("myURL: "+myURL);
     $.ajax({
         url: myURL,
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            console.log("success");
-            console.log("lesson_id: "+response[0].lesson_id);
-            console.log("date: "+response[0].lesson_time);
-            console.log("length: "+response.length);
-            for(var i=0; i<response.length; i++){
-                temp += '<option id="'+ response[i].lesson_id +'">'+ response[i].lesson_time.slice(8, 11)+" "+response[i].lesson_time.slice(5, 7)+"</option>";
+            
+            if(response[0].message == undefined){
+                for(var i=0; i<response.length; i++){
+                    temp += '<option id="'+ response[i].lesson_id +'">'+ response[i].lesson_time.slice(8, 11)+" "+response[i].lesson_time.slice(5, 7)+"</option>";
+                }
+                document.getElementById("lesson").innerHTML = temp;
             }
-            document.getElementById("lesson").innerHTML = temp;
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         },
         error: function(){
             console.log("error");
@@ -60,7 +63,6 @@ function searchByLesson(){
     var index = option.selectedIndex;
     var lesson_id = option.options[index].getAttribute("id");
     
-    console.log("lesson_id: "+lesson_id);
     sessionStorage.setItem("lesson_id", lesson_id);
     getByLesson();
     
@@ -75,29 +77,33 @@ function getByLesson(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            console.log("success");
-            console.log("show table by lesson"); 
-            var content="";
-            document.getElementById("date").innerHTML="<th>姓名</th><th>出席</th><th>編輯</th>";
-            for(var i=0; i<response.length; i++){
-               name = Object.keys(response[i])[1];
-                
-                attend = Object.values(response[i])[1];
-                
-                user_id = Object.values(response[i])[0];
-                
-                content+="<tr>";
-                //姓名
-                content+="<td>"+name+"</td>";
-                //出席
-                content+='<td id="'+user_id+'">'+attend+"</td>";
-                
-                //編輯
-                content +='<td><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#example" onclick="edit('+"'"+user_id+"', 'lesson'"+')">編輯</button></td>';
-                content += "</tr>";
+            
+            if(response[0].message == undefined){
+                var content="";
+                document.getElementById("date").innerHTML="<th>姓名</th><th>出席</th><th>編輯</th>";
+                for(var i=0; i<response.length; i++){
+                   name = Object.keys(response[i])[1];
+
+                    attend = Object.values(response[i])[1];
+
+                    user_id = Object.values(response[i])[0];
+
+                    content+="<tr>";
+                    //姓名
+                    content+="<td>"+name+"</td>";
+                    //出席
+                    content+='<td id="'+user_id+'">'+attend+"</td>";
+
+                    //編輯
+                    content +='<td><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#example" onclick="edit('+"'"+user_id+"', 'lesson'"+')">編輯</button></td>';
+                    content += "</tr>";
+                }
+                document.getElementById("tbody").innerHTML = content;
+                document.getElementById("remind").innerHTML="";
             }
-            document.getElementById("tbody").innerHTML = content;
-            document.getElementById("remind").innerHTML="";
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         },
         error: function(){
             console.log("error");
@@ -116,14 +122,18 @@ function getCourseByName(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            console.log("success");
-            for(var i=0; i<response[0].course_list.length; i++){
-                temp += '<option id="'+(response[0].course_list)[i]+'">'+(response[0].course_name_list)[i]+"</option>";
+            if(response[0].message == undefined){
+                for(var i=0; i<response[0].course_list.length; i++){
+                    temp += '<option id="'+(response[0].course_list)[i]+'">'+(response[0].course_name_list)[i]+"</option>";
+                }
+                document.getElementById("courseByName").innerHTML = temp;
+
+               //把user_id記下來
+               sessionStorage.setItem("user_id", response[0].user_id);
             }
-            document.getElementById("courseByName").innerHTML = temp;
-            
-           //把user_id記下來
-           sessionStorage.setItem("user_id", response[0].user_id);
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
         },
         error: function(){
             console.log("error");
@@ -162,26 +172,34 @@ function getByName(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-           console.log("show table by name"); document.getElementById("date").innerHTML="<th>日期</th><th>出席</th><th>編輯</th>";
-            for(var i=0; i<response.length; i++){
-               time = Object.keys(response[i])[0].slice(5, 10);
-                
-                attend = Object.values(response[i])[0];
-                
-                lesson_id = Object.values(response[i])[1];
-                
-                content+="<tr>";
-                //日期
-                content+="<td>"+time+"</td>";
-                //出席
-                content+='<td id="'+lesson_id+'">'+attend+"</td>";
-                
-                //編輯
-                content +='<td><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#example" onclick="edit('+"'"+lesson_id+"','name'"+')">編輯</button></td>';
-                content += "</tr>";
-            }
+            
+            if(response[0].message == undefined){
+                document.getElementById("date").innerHTML="<th>日期</th><th>出席</th><th>編輯</th>";
+                for(var i=0; i<response.length; i++){
+                   time = Object.keys(response[i])[0].slice(5, 10);
+
+                    attend = Object.values(response[i])[0];
+
+                    lesson_id = Object.values(response[i])[1];
+
+                    content+="<tr>";
+                    //日期
+                    content+="<td>"+time+"</td>";
+                    //出席
+                    content+='<td id="'+lesson_id+'">'+attend+"</td>";
+
+                    //編輯
+                    content +='<td><button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#example" onclick="edit('+"'"+lesson_id+"','name'"+')">編輯</button></td>';
+                    content += "</tr>";
+                }
             document.getElementById("tbody").innerHTML = content;
             document.getElementById("remind").innerHTML="";
+            }
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
+            
+            
         },
         error: function(){
             console.log("error");
@@ -205,8 +223,6 @@ function edit(myID, choice){
     }
     //name->找course的每堂lesson_id //course->找lesson的每個user_id
     attend = document.getElementById(myID).innerText;
-    
-    console.log("default: "+attend);
     
     //跳出表單
     var content="";
@@ -258,18 +274,25 @@ function editAtt(myID){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(method=="name"){
-            getByName();
+            
+            if(response[0].message == undefined){
+                if(method=="name"){
+                    getByName();
+                }
+                else{
+                    searchByLesson();
+                }
             }
             else{
-                searchByLesson();
+                window.alert("您的資料輸入有誤，請再試一次！");
             }
+            
+            
         }
     });
     
     
 }
-
             
 function start(){
     init();

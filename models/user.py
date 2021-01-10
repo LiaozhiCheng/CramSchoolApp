@@ -77,6 +77,21 @@ def create_user(input_name,input_password,input_phone,input_user_id,input_email,
             roles=[my_role]
         )
 
+def create_manager():
+    CSManager_role = USER_DATASTORE.find_or_create_role("CSManager")
+    USER_DATASTORE.create_user(
+        name = '管理員',
+        password=hash_password('beautifulgirl'),
+        phone = '0912345678',
+        user_id = 'handsomeboy',            
+        email = 'admin@gmail.com',
+        role = 'CSManager',
+        major = None,
+        course_list = None,
+        personal_plan = None,
+        
+        roles=[CSManager_role]
+    )
 
 def validate_user(user_id: str, password: str):
     cur_user = USER_DATASTORE.find_user(user_id=user_id)

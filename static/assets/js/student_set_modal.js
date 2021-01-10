@@ -51,7 +51,7 @@ function setLesson(ch){
     for(var i in missedLesson[index-1]){
         var info = "";
         if(missedLesson[index-1][i].length > 0){
-            info = missedLesson[index-1][i];
+            info = missedLessonID[index-1][i] + ": " + missedLesson[index-1][i];
         }
         else{
             info = missedLessonID[index-1][i];

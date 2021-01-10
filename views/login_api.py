@@ -33,7 +33,11 @@ def validate():
 def register():
     build_data.add_users()
     return "regist success"
-
+    
+@login_api.route('/add_manager')
+def add_manager():
+    user.create_manager()
+    return 'managerIsAdd'
 @login_api.route("/my_user")
 def my_user():
     return current_user.password

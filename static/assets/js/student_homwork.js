@@ -17,15 +17,19 @@ window.onload = function init(){
 function getStudentHW(){
     $.ajax({
         url: api_student_course_hw + courseID,
-        //url: "https://38049d8c9137.ngrok.io/student/course_homework?course_id=" + courseID,
         type: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
             for(var i=0; i<data.length; i++){
+				if(data[i].deadline != null){
+					var deadline = setLessonDate(data[i].deadline);
+				}
+				else{
+					var deadline = "";
+				}
                 var startTime = setLessonDate(data[i].lesson_time);
-                var deadline = setLessonDate(data[i].deadline);
                 setHW(startTime, data[i].progress, data[i].homework, deadline);
             }
         },

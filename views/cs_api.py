@@ -62,7 +62,7 @@ def insert_user_detail_info():
     
     password=user_json['password']
     name=user_json['name']
-    course_list=user_json['course_list']
+    course_id=user_json['course_list'][0]  #一開始只能新增一堂課
     phone=user_json['phone']
     email=user_json['email']
     major=[user_json['major']]  #前端只會給字串，為了資料庫型態一致(array)自己包成list
@@ -73,8 +73,9 @@ def insert_user_detail_info():
         return jsonify({'message', '資料不得為空'})
     if major=="null":
         major=[]
-    
-    user.insert_user(password, name, course_list, phone, email, major, personal_plan, role)
+    user_id = user.insert_user(password, name, course_id, phone, email, major, personal_plan, role)
+    #將該成員選的course加入該course的list
+    course.update_course(course_id, course.get_course_info(course_id)['student_list'].append(user_id))
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_user_detail_info')

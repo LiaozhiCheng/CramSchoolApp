@@ -122,6 +122,7 @@ def insert_user(password, name, course_list, phone, email, major, personal_plan,
         #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
         user_id= str(register_year) + str("-") + "S-"+ str(_db.USER_COLLECTION.count_documents({})+1).zfill(3)
     create_user(name,password,phone,user_id,email,role,major,course_list,personal_plan)
+    return user_id
     
 
 #刪除成員（教師）

@@ -3,31 +3,6 @@ python:
 - '3.7'
 jobs:
   include:
-  - stage: test and lint
-    name: python lint
-    python: '3.7'
-    install:
-    - pip install pipenv
-    - pipenv install -d
-    script:
-    - pipenv run flake8 .
-  - name: python test
-    if: type != pull_request
-    python: '3.7'
-    before_install:
-    - openssl aes-256-cbc -K $key -iv $iv -in secrets.tar.enc -out secrets.tar -d
-    - tar xvf secrets.tar
-    install:
-    - pip install pipenv
-    - pipenv install -d
-    script:
-    - pytest --cov=./
-    - codecov
-  - name: js test
-    language: node_js
-    node_js: lts/*
-    script:
-    - npm run test
   - stage: release
     name: deploy to gae
     if: branch = master AND repo = LiaozhiCheng/CramSchoolApp AND fork = false

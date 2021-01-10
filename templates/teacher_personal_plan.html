@@ -1,190 +1,223 @@
-    <!DOCTYPE html>
-    <html>
-    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <title>menubar template</title>
+        <!DOCTYPE html>
+        <html>
         
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="static/assets/css/bootstrap.min.css">
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="static/assets/css/jquery.mCustomScrollbar.min.css">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <!-- Font Awesome JS -->
-        <script defer src="static/assets/js/fontawesome_solid.js"></script>
-        <script defer src="static/assets/js/fontawesome.js"></script>
-        
-        <!--my css-->
-        <link rel="stylesheet" href="static/assets/css/personal_plan.css">
-        <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="static/assets/css/menubar.css">
-
-    </head>
-
-    <body>
-        <div class="wrapper">
-            <!-- Sidebar  -->
-            <nav id="sidebar">
-               <!-- <div id="dismiss">
-                    <i class="fas fa-arrow-left"></i>
-                </div>
-
-                <div class="sidebar-header">
-                    <h3>CS管理系統</h3>
-                </div>
-
-                 <ul class="list-unstyled">
-                    <li class="active">
-                        <a href="https://595c59d359e3.ngrok.io/teacher">首頁</a>
-                    </li>
-                    <li>
-                        <a href="https://595c59d359e3.ngrok.io/teacher_courseinfo">課程資訊</a>
-                    </li>
-                    <li>
-                        <a href="https://595c59d359e3.ngrok.io/teacher_class_student">學生</a>
-                    </li>
-                    <li>
-                        <a href="https://595c59d359e3.ngrok.io/teacher_grade">成績</a>
-                    </li>
-                    <li>
-                        <a href="https://595c59d359e3.ngrok.io/teacher_student_attendence">出缺勤</a>
-                    </li>
-                    <li>
-                        <a href="https://595c59d359e3.ngrok.io/teacher_communication_book">聯絡簿</a>
-                    </li>
-                </ul>-->
-            </nav>
-
-            <!-- Page Content  -->
-            <div id="content">
-                <!--top bar: sidebar button & logo-->
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <button type="button" id="sidebarCollapse" class="btn">
-                            <i class="fas fa-align-left"></i>
-                            <span></span>
-                        </button>
-                        <!--記得更新網頁名稱-->
-                        <span class="navbar-text mx-auto">
-                            <h2 id="page-title">個人計畫</h2>
-                        </span>
-                        <div class="navbar-brand py-0">
-                            <img id="cram-logo" src="static/images/logo.png" alt="logo" style="height: 50px">
-                        </div>
-                        
-                    </div>
-                </nav>
-                <!--web page content-->
-                <div id="personlplantop" style="margin-top: 80px;">
-                    <div id="studentimage" style="float:left;  width: 50%; padding-left: 20%;">
-                            <img src="static/images/teacher.jpg" class="card-img-bottom" style="width: 70%;">
-                    </div>
-                    <div id="studentinfo" style="text-align:center; float:left; width: 50%; text-align: left;">
-                            <!--<h2 class="card-title">王小明</h2>
-                            <h2 class="card-text">aaaa12323213asssad</h2>
-                            <h2 class="card-text">0912-345-678</h2>
-                            <h2 class="card-text">123456@xxxxx.xxx</h2>-->
-                    </div>        
-                </div>
-               
-            <div class="container-fluid" style="margin-top: 300px;">
-                <table id="pptable" class="table table-bordered" style="margin-top: 5px;">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width:12%;">Data</th>
-                            <th style="width:12%;">Deadline</th>
-                            <th style="width:55%;">Personal_plan</th>
-                            <th style="width:21%;">Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--<tr>
-                            <td>11/19</td>
-                            <td>11/26</td>
-                            <td>
-                                注意事項:單字沒背熟，下次重考<br>作業:單字1～10各寫三遍
-                            </td>
-                            <td>
-                                <button id="edit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit</button>
-                                <button id="delete" type="button" class="btn btn-outline-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11/22</td>
-                            <td>12/3</td>
-                            <td>
-                                注意事項:課文回去多聽幾遍
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-outline-primary">Edit</button>
-                                <button type="button" class="btn btn-outline-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11/26</td>
-                            <td>12/15</td>
-                            <td>
-                                注意事項:上次作業未訂正，下次記得繳交
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-outline-primary">Edit</button>
-                                <button type="button" class="btn btn-outline-danger">Delete</button>
-                            </td>
-                        </tr>-->
-                    </tbody>
-                </table>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Personal_plan</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Deadline:</label>
-                <input type="date" name="bdaytime" id="deadline">
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">Personal_plan:</label>
-                <textarea class="form-control" id="context"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="submit" type="button" class="btn btn-primary" onclick="submit()">Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-            </div>
-            </div>
-        </div>
-        
-        <div class="overlay"></div>
-
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="static/assets/js/jquery-3.5.1.js"></script>
-        <!-- Popper.JS -->
-        <script src="static/assets/js/popper.min.js"></script>
-        <!-- Bootstrap JS -->
-        <script src="static/assets/js/bootstrap.min.js"></script>
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="static/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-        
-        <!--my script-->
-        <script src="static/assets/js/menubar.js"></script>
-        <script src="static/assets/js/personal_plan.js"></script>
-        <script src="static/assets/js/all.js"></script>
+            <title>menubar template</title>
             
+            <!-- Bootstrap CSS CDN -->
+            <link rel="stylesheet" href="static/assets/css/bootstrap.min.css">
+            <!-- Scrollbar Custom CSS -->
+            <link rel="stylesheet" href="static/assets/css/jquery.mCustomScrollbar.min.css">
 
-    </body>
+            <!-- Font Awesome JS -->
+            <script defer src="static/assets/js/fontawesome_solid.js"></script>
+            <script defer src="static/assets/js/fontawesome.js"></script>
+            
+            <!--my css-->
+            <link rel="stylesheet" href="static/assets/css/personal_plan.css">
+            <!-- Our Custom CSS -->
+            <link rel="stylesheet" href="static/assets/css/menubar.css">
 
-    </html>
+        </head>
+
+        <body>
+            <div class="wrapper">
+                <!-- Sidebar  -->
+                <nav id="sidebar">
+                    <div id="dismiss">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+
+                    <div class="sidebar-header">
+                        <h3>CS管理系統</h3>
+                    </div>
+
+                     <ul class="list-unstyled">
+                        <li class="active">
+                            <a href="https://595c59d359e3.ngrok.io/teacher">首頁</a>
+                        </li>
+                        <li>
+                            <a href="https://595c59d359e3.ngrok.io/teacher_courseinfo">課程資訊</a>
+                        </li>
+                        <li>
+                            <a href="https://595c59d359e3.ngrok.io/teacher_class_student">學生</a>
+                        </li>
+                        <li>
+                            <a href="https://595c59d359e3.ngrok.io/teacher_grade">成績</a>
+                        </li>
+                        <li>
+                            <a href="https://595c59d359e3.ngrok.io/teacher_student_attendence">出缺勤</a>
+                        </li>
+                        <li>
+                            <a href="https://595c59d359e3.ngrok.io/teacher_communication_book">聯絡簿</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Page Content  -->
+                <div id="content">
+                    <!--top bar: sidebar button & logo-->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+                            <button type="button" id="sidebarCollapse" class="btn">
+                                <i class="fas fa-align-left"></i>
+                                <span></span>
+                            </button>
+                            <!--記得更新網頁名稱-->
+                            <span class="navbar-text mx-auto">
+                                <h2 id="page-title">個人計畫</h2>
+                            </span>
+                            <div class="navbar-brand py-0">
+                                <img id="cram-logo" src="static/images/logo.png" alt="logo" style="height: 50px">
+                            </div>
+                            
+                        </div>
+                    </nav>
+                    <!--web page content-->
+                    <div id="personlplantop" style="margin-top: 80px;">
+                        <div id="studentimage" style="float:left;  width: 50%; padding-left: 20%;">
+                                <img src="static/images/teacher.jpg" class="card-img-bottom" style="width: 70%;">
+                        </div>
+                        <div id="studentinfo" style="text-align:center; float:left; width: 50%; text-align: left;">
+                                <!--<h2 class="card-title">王小明</h2>
+                                <h2 class="card-text">aaaa12323213asssad</h2>
+                                <h2 class="card-text">0912-345-678</h2>
+                                <h2 class="card-text">123456@xxxxx.xxx</h2>-->
+                        </div>        
+                    </div>
+                   
+                <div class="container-fluid" style="margin-top: 300px;">
+                    <button id="add" type="button" class="btn btn-outline-warning" onclick="add()" style="text-align: left;">Add Communication_book</button>
+                    <table id="pptable" class="table table-bordered" style="margin-top: 5px;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="width:12%;">Data</th>
+                                <th style="width:12%;">Deadline</th>
+                                <th style="width:55%;">Personal_plan</th>
+                                <th style="width:21%;">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--<tr>
+                                <td>11/19</td>
+                                <td>11/26</td>
+                                <td>
+                                    注意事項:單字沒背熟，下次重考<br>作業:單字1～10各寫三遍
+                                </td>
+                                <td>
+                                    <button id="edit" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit</button>
+                                    <button id="delete" type="button" class="btn btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11/22</td>
+                                <td>12/3</td>
+                                <td>
+                                    注意事項:課文回去多聽幾遍
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11/26</td>
+                                <td>12/15</td>
+                                <td>
+                                    注意事項:上次作業未訂正，下次記得繳交
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary">Edit</button>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Personal_plan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Deadline:</label>
+                    <input type="date" name="bdaytime" id="deadline">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Personal_plan:</label>
+                    <textarea class="form-control" id="context"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="submit" type="button" class="btn btn-primary" onclick="submit()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addexampleModalLabel">Add Communication_book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div id="addlessontime" >
+                    <label for="recipient-name" class="col-form-label">Lesson time:</label>
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Deadline:</label>
+                    <input type="date" name="bdaytime" id="adddeadline">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Personal_plan:</label>
+                    <textarea class="form-control" id="addcontext"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="addsubmit" type="button" class="btn btn-primary" onclick="addsubmit()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="overlay"></div>
+
+            <!-- jQuery CDN - Slim version (=without AJAX) -->
+            <script src="static/assets/js/jquery-3.5.1.js"></script>
+            <!-- Popper.JS -->
+            <script src="static/assets/js/popper.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="static/assets/js/bootstrap.min.js"></script>
+            <!-- jQuery Custom Scroller CDN -->
+            <script src="static/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+            
+            <!--my script-->
+            <script src="static/assets/js/menubar.js"></script>
+            <script src="static/assets/js/personal_plan.js"></script>
+            <script src="static/assets/js/all.js"></script>
+                
+
+        </body>
+
+        </html>

@@ -7,12 +7,27 @@ input.gradeTextDisabled {
     border-style: none none none none;
     /*上 右 下  左 */
     background-color: transparent;
-    color: black;
+    color:black;
     width: 110px;
     text-align: center;
 }
 
 input.gradeText {
+    width: 110px;
+    text-align: center;
+}
+
+input.gradeTestNameDisabled {
+    border-style: none none none none;
+    /*上 右 下  左 */
+    background-color: transparent;
+    color:white;
+    font-weight: bolder;
+    width: 110px;
+    text-align: center;
+}
+
+input.gradeTestName {
     width: 110px;
     text-align: center;
 }

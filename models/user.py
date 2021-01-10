@@ -30,9 +30,9 @@ def setup():
         name = _db.DB.StringField(max_length=255)
         password = _db.DB.StringField(max_length=255)
         phone = _db.DB.StringField(max_length=255)
-        user_id = _db.DB.StringField(max_length=255)        
+        user_id = _db.DB.StringField(max_length=255)
         email = _db.DB.StringField(max_length=255)
-        role = _db.DB.StringField(max_length=255)        
+        role = _db.DB.StringField(max_length=255)
         major = _db.DB.ListField()
         course_list = _db.DB.ListField()
         personal_plan = _db.DB.ListField()
@@ -67,7 +67,7 @@ def create_user(input_name,input_password,input_phone,input_user_id,input_email,
             name = input_name,
             password=hash_password(input_password),
             phone = input_phone,
-            user_id = input_user_id,            
+            user_id = input_user_id,
             email = input_email,
             role = input_role,
             major = input_major,
@@ -90,7 +90,7 @@ def validate_user(user_id: str, password: str):
 #Lin
 sys.path.insert(0, './models')
 
-#學生成員名單  
+#學生成員名單
 def get_student_list():
     return [{'name':i['name'], 'user_id':i['user_id'], 'course_list':i['course_list'], 'email':i['email'], 'phone':i['phone']} for i in _db.USER_COLLECTION.find({'role':'student'})]
 
@@ -99,13 +99,13 @@ def get_student_list():
 def get_teacher_list():
     return [{'name':i['name'], 'user_id':i['user_id'], 'course_list':i['course_list'], 'email':i['email'], 'phone':i['phone'], 'major':i['major']} for i in _db.USER_COLLECTION.find({'role':'teacher'})]
 
-#使用者個人資料(name)   
+#使用者個人資料(name)
 def get_user_info_by_name(name):
     return [{'name':i['name'], 'user_id':i['user_id'], 'course_list':i['course_list'], 'email':i['email'], 'phone':i['phone'], 'role':i['role']} for i in _db.USER_COLLECTION.find({'name':name})]
     
 
 
-#使用者個人資料(id)   
+#使用者個人資料(id)
 def get_user_info(user_id):
     return _db.USER_COLLECTION.find_one({'user_id':user_id})
 
@@ -121,9 +121,7 @@ def insert_user(password, name, course_list, phone, email, major, personal_plan,
     else:
         #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
         user_id= str(register_year) + str("-") + "S-"+ str(_db.USER_COLLECTION.count_documents({})+1).zfill(3)
-    
-    userdict={'user_id': user_id, 'password': password,  'name':name, 'course_list':course_list, 'phone':phone, 'email':email, 'major':major, 'personal_plan':personal_plan, 'role':role}
-    _db.USER_COLLECTION.insert_one(userdict)
+    create_user(name,password,phone,user_id,email,role,major,course_list,personal_plan)
     
 
 #刪除成員（教師）
@@ -131,20 +129,6 @@ def delete_user(userid):
     _db.USER_COLLECTION.delete_one(userid)
     
     
-#編輯成員 
+#編輯成員
 def update_user(userid, userdict):
     _db.USER_COLLECTION.update_one(userid, {'$set':userdict})
-
-# 依據 user_id 找單一物件
-def get_by_userid(user_id):
-    item = _db.USER_COLLECTION.find_one({'user_id' : user_id})
-    return item
-
-def update_personal_plan(user_id,data):
-    print(data)
-    _db.USER_COLLECTION.update_one({'user_id':user_id},{'$push':{'personal_plan':data}})
-    
-
-def delete_personal_plan(user_id,data):
-    print(data)
-    _db.USER_COLLECTION.update_one({'user_id':user_id},{'$pull':{'personal_plan':data}})

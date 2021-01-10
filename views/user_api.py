@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask import request
-from flask_security import current_user
+from flask_security import current_user,login_required
 
 # ---------- import models -----------------------------------------
 from models import course
@@ -12,6 +12,7 @@ user_api = Blueprint('user_api', __name__)
 
 # user schedule
 @user_api.route('/schedule', methods=['GET'])
+@login_required
 def user_schedule():
     course_list = []
     for course_id in current_user.course_list:
@@ -28,6 +29,7 @@ def user_schedule():
 #####################################################################
 # user personal info
 @user_api.route('/personal_info', methods=['GET'])
+@login_required
 def user_personal_info():
     if current_user.role == "teacher":
         output = {
@@ -53,9 +55,9 @@ def user_personal_info():
 #####################################################################
 # course info
 @user_api.route('/course_info', methods=['GET'])
+@login_required
 def course_info():
     course_id = request.values.get('course_id')
-    print(request.values.to_dict())
     item = course.get_by_courseid(course_id)
     output = {
                 "course" : item['name'],
@@ -63,6 +65,4 @@ def course_info():
                 "summary" : item['summary'],
                 "classroom" : item['classroom']['name']
             }
-    print(output)
     return jsonify(output)
-

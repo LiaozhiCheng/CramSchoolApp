@@ -78,4 +78,24 @@ def add_reservation(data):
 
 def delete_reservation(data):
     _db.RESCHEDULE_COLLECTION.update_one({'datetime' : data['datetime']},{'$pull':{'reservation_list':data}})
+
+def refresh_schedule():
+    time_list = list()
+    first_date = datetime.date.today()
+    for i in range(7):
+        date = datetime.datetime(year = first_date.year, month = first_date.month, day = first_date.day, hour = 17) + datetime.timedelta(days=i)
+
+        for j in range(3):
+            today_time = date
+            today_time = today_time + datetime.timedelta(hours=j*2)
+            time_list.append(today_time)
+        for time in time_list:
+            reschedule_dict = dict()
+            reschedule_dict['datetime'] = time
+            reschedule_dict['state'] = False
+            reschedule_dict['reservation_list'] = list()
+            reschedule_dict['classroom_id'] = 'RE001'
+            _db.RESCHEDULE_COLLECTION.insert_one(reschedule_dict)
+            
+            
     

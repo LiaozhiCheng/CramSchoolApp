@@ -15,3 +15,20 @@ class Config(object):
     JSON_AS_ASCII = False
     TEMPLATES_AUTO_RELOAD = True
     UPLOAD_FOLDER = UPLOAD_FOLDER
+    
+    #apschedule Config
+    JOBS=[
+        {
+            'id':'job1',
+            'func':'__main__:refresh_schedule',
+            'trigger':'cron',
+            'day_of_week':2,
+            'hour':19,
+            'minute':32
+        },
+
+
+    ]
+    
+    #test Config
+    TESTING = True

@@ -56,7 +56,7 @@ def edit_course_communication_book():
 
 #####################################################################
 # teacher delete communication book
-@teacher_api.route('/teacher_delete_course_communication_book', methods=['POST'])
+@teacher_api.route('/teacher_delete_course_communication_book', methods=['POST','GET'])
 @login_required
 @roles_required('teacher')
 def delete_course_communication_book():

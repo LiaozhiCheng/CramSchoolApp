@@ -203,6 +203,9 @@ def add_reservation():
 @roles_required('student')
 def cancel_reservation():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
     new_info = {
                     "user_id" : current_user.user_id,
                     "datetime" : datetime.strptime(data['datetime'],"%Y-%m-%d+%w-%H"),

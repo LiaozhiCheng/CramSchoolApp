@@ -69,11 +69,15 @@ def insert_user_detail_info():
     personal_plan=""
     role=user_json['role']
     #password, name, role不得為空
-    if password=="" | name=="" | role=="":
+    if password=="" or name=="" or role=="":
         return jsonify({'message', '資料不得為空'})
     if major=="null":
         major=[]
     user_id = user.insert_user(password, name, course_id, phone, email, major, personal_plan, role)
+    print("user_id")
+    print(user_id)
+    print("course_id")
+    print(course_id)
     #將該成員選的course加入該course的list
     course.update_course(course_id, course.get_course_info(course_id)['student_list'].append(user_id))
     return jsonify({'0':0})   #之後redirect
@@ -109,7 +113,7 @@ def edit_user_detail_info():
     email=user_json['email']
     major=[user_json['major']]
     #user_id, name不得為空
-    if user_id=="" | name=="":
+    if user_id=="" or name=="":
         return jsonify({'message', '資料不得為空'})
     userid={'user_id':user_id}
     userdict={'user_id': user_id, 'name':name, 'course_list':course_list, 'phone':phone, 'email':email, 'major':major}
@@ -182,7 +186,7 @@ def insert_cs_course_info():
     
     classroom=course_json['classroom']
     #name, start_time, course_time, teacher不得為空
-    if name=="" | start_time=="" | course_time=="" | teacher=="":
+    if name=="" or start_time=="" or course_time=="" or teacher=="":
         return jsonify({'message', '資料不得為空'})
     course.insert_course(name, start_time, course_time, teacher, summary, current_lesson_id, student_list, classroom)
     return jsonify({'0':0})   #之後redirect
@@ -216,7 +220,7 @@ def edit_cs_course_info():
     classroom=course_json['classroom']
     
     #course_id, name, start_time, course_time, teacher不得為空
-    if course_id=="" | name=="" | start_time=="" | course_time=="" | teacher=="":
+    if course_id=="" or name=="" or start_time=="" or course_time=="" or teacher=="":
         return jsonify({'message', '資料不得為空'})
     start_time=start_time.split("T")[0]     #拿到日期
     start_time=datetime. strptime(start_time, '%Y-%m-%d')
@@ -254,7 +258,7 @@ def cs_student_attendence():
     user_id=request.values.get('user_id')
     course_id=request.values.get('course_id')
     #user_id, course_id不得為空
-    if user_id=="" | course_id=="":
+    if user_id=="" or course_id=="":
         return jsonify({'message', '資料不得為空'})
     lesson_list=lesson.get_lesson_list(course_id)  #該course的lesson_list
     
@@ -275,7 +279,7 @@ def edit_cs_course_attendence():    #isAttendence為bool，表示是否出席
     lesson_id=request.values.get('lesson_id')
     isAttendence=bool(int(request.values.get('isAttendence')))  #前端傳0或1
     #user_id, lesson_id, isAttendence不得為空
-    if user_id=="" | lesson_id=="" | isAttendence=="":
+    if user_id=="" or lesson_id=="" or isAttendence=="":
         return jsonify({'message', '資料不得為空'})
     if isAttendence==True and user_id not in lesson.get_lesson_info(lesson_id)['attendence']:
         temp=lesson.get_lesson_info(lesson_id)['attendence']
@@ -321,7 +325,7 @@ def insert_cs_classroom_info():
     name=request.values.get('name')
     capacity=int(request.values.get('capacity'))
     #name, capacity不得為空
-    if name=="" | capacity=="":
+    if name=="" or capacity=="":
         return jsonify({'message', '資料不得為空'})
     classroom.insert_classroom(name, capacity)
     return jsonify({'0':0})   #之後redirect
@@ -346,7 +350,7 @@ def edit_cs_classroom_info():
     name=request.values.get('name')
     capacity=int(request.values.get('capacity'))
     #classroom_id, name, capacity不得為空
-    if classroom_id=="" | name=="" | capacity=="":
+    if classroom_id=="" or name=="" or capacity=="":
         return jsonify({'message', '資料不得為空'})
     classroomid={'classroom_id':classroom_id}
     classroomdict={'classroom_id':classroom_id, 'name':name, 'capacity':capacity}
@@ -378,7 +382,7 @@ def cs_reschedule_info():
     weekday=request.values.get('weekday')
     time=request.values.get('time')
     #weekday, time不得為空
-    if weekday=="" | time=="":
+    if weekday=="" or time=="":
         return jsonify({'message', '資料不得為空'})
     data=reschedule.get_day_reservation(weekday, time)
     temp=[]
@@ -400,7 +404,7 @@ def edit_cs_reschedule_list():
     time=request.values.get('time')
     new_state=bool(int(request.values.get('new_state')))
     #weekday, time, new_state不得為空
-    if weekday=="" | time=="" | new_state=="":
+    if weekday=="" or time=="" or new_state=="":
         return jsonify({'message', '資料不得為空'})
     reschedule.update_reschedule_state(weekday, time, new_state)
     return jsonify({'0':0})   #之後redirect

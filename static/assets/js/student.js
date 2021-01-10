@@ -67,13 +67,13 @@ function setSideBar(version){
 }
 
 
-var url_student = "student/student";
-var url_student_attendence = "student/student_attendence";
-var url_student_course_process = "student/student_course_process";
-var url_student_grade = "student/student_grade";
-var url_student_homework = "student/student_homework";
-var url_student_learning_plan = "student/student_learning_plan";
-var url_student_lesson_makeup = "student/student_lesson_make-up";
+var url_student = "student";
+var url_student_attendence = "student_attendence";
+var url_student_course_process = "student_course_process";
+var url_student_grade = "student_grade";
+var url_student_homework = "student_homework";
+var url_student_learning_plan = "student_learning_plan";
+var url_student_lesson_makeup = "student_lesson_make-up";
 
 
 

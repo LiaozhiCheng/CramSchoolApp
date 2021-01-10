@@ -23,13 +23,22 @@ def course_communication_book():
     items = lesson.get_by_courseid(course_id)
     com_book_list = []
     for i in items:
-        each_com_book = {
-                            "lesson_id" : i['lesson_id'],
-                            "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
-                            "progress" : i['progress'],
-                            "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
-                            "context" : i['homework']['context']
-        }
+        try :
+            each_com_book = {
+                                "lesson_id" : i['lesson_id'],
+                                "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
+                                "progress" : i['progress'],
+                                "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
+                                "context" : i['homework']['context']
+            }
+        except ValueError :
+            each_com_book = {
+                                "lesson_id" : i['lesson_id'],
+                                "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
+                                "progress" : i['progress'],
+                                "deadline" : "",
+                                "context" : i['homework']['context']
+            }
         com_book_list.append(each_com_book)
     return jsonify(com_book_list)
 
@@ -135,7 +144,7 @@ def edit_course_personal_plan():
     except ValueError:
         new_info = {
                         "lesson_id" : data['lesson_id'],
-                        "deadline" : None,
+                        "deadline" : "",
                         "context" : data['context']
         }
     s = user.get_by_userid(data['student_id'])

@@ -66,7 +66,7 @@ def insert_user_detail_info():
     phone=user_json['phone']
     email=user_json['email']
     major=[user_json['major']]  #前端只會給字串，為了資料庫型態一致(array)自己包成list
-    personal_plan=""
+    personal_plan=[]
     role=user_json['role']
     #password, name, role不得為空
     if password=="" or name=="" or role=="":

@@ -26,4 +26,4 @@ deploy:
   app: CramSchoolApp
   on:
     repo: LiaozhiCheng/CramSchoolApp
-    branch: master
+    branch: main

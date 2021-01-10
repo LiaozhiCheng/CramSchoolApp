@@ -11,10 +11,10 @@ var api_add_personal_plan = ngrok + "/teacher_no_plan_lesson_time?student_id=";
 var api_edit_personal_plan = ngrok + "/teacher_edit_course_personal_plan";
 var api_delete_personal_plan = ngrok + "/teacher_delete_course_personal_plan";
 var api_course_student_list = ngrok + "/teacher_course_student_list?course_id=";
-var api_course_attendence = ngrok + "/teacher_course_attendence?course_id";
+var api_course_attendence = ngrok + "/teacher_course_attendence?course_id=";
 var api_course_grade = ngrok + "/teacher_course_grade?course_id=";
 var api_edit_course_grade = ngrok + "/teacher_edit_course_grade";
-var api_delete_course_grade = ngrok + "/teacher_delete_course_grade?lesson_id";
+var api_delete_course_grade = ngrok + "/teacher_delete_course_grade?lesson_id=";
 
 var url_teacher = "/teacher";
 var url_teacher_class_student = "/teacher_class_student";

@@ -17,25 +17,25 @@ cs_api=Blueprint('cs_api', __name__)
 
 
 @cs_api.route('cs_schedule')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #補習班當日課表    ok
 def cs_schedule():
     return jsonify(course.get_today_course())
   
 @cs_api.route('stu_member_list')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #學生成員名單與基本資料    ok
 def stu_member_list():
     return jsonify(user.get_student_list())
     
 @cs_api.route('tea_member_list')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #教師成員名單與基本資料    ok
 def tea_member_list():
     return jsonify(user.get_teacher_list())
 
 @cs_api.route('user_detail_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #使用者個人資料    ok
 def user_detail_info():
     name=request.values.get('name')
@@ -43,6 +43,8 @@ def user_detail_info():
     if name == "":
         return jsonify({'message': '資料不得為空'})
     user_detail_info_list=[]
+    if len(user.get_user_info_by_name(name)):
+        return jsonify({'message': '此人不存在'})
     for i in user.get_user_info_by_name(name):
         
         course_name_list=[]
@@ -55,7 +57,7 @@ def user_detail_info():
     
 
 @cs_api.route('insert_user_detail_info', methods=['post'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #新增成員    ok
 def insert_user_detail_info():
     user_json=request.get_json()
@@ -88,7 +90,7 @@ def insert_user_detail_info():
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_user_detail_info')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #刪除成員   ok
 def delete_user_detail_info():
     user_id=request.values.get('user_id')
@@ -106,7 +108,7 @@ def delete_user_detail_info():
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('edit_user_detail_info', methods=['post'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #編輯成員   要把學生加入course的student_list中    ok
 def edit_user_detail_info():
     user_json=request.get_json()
@@ -144,7 +146,7 @@ def edit_user_detail_info():
     return jsonify({'0':0})   #之後redirect
 
 @cs_api.route('cs_course_list')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #所有課程列表   ok
 def cs_course_list():
     return jsonify(course.get_course_list())
@@ -156,7 +158,7 @@ def cs_course_list():
 #    return jsonify(course.get_course_info(course_id))
 
 @cs_api.route('cs_course_info_by_name', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #課程詳細資訊(name)    ok
 def cs_course_info_by_name():
     name=request.values.get('name')
@@ -166,7 +168,7 @@ def cs_course_info_by_name():
     return jsonify(course.get_course_info_by_name(name))
 
 @cs_api.route('cs_course_student_list', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #課程學生清單   ok
 def cs_course_student_list():
     course_id=request.values.get('course_id')
@@ -179,7 +181,7 @@ def cs_course_student_list():
     return jsonify(temp)
 
 @cs_api.route('insert_cs_course_info', methods=['post'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #新增課程   ok
 def insert_cs_course_info():
     course_json=request.get_json()
@@ -201,7 +203,7 @@ def insert_cs_course_info():
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_cs_course_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #刪除課程   ok
 def delete_cs_course_info():
     course_id=request.values.get('course_id')
@@ -213,7 +215,7 @@ def delete_cs_course_info():
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('edit_cs_course_info', methods=['post'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #編輯課程    ok
 def edit_cs_course_info():
     course_json=request.get_json()
@@ -239,7 +241,7 @@ def edit_cs_course_info():
     return jsonify({'0':0})   #之後redirect
 
 @cs_api.route('cs_course_attendence', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #出缺席紀錄(依lesson)    ok
 def cs_course_attendence():
     lesson_id=request.values.get('lesson_id')
@@ -261,7 +263,7 @@ def cs_course_attendence():
 
 
 @cs_api.route('cs_student_attendence', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #出缺席紀錄(依student)        ok
 def cs_student_attendence():
     user_id=request.values.get('user_id')
@@ -281,7 +283,7 @@ def cs_student_attendence():
     return jsonify(temp)
 
 @cs_api.route('edit_cs_course_attendence', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #編輯出缺席紀錄    ok
 def edit_cs_course_attendence():    #isAttendence為bool，表示是否出席
     user_id=request.values.get('user_id')
@@ -301,7 +303,7 @@ def edit_cs_course_attendence():    #isAttendence為bool，表示是否出席
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('cs_classroom_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #教室資訊(classroom_id)      ok
 def cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
@@ -311,13 +313,13 @@ def cs_classroom_info():
     return jsonify(classroom.get_classroom_info(classroom_id))
 
 @cs_api.route('cs_classroom_list', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #教室資訊列表    ok
 def cs_classroom_list():
     return jsonify(classroom.get_classroom_list())
 
 @cs_api.route('cs_classroom_info_by_name', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #教室資訊(name)    ok
 def cs_classroom_info_by_name():
     name=request.values.get('name')
@@ -328,7 +330,7 @@ def cs_classroom_info_by_name():
 
 
 @cs_api.route('insert_cs_classroom_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #新增教室資訊  ok
 def insert_cs_classroom_info():
     name=request.values.get('name')
@@ -340,7 +342,7 @@ def insert_cs_classroom_info():
     return jsonify({'0':0})   #之後redirect
 
 @cs_api.route('delete_cs_classroom_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #刪除教室資訊    ok
 def delete_cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
@@ -352,7 +354,7 @@ def delete_cs_classroom_info():
     return jsonify({'0':0})   #之後redirect
  
 @cs_api.route('edit_cs_classroom_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #編輯教室資訊    ok
 def edit_cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
@@ -369,7 +371,7 @@ def edit_cs_classroom_info():
 
 
 @cs_api.route('cs_reschedule_list')
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #補課頁面資訊(當週每個時段是否開放補課、是否滿)     ok
 def cs_reschedule_list():
     weeks=['Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun']
@@ -384,7 +386,7 @@ def cs_reschedule_list():
     return jsonify(temp)
 
 @cs_api.route('cs_reschedule_info', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #補課詳細資訊(前端給星期幾與幾點幾分)    ok
 #前端要該星期該時段有誰(name) 是補什麼lesson(lesson_time)
 def cs_reschedule_info():
@@ -405,7 +407,7 @@ def cs_reschedule_info():
         return jsonify({'0':0})  #要處理null問題
 
 @cs_api.route('edit_cs_reschedule_list', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #編輯補課時段    ok
 #補課時段每個禮拜日在動生成下週21個補課時段    補習班不可編輯補課時段
 def edit_cs_reschedule_list():
@@ -419,7 +421,7 @@ def edit_cs_reschedule_list():
     return jsonify({'0':0})   #之後redirect
 
 @cs_api.route('cs_lesson_id_and_time', methods=['get'])
-#@roles_required('CSManager')
+@roles_required('CSManager')
 #某course所有lesson的id與lesson_time
 def cs_lesson_id_and_time():
     course_id=request.values.get('course_id')

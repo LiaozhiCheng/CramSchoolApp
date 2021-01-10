@@ -36,23 +36,33 @@ def course_communication_book():
 def edit_course_communication_book():
     data = request.get_json()
     for key,value in data.items():
-        if value == '' and (key != "context" or key != "progress"):
+        if value == '':
             return jsonify({"message" : "資料不得為空"})
-    try:
-        homework = {
-                        "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
-                        "context": data['context']
-        }
-    except ValueError:
-        homework = {
-                        "deadline" : None,
-                        "context": data['context']
-        }
+    homework = {
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context": data['context']
+    }
     new_info = {
                     "progress" : data['progress'],
                     "homework" : homework
     }
     lesson.update_lesson_communication_book(data['lesson_id'],new_info)
+    return jsonify(new_info)
+
+#####################################################################
+# teacher delete communication book
+@teacher_api.route('/teacher_delete_course_communication_book', methods=['POST'])
+def delete_course_communication_book():
+    lesson_id = request.values.get('lesson_id')
+    homework = {
+                    "deadline" : "",
+                    "context": ""
+    }
+    new_info = {
+                    "progress" : "",
+                    "homework" : homework
+    }
+    lesson.update_lesson_communication_book(lesson_id,new_info)
     return jsonify(new_info)
 
 #####################################################################
@@ -64,46 +74,35 @@ def course_personal_plan():
     target_student = user.get_by_userid(student_id)
     plan_list = []
     for p in target_student['personal_plan']:
-        if p != None:
-            if p['lesson_id'][2:4]==course_id[2:4]:
-                # 要取得該 plan 所屬 lesson 的lesson_time
-                le = lesson.get_by_lessonid(p['lesson_id'])
-                if p['deadline'] != None:
-                    deadline = datetime.strftime(p['deadline'],"%Y-%m-%d") 
-                else :
-                    deadline = None
-                each_plan = {
-                    "lesson_id" : p['lesson_id'],
-                    "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
-                    "deadline" : deadline,
-                    "context": p['context']
-                }
-                print(each_plan)
-                plan_list.append(each_plan)    
+        if p['lesson_id'][2:4]==course_id[2:4]:
+            # 要取得該 plan 所屬 lesson 的lesson_time
+            le = lesson.get_by_lessonid(p['lesson_id'])
+            each_plan = {
+                "lesson_id" : p['lesson_id'],
+                "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
+                "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
+                "context": p['context']
+            }
+            plan_list.append(each_plan)    
     return jsonify(plan_list)
 #####################################################################
-# teacher get no plan lesson time
+# teacher get lesson list
 @teacher_api.route('/teacher_no_plan_lesson_time', methods=['GET','POST'])
 def teacher_no_plan_lesson_time():
     course_id = request.values.get('course_id')
     student_id = request.values.get('student_id')
     items = lesson.get_by_courseid(course_id)
     target_student = user.get_by_userid(student_id)
-    lesson_list = []
+    lesson_time_list = []
     for i in items:
-        exist = False
         for p in target_student['personal_plan']:
-            le = lesson.get_by_lessonid(p['lesson_id'])
-            if datetime.strftime(le['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
-              exist = True
-              break
-        if not exist:
-            each_data = {
-            "lesson_id" : i['lesson_id'],
-            "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d")
-            }
-            lesson_list.append(each_data)
-    return jsonify(lesson_list)
+            if datetime.strftime(p['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
+                items.remove(i)
+                break
+    for i in items:    
+        lesson_time_list.append(datetime.strftime(i['lesson_time'],"%Y-%m-%d"))
+        
+    return jsonify(lesson_time_list)
 
 
 #####################################################################
@@ -112,7 +111,7 @@ def teacher_no_plan_lesson_time():
 def edit_course_personal_plan():
     data = request.get_json()
     for key,value in data.items():
-        if value == '' and key != "context":
+        if value == '':
             return jsonify({"message" : "資料不得為空"})
     try:
         new_info = {
@@ -138,7 +137,18 @@ def edit_course_personal_plan():
     if not exist:
         user.update_personal_plan(data['student_id'],new_info)
     return jsonify(new_info)
-   
+#####################################################################
+# teacher delete course personal plan
+@teacher_api.route('/teacher_delete_course_personal_plan', methods=['GET','POST'])
+def delete_course_personal_plan():
+    data = request.get_json()
+    target_info = {
+                    "lesson_id" : data['lesson_id'],
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context" : data['context']
+    }
+    user.delete_personal_plan(data['student_id'],target_info)
+    return jsonify(target_info)  
 #####################################################################
 # teacher course student list
 @teacher_api.route('/teacher_course_student_list', methods=['GET','POST'])

@@ -25,7 +25,6 @@ var api_student_course_attendence = ngrok + "/student_course_attendence?course_i
 var api_student_course_personal_plan = ngrok + "/student_course_personal_plan?course_id=";
 
 //web url
-<<<<<<< Updated upstream
 var url_student = "student";
 var url_student_attendence = "student_attendence";
 var url_student_course_process = "student_course_process";
@@ -67,7 +66,7 @@ function setSideBar(version){
     }
 }
 
-=======
+
 var url_student = "student/student";
 var url_student_attendence = "student/student_attendence";
 var url_student_course_process = "student/student_course_process";
@@ -75,7 +74,7 @@ var url_student_grade = "student/student_grade";
 var url_student_homework = "student/student_homework";
 var url_student_learning_plan = "student/student_learning_plan";
 var url_student_lesson_makeup = "student/student_lesson_make-up";
->>>>>>> Stashed changes
+
 
 
 function setCourseID(obj){

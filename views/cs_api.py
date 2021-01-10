@@ -98,7 +98,9 @@ def delete_user_detail_info():
     userid={'user_id':user_id}
     #先把該成員從所有course的list中刪掉
     for i in user.get_user_info(user_id)['course_list']:
-        coursedict = {'student_list': course.get_course_info(i)['student_list'].remove(user_id)}
+        temp=course.get_course_info(i)['student_list']
+        temp.remove(user_id)
+        coursedict = {'student_list': temp}
         course.update_course({'course_id':i}, coursedict)
     user.delete_user(userid)
     return jsonify({'0':0})   #之後redirect

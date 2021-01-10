@@ -58,7 +58,7 @@ def insert_user_detail_info():
     course_list=user_json['course_list']
     phone=user_json['phone']
     email=user_json['email']
-    major=user_json['major']
+    major=[user_json['major']]
     personal_plan=""
     role=user_json['role']
     #password, name, role不得為空
@@ -93,7 +93,7 @@ def edit_user_detail_info():
     course_list=user_json['course_list']    #所有的course，含原本有的與要新增的
     phone=user_json['phone']
     email=user_json['email']
-    major=user_json['major']
+    major=[user_json['major']]
     #user_id, name不得為空
     if user_id=="" | name=="":
         return jsonify({'message', '資料不得為空'})

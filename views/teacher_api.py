@@ -31,7 +31,7 @@ def course_communication_book():
                                 "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
                                 "context" : i['homework']['context']
             }
-        except ValueError :
+        except TypeError :
             each_com_book = {
                                 "lesson_id" : i['lesson_id'],
                                 "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
@@ -141,7 +141,7 @@ def edit_course_personal_plan():
                         "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
                         "context" : data['context']
         }
-    except ValueError:
+    except TypeError:
         new_info = {
                         "lesson_id" : data['lesson_id'],
                         "deadline" : "",

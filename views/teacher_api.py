@@ -151,6 +151,7 @@ def edit_course_personal_plan():
             break
     if not exist:
         user.update_personal_plan(data['student_id'],new_info)
+    new_info['deadline'] = data['deadline']
     return jsonify(new_info)
 #####################################################################
 # teacher delete course personal plan

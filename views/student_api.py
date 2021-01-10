@@ -168,6 +168,9 @@ def stu_reschedule_list():
 @student_api.route('/student_add_reservation', methods=['POST'])
 def add_reservation():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
     new_reservation = {
                             "user_id" : current_user.user_id,
                             "datetime" : datetime.strptime(data['datetime'],"%Y-%m-%d+%w-%H"),

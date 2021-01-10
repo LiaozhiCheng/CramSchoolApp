@@ -55,7 +55,6 @@ def user_personal_info():
 @user_api.route('/course_info', methods=['GET'])
 def course_info():
     course_id = request.values.get('course_id')
-    print(request.values.to_dict())
     item = course.get_by_courseid(course_id)
     output = {
                 "course" : item['name'],
@@ -63,6 +62,4 @@ def course_info():
                 "summary" : item['summary'],
                 "classroom" : item['classroom']['name']
             }
-    print(output)
     return jsonify(output)
-

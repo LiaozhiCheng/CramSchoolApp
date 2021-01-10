@@ -116,6 +116,8 @@ def edit_user_detail_info():
     #user_id, name不得為空
     if user_id=="" or name=="":
         return jsonify({'message': '資料不得為空'})
+    if major[0]=="":
+        major=[]
     userid={'user_id':user_id}
     userdict={'user_id': user_id, 'name':name, 'course_list':course_list, 'phone':phone, 'email':email, 'major':major}
     user.update_user(userid, userdict)

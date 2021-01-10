@@ -22,7 +22,7 @@ $.ajax({
     contentType: 'application/json; charset=utf-8',
     success: function(response){
         
-        if(response[i].message == undefined){
+        if(response[0].message == undefined){
             createTable(response);
         }
         else{

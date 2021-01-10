@@ -12,7 +12,7 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response.length; i++){
                     temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
                 }
@@ -40,7 +40,7 @@ function getLesson(data){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response.length; i++){
                     temp += '<option id="'+ response[i].lesson_id +'">'+ response[i].lesson_time.slice(8, 11)+" "+response[i].lesson_time.slice(5, 7)+"</option>";
                 }
@@ -78,7 +78,7 @@ function getByLesson(){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 var content="";
                 document.getElementById("date").innerHTML="<th>姓名</th><th>出席</th><th>編輯</th>";
                 for(var i=0; i<response.length; i++){
@@ -122,7 +122,7 @@ function getCourseByName(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response[0].course_list.length; i++){
                     temp += '<option id="'+(response[0].course_list)[i]+'">'+(response[0].course_name_list)[i]+"</option>";
                 }
@@ -173,7 +173,7 @@ function getByName(){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 document.getElementById("date").innerHTML="<th>日期</th><th>出席</th><th>編輯</th>";
                 for(var i=0; i<response.length; i++){
                    time = Object.keys(response[i])[0].slice(5, 10);
@@ -275,7 +275,7 @@ function editAtt(myID){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 if(method=="name"){
                     getByName();
                 }

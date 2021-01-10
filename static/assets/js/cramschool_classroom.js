@@ -11,7 +11,7 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 createTable(response);
             }
             else{
@@ -57,7 +57,7 @@ function search(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response.message == undefined){
                 if(response[0]==0){
                     document.getElementById("table").innerHTML = "<h5>查無此教室</h5>";
                 }
@@ -147,7 +147,7 @@ function sendData(id, name, capacity, choice){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 init();
             }
             else{
@@ -181,7 +181,7 @@ function delRoom(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 init();
             }
             else{

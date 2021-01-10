@@ -19,7 +19,7 @@ function getAllCourse(){
         
         success: function(data){
             
-            if(response[i].message == undefined){
+            if(data[0].message == undefined){
                 for(var i in data){
                     var one_course = {
                         "id" : data[i].course_id,
@@ -59,7 +59,7 @@ function init(role){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 createTable(response, role);
             }
             else{
@@ -122,7 +122,7 @@ function showCourse(name, role){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 //跳出表單
                 var content="";
                 content += '<form>';
@@ -164,7 +164,7 @@ function search(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 createTable(response, response[0].role);
             }
             else{
@@ -201,7 +201,10 @@ function add(){
     content += '<div class="form-group"><label class="col-form-label">身份：<select class="form-control" id="role" onchange="setForm(this)"><option selected>學生</option><option>老師</option></select></label></div>';
     
     //(預設)選課程 id="choose"
-    content += '<div class="form-group" id="dynamite"><label class="col-form-label">課程：<select class="form-control" id="choose"></select></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">課程：<select class="form-control" id="choose"></select></label></div>';
+    
+    //如果是老師要多出major id="add_major"
+    content += '<div class="form-group" id="add_major"></div>';
     
     content += '</form>'
     document.getElementById("myContent").innerHTML = content;
@@ -216,7 +219,7 @@ function add(){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response.length; i++){
                     temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
                 }
@@ -241,54 +244,59 @@ function setForm(temp){
     var index = parseInt(temp.selectedIndex);
     
     var change = "";
-    if(index==0){
-        //選課程 id="choose"
-        change= '<label class="col-form-label">課程：<select class="form-control" id="choose"></select></label>';
-        
-        //拿到course&teacher
-        var temp="";
-        var myURL=ngrok + "cs_course_list";
-        $.ajax({
-            url: myURL,
-            dataType: "json",
-            contentType: 'application/json; charset=utf-8',
-            success: function(response){
-                if(response[i].message == undefined){
-                    for(var i=0; i<response.length; i++){
-                        temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
-                    }
-                    document.getElementById("choose").innerHTML = temp;
+    
+    //選課程 id="choose"
+    change= '<label class="col-form-label">課程：<select class="form-control" id="choose"></select></label>';
+
+    //拿到course&teacher
+    var temp="";
+    var myURL=ngrok + "cs_course_list";
+    $.ajax({
+        url: myURL,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            if(response[0].message == undefined){
+                for(var i=0; i<response.length; i++){
+                    temp += '<option id="'+response[i].course_id+'">'+ response[i].name +" - "+response[i].teacher+"</option>";
                 }
-                else{
-                    window.alert("出了點錯，請稍後再試！");
-                }
-            },
-            error: function(){
-                console.log("error");
+                document.getElementById("choose").innerHTML = temp;
             }
-        });
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+    
+    //老師會比學生多出major
+    if(index==0){
+        document.getElementById("add_major").innerHTML = "";
     }
     else if(index==1){
        //填專業科目 id="choose"
-        change = '<label class="col-form-label">專業科目：<input type="text" class="form-control" id="choose" value="專業科目"></label>'; 
+        change = '<label class="col-form-label">專業科目：<input type="text" class="form-control" id="major" value="專業科目"></label>'; 
+        document.getElementById("add_major").innerHTML =change; 
     }
-    document.getElementById("dynamite").innerHTML = change;
+    
 }
 
 //傳新增的成員資料到後端
 function addUser(){
     
     var major=null, course_list=[]; 
-    var myselect = document.getElementById("choose");
-    var index = myselect.selectedIndex;
-    var course_id = myselect.options[index].id;
+    var myselect, index, coures_id;
     
-    //判斷是誰
-    if($("#role").val()=="學生"){
-        course_list[0] = course_id;
-    }
-    else if($("#role").val()=="老師"){
-        major = course_id;
+    myselect = document.getElementById("choose");
+    index = myselect.selectedIndex;
+    course_id = myselect.options[index].id;
+    course_list[0] = course_id;
+    
+    if($("#role").val()=="老師"){
+        major = $("#add_major").val();
+        console.log("major: "+major);
     }
     
     //送資料
@@ -311,7 +319,6 @@ function editCourse(e){
 		var result = confirm("確定刪除課程？");
 		if(result){
 			alert("已刪除課程！");
-            
 		}
 		else{
 			e.checked = true;
@@ -331,6 +338,7 @@ function set_course(o){
         }
     }
     else{
+        //remove？？
         var result = confirm("確定刪除課程？");
 		if(result){
             if(in_course.indexOf(o.id)!=-1){
@@ -383,7 +391,7 @@ function edit(id, role){
         
         success: function(data){
             
-            if(response[i].message == undefined){
+            if(data[0].message == undefined){
                 in_course = [];
                 edit_course = [];
                 studentCourse = {"id" : [], "name" : []};
@@ -406,29 +414,28 @@ function edit(id, role){
         }
     });
     
-    //判斷是選課｜專業科目
-    if(role=="student"){
-        //選課程 id="choose"
-        content += '<div class="form-group" id="dynamite"><label class="col-form-label">課程：</label>'; 
-        
-        
-        //所有課程列表
-        for(i=0; i<allCourse.length; i++){
-            content += "<div class='d-flex justify-content-center row w-100'>"
-                    //設置label
-                    + "<label for='" + allCourse[i].id + "' class='col-9'>" 
-                    + allCourse[i].name + "-" + allCourse[i].teacher + "</label>"
-                    + "<div class='col-3'>"
-                    //設置input: id = courseID
-                    + "<input type='checkbox' id='" + allCourse[i].id + "' onclick=set_course(this)";
-            //若學生已有該課程，則設置為checked
-            if(studentCourse.id.includes(allCourse[i].id)){
-                content += " checked";
-            }
-            content += " onclick='editCourse(this)'></div></div></div>";
+    //選課程 id="choose"
+    content += '<div class="form-group" id="dynamite"><label class="col-form-label">課程：</label>'; 
+
+
+    //所有課程列表
+    for(i=0; i<allCourse.length; i++){
+        content += "<div class='d-flex justify-content-center row w-100'>"
+                //設置label
+                + "<label for='" + allCourse[i].id + "' class='col-9'>" 
+                + allCourse[i].name + "-" + allCourse[i].teacher + "</label>"
+                + "<div class='col-3'>"
+                //設置input: id = courseID
+                + "<input type='checkbox' id='" + allCourse[i].id + "' onclick=set_course(this)";
+        //若學生已有該課程，則設置為checked
+        if(studentCourse.id.includes(allCourse[i].id)){
+            content += " checked";
         }
+        content += " onclick='editCourse(this)'></div></div></div>";
     }
-    else if(role=="teacher"){
+    
+    //老師會多出專業科目
+    if(role=="teacher"){
         //填專業科目 id="choose"
         content += '<div class="form-group"><label class="col-form-label">專業科目：<input type="text" class="form-control" id="major" placeholder="專業科目"></label></div>'; 
     }
@@ -444,14 +451,15 @@ function editUser(user_id, role){
     var name = $("#user_name").val();
     var phone = $("#phone").val();
     var email = $("#email").val();
+    var major;
     
     if(role=="student"){
         console.log("edit_sendData");
        sendData(user_id, null, name, edit_course, del_course, phone, email, null, null, role, "edit");
     }
     else if(role=="teacher"){
-        var major = document.getElementById("major").innerText;
-        sendData(user_id, null, name, null, null, phone, email, major, null, role, "edit");
+        major = $("#major").val();
+        sendData(user_id, null, name, edit_course, del_course, phone, email, major, null, role, "edit");
     }
 }
 
@@ -463,6 +471,7 @@ function sendData(id, password, name, course, del_course, phone, email, major, p
         role = "teacher";
     var send;
     var myURL=ngrok;
+    
     //新增
     if(choice=="add"){
         myURL = myURL + "insert_user_detail_info";
@@ -477,23 +486,19 @@ function sendData(id, password, name, course, del_course, phone, email, major, p
             "role": role
         };
     }
-    //未完成
+    
+    //編輯
     else if(choice=="edit"){
         myURL = myURL + "edit_user_detail_info";
         console.log("user_id: "+id);
         console.log("name: "+name);
         
         var i;
-
-        console.log("刪掉的課: ");
-        for(i=0; i<del_course.length; i++){
-            console.log("id: "+del_course[i]);
-        }
-        
-        console.log("phone: "+phone);
-        console.log("email: "+email);
         
         if(edit_course==[]){
+            course_list = null;
+        }
+        if(del_course==[]){
             course_list = null;
         }
         
@@ -515,9 +520,9 @@ function sendData(id, password, name, course, del_course, phone, email, major, p
         dataType: "json",
         data: JSON.stringify(send),
         contentType: 'application/json; charset=utf-8',
-        success: function(){
+        success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 init("student");
             }
             else{
@@ -553,9 +558,9 @@ function delUser(){
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(){
+        success: function(response){
             
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 init("student");
             }
             else{

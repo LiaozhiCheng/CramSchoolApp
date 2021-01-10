@@ -13,7 +13,7 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response.message == undefined){
                 for(var i=0; i<response.length; i++){
                     var myID = (parseInt(response[i].datetime.slice(17,19)-17)/2)*7 + week.indexOf(response[i].weekday);
 
@@ -59,7 +59,7 @@ function show(id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 content += "<form>";
                 for(var i=0; i<response.length; i++){
                     content += '<div class="form-group">';
@@ -108,7 +108,7 @@ function makeup(id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 init();
             }
             else{

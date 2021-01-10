@@ -12,7 +12,7 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 createTable(response);
             }
             else{
@@ -55,7 +55,7 @@ function showStudent(course_id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 //跳出表單
                 var content="";
                 content += '<form>';
@@ -93,7 +93,7 @@ function search(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 createTable(response);
             }
             else{
@@ -145,7 +145,7 @@ function add(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response.length; i++){
                     temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
                 }
@@ -179,7 +179,8 @@ function addCourse(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            console.log("response.messag: "+response.messag);
+            if(response.message == undefined){
                 console.log("myURL: "+myURL);
                 var classroom = {"capacity" : response.capacity,
                                 "classroom_id" : response.classroom_id,
@@ -256,7 +257,7 @@ function edit(id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[i].message == undefined){
+            if(response[0].message == undefined){
                 for(var i=0; i<response.length; i++){
                     if(classroom == response[i].name){
                        //temp += "<option selected>"+ response[i].name +"</option>";
@@ -306,7 +307,7 @@ function editCourse(id){
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             
-            if(response[i].message == undefined){
+            if(response.message == undefined){
                 var classroom = {"capacity" : response.capacity,
                             "classroom_id" : response.classroom_id,
                             "name" : response.name};
@@ -357,8 +358,8 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
         dataType: "json",
         data: JSON.stringify(send),
         contentType: 'application/json; charset=utf-8',
-        success: function(){
-            if(response[i].message == undefined){
+        success: function(response){
+            if(response[0].message == undefined){
                 init();
             }
             else{
@@ -390,8 +391,8 @@ function delCourse(){
         type: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
-        success: function(){
-            if(response[i].message == undefined){
+        success: function(response){
+            if(response[0].message == undefined){
                 init();
             }
             else{

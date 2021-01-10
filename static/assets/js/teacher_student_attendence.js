@@ -31,6 +31,7 @@ function start() {
         //如果成功的話
         success: function (data) {//這裡拿到的data是一個Object陣列
             console.log("success");//看到時候有沒有成功
+            console.log(data);
             sessionStorage.setItem("data", JSON.stringify(data));
             document.getElementById("iframeDiv").innerHTML = "<iframe id='iframe' src='/teacher_student_attendenceA' width='100%' height='600' overflow='scroll'></iframe>";
         },

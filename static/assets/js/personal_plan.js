@@ -13,6 +13,7 @@
                             console.log(temp);
                             studentid = sessionStorage.getItem('studentId');
                             console.log(studentid);
+
                             $.ajax({
                             url: api_personal_plan+studentid+"&course_id="+temp,
                             //url: "personalplan.json", //放你的url，這裡先放本地端檔案
@@ -211,3 +212,5 @@
                             console.log("error");
                         }
                     });*/
+                    
+                    

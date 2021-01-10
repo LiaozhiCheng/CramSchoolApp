@@ -46,6 +46,8 @@ function createTable(data){
 
 //按點我後，顯示有修課之學生清單
 function showStudent(course_id){
+    document.getElementById("myContent").innerHTML = "";
+    
     var content = "";
     var myURL = ngrok + "cs_course_student_list?course_id="+course_id;
     console.log("myURL: "+myURL);
@@ -55,15 +57,22 @@ function showStudent(course_id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[0].message == undefined){
+            if(response.message == undefined){
                 //跳出表單
                 var content="";
                 content += '<form>';
                 content += '<div class="form-group"><label class="col-form-label">';
-
-                for(var i=0; i<response.length; i++){
-                    content += response[i] +"<br>";
+                
+                if(response.length==0){
+                   content += "<h5>尚未有學生</h5>"
                 }
+                else{
+                    for(var i=0; i<response.length; i++){
+                    content += response[i] +"<br>";
+                    }
+                }
+                
+               
 
                 content += '</label></div>';
 

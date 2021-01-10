@@ -17,6 +17,10 @@
             try{
                 var temp = sessionStorage.getItem('course');
                 console.log(temp);
+                if(temp==null){
+                            alert("未知課程，請回課表選擇課程");
+                            window.location.replace(url_teacher);
+                        }
                 $.ajax({
                 url: api_course_info + temp,
                 //url: "courseinfo.json", //放你的url，這裡先放本地端檔案

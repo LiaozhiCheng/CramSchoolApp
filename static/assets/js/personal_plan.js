@@ -3,6 +3,7 @@
                     var addlessonid= new Array();
                     var date= new Array()
                     var studentid;
+                    var courseid;
                     window.onload = function(){
                             getSavedData();
                             setSideBar();
@@ -10,13 +11,20 @@
                         function getSavedData(){
                                 console.log("sss");
                             try{
-                                temp = sessionStorage.getItem('course');
-                                console.log(temp);
+                                courseid = sessionStorage.getItem('course');
+                                console.log(courseid);
                                 studentid = sessionStorage.getItem('studentId');
                                 console.log(studentid);
-
+                        if(courseid==null){
+                            alert("未知課程，請回課表選擇課程");
+                            window.location.replace(url_teacher);
+                        }
+                        if(studentid==null){
+                            alert("未知學生，請回學生列表選擇學生");
+                            window.location.replace(url_teacher_class_student);
+                        }
                                 $.ajax({
-                                url: api_personal_plan+studentid+"&course_id="+temp,
+                                url: api_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "personalplan.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",
                                 dataType: "json",
@@ -92,7 +100,14 @@
                                 contentType: "application/json; charset=utf-8",
                                 
                                 success: function(data){
+                                    if(data.message == "資料不得為空")
+                                {
+                                    window.alert("資料不得為空喔~~");
+                                }
+                                else
+                                {
                                     alert("send success!");
+                                }
                                     //console.log(data);
                                     setSchedule(data);
                                 },
@@ -141,8 +156,8 @@
                         var submitdeadline = document.getElementById("deadline").value;
                         var submitcontext = document.getElementById("context").value;
                         returndata(submitdeadline,submitcontext);
-                        document.getElementById(ss+"-0").innerHTML=submitdeadline;
-                        document.getElementById(ss+"-1").innerHTML=submitcontext;
+                        //document.getElementById(ss+"-0").innerHTML=submitdeadline;
+                        //document.getElementById(ss+"-1").innerHTML=submitcontext;
                         
                     }
                             function testedit(clickedid) {
@@ -156,8 +171,34 @@
                          //var NewStringValue=document.getElementById("message-text").value;
                         ss=clickedid.slice(1,2);
                         returndata("","");
-                        document.getElementById(ss+"-0").innerHTML="";
-                        document.getElementById(ss+"-1").innerHTML="";
+                        var dpp = { "lesson_id" : lessonid[ss], "student_id" : studentid , "deadline" : "" , "context" : ""};
+                                    console.log(dpp);
+                                    $.ajax({
+                                url: api_delete_personal_plan,
+                                type: "POST",
+                                data: JSON.stringify(dpp),
+                                dataType: "json",
+                                contentType: "application/json; charset=utf-8",
+                                
+                                success: function(data){
+                                    if(data.message == "資料不得為空")
+                                {
+                                    window.alert("資料不得為空喔~~");
+                                }
+                                else
+                                {
+                                    alert("send success!");
+                                }
+                                    //console.log(data);
+                                    setSchedule(data);
+                                },
+                                
+                                error: function(){
+                                    alert("send error!!!");
+                                }
+                            })
+                        //document.getElementById(ss+"-0").innerHTML="";
+                        //document.getElementById(ss+"-1").innerHTML="";
                     }
 
                     function add(){
@@ -165,7 +206,7 @@
                         console.log("aaa");
                         $('#exampleModal2').modal('show')
                         $.ajax({
-                                url: api_add_personal_plan+studentid+"&course_id="+temp,
+                                url: api_add_personal_plan+studentid+"&course_id="+courseid,
                                 //url: "time.json", //放你的url，這裡先放本地端檔案
                                 type: "GET",
                                 dataType: "json",

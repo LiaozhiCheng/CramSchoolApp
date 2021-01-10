@@ -15,6 +15,10 @@ function start() {
     setSideBar()
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
+    if(course_id==null){
+                            alert("未知課程，請回課表選擇課程");
+                            window.location.replace(url_teacher);
+                        }
     $.ajax({
 
         url: api_course_attendence + course_id, //放你的url，這裡先放本地端檔案

@@ -24,3 +24,5 @@ deploy:
   app: CramSchoolApp
   repo: LiaozhiCheng/CramSchoolApp
   target_branch: main
+script:
+    echo "Deploying to gae ..."

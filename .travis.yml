@@ -24,5 +24,3 @@ deploy:
   app: CramSchoolApp
   repo: LiaozhiCheng/CramSchoolApp
   target_branch: main
-script:
-    - npm run test

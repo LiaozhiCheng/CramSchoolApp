@@ -31,7 +31,7 @@ def course_communication_book():
                                 "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
                                 "context" : i['homework']['context']
             }
-        except TypeError :
+        except:
             each_com_book = {
                                 "lesson_id" : i['lesson_id'],
                                 "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
@@ -135,18 +135,11 @@ def edit_course_personal_plan():
     for key,value in data.items():
         if value == '':
             return jsonify({"message" : "資料不得為空"})
-    try:
-        new_info = {
-                        "lesson_id" : data['lesson_id'],
-                        "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
-                        "context" : data['context']
-        }
-    except TypeError:
-        new_info = {
-                        "lesson_id" : data['lesson_id'],
-                        "deadline" : "",
-                        "context" : data['context']
-        }
+    new_info = {
+                    "lesson_id" : data['lesson_id'],
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context" : data['context']
+    }
     s = user.get_by_userid(data['student_id'])
     plan = s['personal_plan']
     exist = False

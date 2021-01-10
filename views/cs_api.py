@@ -71,7 +71,7 @@ def insert_user_detail_info():
     #password, name, role不得為空
     if password=="" or name=="" or role=="":
         return jsonify({'message', '資料不得為空'})
-    if len(major)==0:
+    if major[0]=="":
         major=[]
     user_id = user.insert_user(password, name, course_id, phone, email, major, personal_plan, role)
     print("user_id")

@@ -159,7 +159,7 @@ function start() {
         //如果成功的話
         success: function (data) {//這裡拿到的data是一個Object陣列
             console.log("success");//看到時候有沒有成功
-
+            console.log(data);
             globalData = data;
             createTable(data);
         },

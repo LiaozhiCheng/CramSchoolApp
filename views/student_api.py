@@ -1,6 +1,6 @@
 from flask import Blueprint,jsonify
 from flask import request
-from flask_security import current_user
+from flask_security import current_user,login_required,roles_required
 
 # ---------- import models ----------
 from models import course
@@ -16,6 +16,8 @@ student_api = Blueprint('student_api', __name__)
 #####################################################################
 # student/teacher course progress
 @student_api.route('/student_course_progress', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_course_progress():
     course_id = request.values.get('course_id')
     items = lesson.get_by_courseid(course_id)
@@ -32,6 +34,8 @@ def stu_course_progress():
 #####################################################################
 # student course homework
 @student_api.route('/student_course_homework', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_course_homework():
     course_id = request.values.get('course_id')
     items = lesson.get_by_courseid(course_id)
@@ -51,6 +55,8 @@ def stu_course_homework():
 #####################################################################
 # student course grade
 @student_api.route('/student_course_grade', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_course_grade():
     course_id = request.values.get('course_id')
     items = lesson.get_by_courseid(course_id)
@@ -70,6 +76,8 @@ def stu_course_grade():
 #####################################################################
 # student course attendence
 @student_api.route('/student_course_attendence', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_course_attendence():
     course_id = request.values.get('course_id')
     items = lesson.get_by_courseid(course_id)
@@ -87,6 +95,8 @@ def stu_course_attendence():
 #####################################################################
 # student course_personal_plan
 @student_api.route('/student_course_personal_plan', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_course_personal_plan():
     course_id = request.values.get('course_id')
     personal_plan = current_user.personal_plan
@@ -107,6 +117,8 @@ def stu_course_personal_plan():
 #####################################################################
 # student miss lesson
 @student_api.route('/student_miss_lesson', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_miss_lesson():
     whole_list = []
     for course_id in current_user.course_list :
@@ -130,6 +142,8 @@ def stu_miss_lesson():
 #####################################################################
 # student reschedule list
 @student_api.route('/student_reschedule_list', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def stu_reschedule_list():
     items = reschedule.get_all();
     reschedule_list = []
@@ -166,6 +180,8 @@ def stu_reschedule_list():
 #####################################################################
 # student add reservation
 @student_api.route('/student_add_reservation', methods=['POST'])
+@login_required
+@roles_required('student')
 def add_reservation():
     data = request.get_json()
     for key,value in data.items():
@@ -183,6 +199,8 @@ def add_reservation():
 #####################################################################
 # student cancel reservation
 @student_api.route('/student_cancel_reservation', methods=['GET','POST'])
+@login_required
+@roles_required('student')
 def cancel_reservation():
     data = request.get_json()
     new_info = {

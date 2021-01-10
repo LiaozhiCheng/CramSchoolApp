@@ -155,10 +155,8 @@ def get_by_userid(user_id):
     return item
 
 def update_personal_plan(user_id,data):
-    print(data)
     _db.USER_COLLECTION.update_one({'user_id':user_id},{'$push':{'personal_plan':data}})
     
 
 def delete_personal_plan(user_id,data):
-    print(data)
     _db.USER_COLLECTION.update_one({'user_id':user_id},{'$pull':{'personal_plan':data}})

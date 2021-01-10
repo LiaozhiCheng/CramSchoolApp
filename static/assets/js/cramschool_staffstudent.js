@@ -74,6 +74,7 @@ function init(role){
 
 //創建表格
 function createTable(data, role){
+    document.getElementById("tbody").innerHTML = "";
     
     //按鈕的顯示
     document.getElementById(role).setAttribute("class", "btn btn-dark");
@@ -295,8 +296,8 @@ function addUser(){
     course_list[0] = course_id;
     
     if($("#role").val()=="老師"){
-        major = $("#add_major").val();
-        console.log("major: "+major);
+        major = $("#major").val();
+        //console.log("add_major: "+major);
     }
     
     //送資料
@@ -472,6 +473,7 @@ function sendData(id, password, name, course, del_course, phone, email, major, p
     var send;
     var myURL=ngrok;
     
+    console.log("send_major: "+major);
     //新增
     if(choice=="add"){
         myURL = myURL + "insert_user_detail_info";

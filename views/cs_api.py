@@ -79,8 +79,12 @@ def insert_user_detail_info():
     print(user_id)
     print("course_id")
     print(course_id)
+    for i in course.get_course_info(course_id)['student_list']:
+        print(i)
+    temp=course.get_course_info(course_id)['student_list']
+    temp.append(user_id)
     #將該成員選的course加入該course的list
-    course.update_course({'course_id':course_id}, {'student_list':course.get_course_info(course_id)['student_list'].append(user_id)})
+    course.update_course({'course_id':course_id}, {'student_list':temp})
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_user_detail_info')

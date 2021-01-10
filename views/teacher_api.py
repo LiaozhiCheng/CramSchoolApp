@@ -35,6 +35,9 @@ def course_communication_book():
 @teacher_api.route('/teacher_edit_course_communication_book', methods=['POST'])
 def edit_course_communication_book():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '' and (key != "context" or key != "progress"):
+            return jsonify({"message" : "資料不得為空"})
     try:
         homework = {
                         "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
@@ -108,6 +111,9 @@ def teacher_no_plan_lesson_time():
 @teacher_api.route('/teacher_edit_course_personal_plan', methods=['GET','POST'])
 def edit_course_personal_plan():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '' and key != "context":
+            return jsonify({"message" : "資料不得為空"})
     try:
         new_info = {
                         "lesson_id" : data['lesson_id'],
@@ -234,6 +240,9 @@ def course_grade():
 @teacher_api.route('/teacher_edit_course_grade', methods=['POST'])
 def edit_course_grade():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
     new_info = {
                     "quiz_name": data['quiz_name'],
                     "grade_list" : data['grade_list']    

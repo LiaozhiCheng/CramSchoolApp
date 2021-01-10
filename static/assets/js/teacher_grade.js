@@ -43,6 +43,11 @@ function deleteGrade(grade_no) {
 }
 
 function saveGrade(grade_no) {
+    if(document.getElementById("testname" + grade_no).value==""){
+        window.alert("考試範圍輸入錯誤");
+        createTable(globalData);
+        return;
+    }
     globalData[grade_no].quiz_name = document.getElementById("testname" + grade_no).value;
     document.getElementById("testname" + grade_no).disabled = true;
     document.getElementById("testname" + grade_no).setAttribute("class", "gradeTestNameDisabled");

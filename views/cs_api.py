@@ -41,7 +41,7 @@ def user_detail_info():
     name=request.values.get('name')
     #name不能為空
     if name == "":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message': '資料不得為空'})
     user_detail_info_list=[]
     for i in user.get_user_info_by_name(name):
         
@@ -62,7 +62,8 @@ def insert_user_detail_info():
     
     password=user_json['password']
     name=user_json['name']
-    course_id=user_json['course_list'][0]  #一開始只能新增一堂課
+    course_list=user_json['course_list']  #一開始只能新增一堂課   [0]
+    course_id=course_list[0]
     phone=user_json['phone']
     email=user_json['email']
     major=[user_json['major']]  #前端只會給字串，為了資料庫型態一致(array)自己包成list
@@ -70,16 +71,16 @@ def insert_user_detail_info():
     role=user_json['role']
     #password, name, role不得為空
     if password=="" or name=="" or role=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     if major[0]=="":
         major=[]
-    user_id = user.insert_user(password, name, course_id, phone, email, major, personal_plan, role)
+    user_id = user.insert_user(password, name, course_list, phone, email, major, personal_plan, role)
     print("user_id")
     print(user_id)
     print("course_id")
     print(course_id)
     #將該成員選的course加入該course的list
-    course.update_course(course_id, course.get_course_info(course_id)['student_list'].append(user_id))
+    course.update_course({'course_id':course_id}, {'student_list':course.get_course_info(course_id)['student_list'].append(user_id)})
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_user_detail_info')
@@ -89,12 +90,12 @@ def delete_user_detail_info():
     user_id=request.values.get('user_id')
     #user_id不得為空
     if user_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message': '資料不得為空'})
     userid={'user_id':user_id}
     #先把該成員從所有course的list中刪掉
     for i in user.get_user_info(user_id)['course_list']:
         coursedict = {'student_list': course.get_course_info(i)['student_list'].remove(user_id)}
-        course.update_course(i, coursedict)
+        course.update_course({'course_id':i}, coursedict)
     user.delete_user(userid)
     return jsonify({'0':0})   #之後redirect
     
@@ -114,7 +115,7 @@ def edit_user_detail_info():
     major=[user_json['major']]
     #user_id, name不得為空
     if user_id=="" or name=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message': '資料不得為空'})
     userid={'user_id':user_id}
     userdict={'user_id': user_id, 'name':name, 'course_list':course_list, 'phone':phone, 'email':email, 'major':major}
     user.update_user(userid, userdict)
@@ -153,7 +154,7 @@ def cs_course_info_by_name():
     name=request.values.get('name')
     #name不得為空
     if name=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     return jsonify(course.get_course_info_by_name(name))
 
 @cs_api.route('cs_course_student_list', methods=['get'])
@@ -164,7 +165,7 @@ def cs_course_student_list():
     temp=[]
     #course_id不得為空
     if course_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     for i in course.get_course_info(course_id)['student_list']:
         temp.append(user.get_user_info(i)['name'])
     return jsonify(temp)
@@ -187,7 +188,7 @@ def insert_cs_course_info():
     classroom=course_json['classroom']
     #name, start_time, course_time, teacher不得為空
     if name=="" or start_time=="" or course_time=="" or teacher=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     course.insert_course(name, start_time, course_time, teacher, summary, current_lesson_id, student_list, classroom)
     return jsonify({'0':0})   #之後redirect
     
@@ -198,7 +199,7 @@ def delete_cs_course_info():
     course_id=request.values.get('course_id')
     #course_id不得為空
     if course_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     courseid={'course_id':course_id}
     course.delete_course(courseid)
     return jsonify({'0':0})   #之後redirect
@@ -221,7 +222,7 @@ def edit_cs_course_info():
     
     #course_id, name, start_time, course_time, teacher不得為空
     if course_id=="" or name=="" or start_time=="" or course_time=="" or teacher=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     start_time=start_time.split("T")[0]     #拿到日期
     start_time=datetime. strptime(start_time, '%Y-%m-%d')
     courseid={'course_id':course_id}
@@ -236,7 +237,7 @@ def cs_course_attendence():
     lesson_id=request.values.get('lesson_id')
     #lesson_id不得為空
     if lesson_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     lesson_attendence=lesson.get_lesson_info(lesson_id)['attendence'] #該lesson有出席的學生
     
     all_student=course.get_course_info(lesson.get_lesson_info(lesson_id)['course_id'])['student_list']    #該course的所有學生
@@ -259,7 +260,7 @@ def cs_student_attendence():
     course_id=request.values.get('course_id')
     #user_id, course_id不得為空
     if user_id=="" or course_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message': '資料不得為空'})
     lesson_list=lesson.get_lesson_list(course_id)  #該course的lesson_list
     
     temp=[]
@@ -280,7 +281,7 @@ def edit_cs_course_attendence():    #isAttendence為bool，表示是否出席
     isAttendence=bool(int(request.values.get('isAttendence')))  #前端傳0或1
     #user_id, lesson_id, isAttendence不得為空
     if user_id=="" or lesson_id=="" or isAttendence=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     if isAttendence==True and user_id not in lesson.get_lesson_info(lesson_id)['attendence']:
         temp=lesson.get_lesson_info(lesson_id)['attendence']
         temp.append(user_id)
@@ -298,7 +299,7 @@ def cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
     #classroom_id不得為空
     if classroom_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     return jsonify(classroom.get_classroom_info(classroom_id))
 
 @cs_api.route('cs_classroom_list', methods=['get'])
@@ -314,7 +315,7 @@ def cs_classroom_info_by_name():
     name=request.values.get('name')
     #name不得為空
     if name=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     return jsonify(classroom.get_classroom_info_by_name(name))
 
 
@@ -326,7 +327,7 @@ def insert_cs_classroom_info():
     capacity=int(request.values.get('capacity'))
     #name, capacity不得為空
     if name=="" or capacity=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     classroom.insert_classroom(name, capacity)
     return jsonify({'0':0})   #之後redirect
 
@@ -337,7 +338,7 @@ def delete_cs_classroom_info():
     classroom_id=request.values.get('classroom_id')
     #classroom_id不得為空
     if classroom_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     classroomid={'classroom_id':classroom_id}
     classroom.delete_classroom(classroomid)
     return jsonify({'0':0})   #之後redirect
@@ -351,7 +352,7 @@ def edit_cs_classroom_info():
     capacity=int(request.values.get('capacity'))
     #classroom_id, name, capacity不得為空
     if classroom_id=="" or name=="" or capacity=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     classroomid={'classroom_id':classroom_id}
     classroomdict={'classroom_id':classroom_id, 'name':name, 'capacity':capacity}
     classroom.update_classroom(classroomid, classroomdict)
@@ -383,7 +384,7 @@ def cs_reschedule_info():
     time=request.values.get('time')
     #weekday, time不得為空
     if weekday=="" or time=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     data=reschedule.get_day_reservation(weekday, time)
     temp=[]
     if data:
@@ -405,7 +406,7 @@ def edit_cs_reschedule_list():
     new_state=bool(int(request.values.get('new_state')))
     #weekday, time, new_state不得為空
     if weekday=="" or time=="" or new_state=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     reschedule.update_reschedule_state(weekday, time, new_state)
     return jsonify({'0':0})   #之後redirect
 
@@ -416,7 +417,7 @@ def cs_lesson_id_and_time():
     course_id=request.values.get('course_id')
     #course_id不得為空
     if course_id=="":
-        return jsonify({'message', '資料不得為空'})
+        return jsonify({'message':'資料不得為空'})
     temp=[]
     for i in course.get_course_info(course_id)['lesson_list']:
         lesson_info=lesson.get_lesson_info(i)

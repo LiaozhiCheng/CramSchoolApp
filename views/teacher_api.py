@@ -35,22 +35,34 @@ def course_communication_book():
 @teacher_api.route('/teacher_edit_course_communication_book', methods=['POST'])
 def edit_course_communication_book():
     data = request.get_json()
-    try:
-        homework = {
-                        "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
-                        "context": data['context']
-        }
-    except ValueError:
-        homework = {
-                        "deadline" : None,
-                        "context": data['context']
-        }
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
+    homework = {
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context": data['context']
+    }
     new_info = {
                     "progress" : data['progress'],
                     "homework" : homework
     }
-    print(new_info)
     lesson.update_lesson_communication_book(data['lesson_id'],new_info)
+    return jsonify(new_info)
+
+#####################################################################
+# teacher delete communication book
+@teacher_api.route('/teacher_delete_course_communication_book', methods=['POST'])
+def delete_course_communication_book():
+    lesson_id = request.values.get('lesson_id')
+    homework = {
+                    "deadline" : "",
+                    "context": ""
+    }
+    new_info = {
+                    "progress" : "",
+                    "homework" : homework
+    }
+    lesson.update_lesson_communication_book(lesson_id,new_info)
     return jsonify(new_info)
 
 #####################################################################
@@ -98,6 +110,9 @@ def teacher_no_plan_lesson_time():
 @teacher_api.route('/teacher_edit_course_personal_plan', methods=['GET','POST'])
 def edit_course_personal_plan():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
     try:
         new_info = {
                         "lesson_id" : data['lesson_id'],
@@ -122,7 +137,18 @@ def edit_course_personal_plan():
     if not exist:
         user.update_personal_plan(data['student_id'],new_info)
     return jsonify(new_info)
-   
+#####################################################################
+# teacher delete course personal plan
+@teacher_api.route('/teacher_delete_course_personal_plan', methods=['GET','POST'])
+def delete_course_personal_plan():
+    data = request.get_json()
+    target_info = {
+                    "lesson_id" : data['lesson_id'],
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context" : data['context']
+    }
+    user.delete_personal_plan(data['student_id'],target_info)
+    return jsonify(target_info)  
 #####################################################################
 # teacher course student list
 @teacher_api.route('/teacher_course_student_list', methods=['GET','POST'])
@@ -224,6 +250,9 @@ def course_grade():
 @teacher_api.route('/teacher_edit_course_grade', methods=['POST'])
 def edit_course_grade():
     data = request.get_json()
+    for key,value in data.items():
+        if value == '':
+            return jsonify({"message" : "資料不得為空"})
     new_info = {
                     "quiz_name": data['quiz_name'],
                     "grade_list" : data['grade_list']    

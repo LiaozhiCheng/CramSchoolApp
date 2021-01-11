@@ -40,4 +40,4 @@ def add_manager():
     return 'managerIsAdd'
 @login_api.route("/my_user")
 def my_user():
-    return current_user.password
+    return current_user.user_id

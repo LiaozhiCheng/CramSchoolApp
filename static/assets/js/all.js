@@ -1,4 +1,4 @@
-	var ngrok = "http://127.0.0.1:5000";
+	var ngrok = "http://140.121.197.130:55001";
 	var api_schedule = ngrok + "/schedule";
 	var api_personal_info = ngrok + "/personal_info";
 	var api_course_info = ngrok + "/course_info?course_id=";

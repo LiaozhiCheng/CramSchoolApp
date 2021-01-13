@@ -8,7 +8,6 @@ function getSchedule(){
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
-            console.log(data);
             for(var i=0; i<data.length; i++){
                 addCourse(data[i].course, data[i].time, data[i].course_id);
             }
@@ -41,7 +40,7 @@ function addCourse(course, time, id){
     temp = temp[0].split("~");
     temp = temp[1].split(":");
     var idx = defTime(temp[0]) + '-' + time.split("-")[1].toLowerCase();
-    document.getElementById(idx).innerHTML += "<a href='" + url_student_course_process + "'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a>";
+    document.getElementById(idx).innerHTML += "<a href='" + url_student_course_process + "'  id='" + id + "' class='normal' onclick='setCourseID(this)'>"+ time.split("-")[0] + "<br>" + course + "</a><br>";
 }
 
 //when does the course take

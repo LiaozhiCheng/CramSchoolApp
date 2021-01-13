@@ -50,7 +50,6 @@ function getLessonInfo(){
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
-            console.log(data);
             for(var i=0; i<data.length; i++){
                 var time = setLessonDate(data[i].lesson_time);
                 setLessonInfo(time, data[i].progress);

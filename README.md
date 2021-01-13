@@ -25,8 +25,8 @@
 + [server](http://140.121.197.130:55001/)
 + account
   + cram school account
-    + user name:
-    + password:
+    + user name:handsomeboy
+    + password:beautifulgirl
   + teacher account
     + user name:110-T-001
     + password:001
@@ -53,4 +53,10 @@
           .
 ***
 ## 提升流程品質或系統品質的措施
-
++ 開發流程
+  + 使用github進行版本控管
+  + 使用flask-security的MVC進行後端控管
+  + 檔案命名規則遵守Google Python風格指南
++ 系統品質
+  + 所有api通過flask-testing測試並達成statement coverage的白箱測試
+  + 使用JMeter對系統進行壓力測試

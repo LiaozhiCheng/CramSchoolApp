@@ -469,7 +469,7 @@ class CheckCramSchoolAPI(SettingBase):
         self.signin()
         with open('/Users/cihcih/Documents/GitHub/CramSchoolApp/tests/data/cs_reschedule_info_3.json', 'r') as file:
             data = json.load(file)
-        response = self.client.get(url_for('cs_api.cs_reschedule_info')+'?weekday=Tue&time=19:00')
+        response = self.client.get(url_for('cs_api.cs_reschedule_info')+'?')
         self.assertEquals(response.json, data)
     #!
     def test_edit_cs_reschedule_list_1(self):

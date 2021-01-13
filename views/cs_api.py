@@ -76,15 +76,9 @@ def insert_user_detail_info():
     if major[0]=="":
         major=[]
     user_id = user.insert_user(password, name, course_list, phone, email, major, personal_plan, role)
-    print("user_id")
-    print(user_id)
-    print("course_id")
-    print(course_id)
-    for i in course.get_course_info(course_id)['student_list']:
-        print(i)
+    #將該成員選的course加入該course的list
     temp=course.get_course_info(course_id)['student_list']
     temp.append(user_id)
-    #將該成員選的course加入該course的list
     course.update_course({'course_id':course_id}, {'student_list':temp})
     return jsonify({'0':0})   #之後redirect
     
@@ -224,6 +218,12 @@ def delete_cs_course_info():
         temp.remove(course_id)
         user.update_user({'user_id':i}, {'course_list':temp})
         
+    #把teacher的course_list中的該course刪除
+    teacher_info = user.get_user_info_by_name(course_info['teacher'])
+    temp = teacher_info['course_id']  #老師沒有名字重複的問題
+    temp.remove(course_id) 
+    user.update_user({'user_id':teacher_info['user_id']}, {'course_list':temp})
+    
     courseid={'course_id':course_id}
     course.delete_course(courseid)
     return jsonify({'0':0})   #之後redirect

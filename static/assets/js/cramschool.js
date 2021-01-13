@@ -21,17 +21,9 @@ $.ajax({
     dataType: "json",
     contentType: 'application/json; charset=utf-8',
     success: function(response){
-        
-        if(response[0].message == undefined){
-            createTable(response);
-        }
-        else{
-            window.alert("出了點錯，請稍後再試！");
-        }
-
+        createTable(response);
     },
     error: function(){
         console.log("error");
     }
 });
-

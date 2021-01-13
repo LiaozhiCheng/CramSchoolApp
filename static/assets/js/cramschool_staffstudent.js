@@ -30,7 +30,7 @@ function getAllCourse(){
                 }
             }
             else{
-                window.alert("出了點錯，請稍後再試！");
+                window.alert(data[0].message);
             }
         },
         
@@ -63,7 +63,7 @@ function init(role){
                 createTable(response, role);
             }
             else{
-                window.alert("出了點錯，請稍後再試！");
+                window.alert(response[0].message);
             }
         },
         error: function(){
@@ -129,7 +129,10 @@ function showCourse(name, role){
                 content += '<form>';
                 //填名字 id="user_name"
                 content += '<div class="form-group"><label class="col-form-label">';
-
+                if(response[0].course_name_list.length==0){
+                    content += "尚未有課程<br>";
+                }
+                
                 for(var i=0; i<response[0].course_name_list.length; i++){
                 console.log("course name: "+response[0].course_name_list[i]);
                     content += response[0].course_name_list[i] +"<br>";
@@ -165,11 +168,12 @@ function search(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[0].message == undefined){
+            console.log("message: "+response.message);
+            if(response.message == undefined){
                 createTable(response, response[0].role);
             }
             else{
-                window.alert("出了點錯，請稍後再試！");
+                window.alert(response[0].message);
             }
         },
         error: function(){

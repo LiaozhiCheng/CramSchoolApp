@@ -13,7 +13,7 @@ login_api = Blueprint("login_api", __name__)
 @login_api.route("/login_user", methods=["POST"])
 def validate():
 
-    info = request.values.to_dict()
+    #info = request.values.to_dict()
     info = request.get_json()
     
     #email = request.values.get("user_id")
@@ -30,7 +30,7 @@ def validate():
         return jsonify({'role':'teacher'})
     elif current_user.role == 'student':
         return jsonify({'role':'student'})
-    return "success"
+    return jsonify({'role':'boss'})
 
 
 

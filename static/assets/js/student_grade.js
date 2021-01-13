@@ -23,6 +23,7 @@ function getGrade(){
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
+			console.log(data);
             for(var i=0; i<data.length; i++){
                 setGrade(setLessonDate(data[i].quiz_date), data[i].quiz_name, data[i].grade);
             }

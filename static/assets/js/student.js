@@ -64,7 +64,13 @@ function setSideBar(version){
                         "'>出缺勤紀錄</a></li><li><a href='" + url_student_learning_plan + 
                         "'>個人計畫</a></li></ul></li></ul>";
     }
+	
+	//add footer
+	obj.innerHTML += "<footer class='m-3' style='position:fixed; bottom: 0; height: 40px; width:inherit;'>";
+	obj.innerHTML += "<a href='/logout' class='m-3' role='button' style='font-size: 20px;'>登出</a>";
+	obj.innerHTML += "</footer>";
 }
+
 
 
 

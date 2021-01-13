@@ -59,7 +59,7 @@ function show(id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[0].message == undefined){
+            if(response.message == undefined){
                 content += "<form>";
                 for(var i=0; i<response.length; i++){
                     content += '<div class="form-group">';

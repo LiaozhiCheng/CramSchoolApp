@@ -10,7 +10,7 @@ function sendLoginRequest(){
 		dataType: "json",
 		contentType: "application/json;charset=utf-8",
 		
-		success: function(data){
+		success: function(){
 			console.log("login success");
 		},
 		error: function(){

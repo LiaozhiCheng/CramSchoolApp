@@ -27,8 +27,9 @@ def validate():
     login_user(cur_user, remember=remember)
     if current_user.role == 'teacher':
         return redirect('teacher')
+        return "teacher"
     elif current_user.role == 'student':
-        return redirect('student')
+        return "student"
     return "success"
 
 

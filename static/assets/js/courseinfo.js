@@ -3,7 +3,7 @@
                 setSideBar();
             }
             function setCourseinfo(data){
-                            document.getElementById("courseinfo").innerHTML= "<h2 class='card-text'>課程:" + data.course + "</h2><h2 class='card-text'>老師:" + data.teacher + "</h2><h2 class='card-text'>大綱:" + data.summary + "</h2><h2 class='card-text'>教室:" + data.classroom + "</h2>";
+                            document.getElementById("courseinfo").innerHTML= "<h2 class='card-text'>課程:" + data.course + "</h2><h2 class='card-text'>老師:" + data.teacher + "</h2><h2 class='card-text'>教室:" + data.classroom + "</h2>";
                         }
             function getSavedData(){console.log("sss");
                 try{

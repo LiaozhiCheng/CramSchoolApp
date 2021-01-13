@@ -11,9 +11,17 @@ function sendLoginRequest(){
 		contentType: "application/json;charset=utf-8",
 		
 		success: function(data){
+			console.log(data);
 			console.log("login success");
+//			if(x == "student"){
+//				window.location.href = "student";
+//			}
 		},
 		error: function(){
+			var target = document.getElementById("alert");
+			target.className = "alert alert-danger ";
+			target.setAttribute("role", "alert");
+			target.innerHTML = "帳號密碼錯誤";
 			console.log("login error!!");
 		}
 	});

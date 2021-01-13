@@ -36,6 +36,6 @@ if __name__ == "__main__":
     app = create_app()
     # scheduler.init_app(app)
     # scheduler.start()
-    app.run()
+    app.run("192.168.111.128",port=55001)
     
 #"192.168.111.128",port=55001

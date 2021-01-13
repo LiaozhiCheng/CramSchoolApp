@@ -1,0 +1,254 @@
+[
+  {
+    "classroom": {
+      "capacity": 45,
+      "classroom_id": "R-002",
+      "name": "CS023"
+    },
+    "course_id": "C-001",
+    "course_time": "15:00~17:00-Sat",
+    "name": "1101數學",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 40,
+      "classroom_id": "R-008",
+      "name": "ANTH213"
+    },
+    "course_id": "C-003",
+    "course_time": "17:00~19:00-Fri",
+    "name": "1101歷史",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "安東尼‧蓋茨"
+  },
+  {
+    "classroom": {
+      "capacity": 22,
+      "classroom_id": "R-006",
+      "name": "ANTH110"
+    },
+    "course_id": "C-004",
+    "course_time": "15:00~17:00-Tue",
+    "name": "1101英文",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "賴安‧勞埃德"
+  },
+  {
+    "classroom": {
+      "capacity": 41,
+      "classroom_id": "R-004",
+      "name": "PE037"
+    },
+    "course_id": "C-005",
+    "course_time": "17:00~19:00-Mon",
+    "name": "1100地科",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "賴安‧勞埃德"
+  },
+  {
+    "classroom": {
+      "capacity": 25,
+      "classroom_id": "R-001",
+      "name": "MME163"
+    },
+    "course_id": "C-006",
+    "course_time": "17:00~19:00-Wed",
+    "name": "1100歷史",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 22,
+      "classroom_id": "R-006",
+      "name": "ANTH110"
+    },
+    "course_id": "C-007",
+    "course_time": "15:00~17:00-Thr",
+    "name": "1100地理",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "吉妮西絲‧英格拉姆"
+  },
+  {
+    "classroom": {
+      "capacity": 45,
+      "classroom_id": "R-002",
+      "name": "CS023"
+    },
+    "course_id": "C-008",
+    "course_time": "15:00~17:00-Sat",
+    "name": "1100軟體工程",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "哈珀‧桑福德"
+  },
+  {
+    "classroom": {
+      "capacity": 45,
+      "classroom_id": "R-002",
+      "name": "CS023"
+    },
+    "course_id": "C-009",
+    "course_time": "15:00~17:00-Fri",
+    "name": "1101公民",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "丹佛‧史蒂文生"
+  },
+  {
+    "classroom": {
+      "capacity": 22,
+      "classroom_id": "R-006",
+      "name": "ANTH110"
+    },
+    "course_id": "C-010",
+    "course_time": "15:00~17:00-Mon",
+    "name": "1101國文",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "莉百加‧布蘭奇"
+  },
+  {
+    "classroom": {
+      "capacity": 41,
+      "classroom_id": "R-004",
+      "name": "PE037"
+    },
+    "course_id": "C-011",
+    "course_time": "17:00~19:00-Sat",
+    "name": "1101地理",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "瑪克辛‧米蘭達"
+  },
+  {
+    "classroom": {
+      "capacity": 40,
+      "classroom_id": "R-008",
+      "name": "ANTH213"
+    },
+    "course_id": "C-012",
+    "course_time": "15:00~17:00-Tue",
+    "name": "1100英文",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 44,
+      "classroom_id": "R-005",
+      "name": "ARHY169"
+    },
+    "course_id": "C-013",
+    "course_time": "17:00~19:00-Fri",
+    "name": "1101軟體工程",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "哈珀‧桑福德"
+  },
+  {
+    "classroom": {
+      "capacity": 48,
+      "classroom_id": "R-007",
+      "name": "Thea174"
+    },
+    "course_id": "C-014",
+    "course_time": "15:00~17:00-Thr",
+    "name": "1101歷史",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "賴安‧勞埃德"
+  },
+  {
+    "classroom": {
+      "capacity": 40,
+      "classroom_id": "R-008",
+      "name": "ANTH213"
+    },
+    "course_id": "C-015",
+    "course_time": "15:00~17:00-Fri",
+    "name": "1101歷史",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 22,
+      "classroom_id": "R-006",
+      "name": "ANTH110"
+    },
+    "course_id": "C-016",
+    "course_time": "13:00~15:00-Fri",
+    "name": "1100國文",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "哈珀‧桑福德"
+  },
+  {
+    "classroom": {
+      "capacity": 48,
+      "classroom_id": "R-007",
+      "name": "Thea174"
+    },
+    "course_id": "C-017",
+    "course_time": "17:00~19:00-Sun",
+    "name": "1100數學",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 41,
+      "classroom_id": "R-004",
+      "name": "PE037"
+    },
+    "course_id": "C-018",
+    "course_time": "15:00~17:00-Mon",
+    "name": "1100物理",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "科拉‧阮"
+  },
+  {
+    "classroom": {
+      "capacity": 49,
+      "classroom_id": "R-003",
+      "name": "CS087"
+    },
+    "course_id": "C-019",
+    "course_time": "13:00~15:00-Thr",
+    "name": "1101化學",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  },
+  {
+    "classroom": {
+      "capacity": 48,
+      "classroom_id": "R-007",
+      "name": "Thea174"
+    },
+    "course_id": "C-020",
+    "course_time": "17:00~19:00-Wed",
+    "name": "1100國文",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "吉妮西絲‧英格拉姆"
+  },
+  {
+    "classroom": {
+      "capacity": 41,
+      "classroom_id": "R-004",
+      "name": "PE037"
+    },
+    "course_id": "C-021",
+    "course_time": "17:00~19:00-Tue",
+    "name": "1100物理",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "賴安‧勞埃德"
+  },
+  {
+    "classroom": {
+      "capacity": 45,
+      "classroom_id": "R-002",
+      "name": "CS023"
+    },
+    "course_id": "C-021",
+    "course_time": "20:22~22:24-Sun",
+    "name": "test",
+    "start_time": "Wed, 06 Jan 2021 00:00:00 GMT",
+    "teacher": "薇拉‧拉莫斯"
+  }
+]

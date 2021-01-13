@@ -1,0 +1,177 @@
+[
+  {
+    "classroom_id": "R-001",
+    "datetime": "Mon, 11 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Mon"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Mon, 11 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [
+      {
+        "course_name": "1101歷史",
+        "datetime": "Mon, 11 Jan 2021 19:00:00 GMT",
+        "lesson_id": "L-015-000",
+        "user_id": "110-S-012"
+      }
+    ],
+    "state": true,
+    "weekday": "Mon"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Mon, 11 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Mon"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Tue, 12 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Tue"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Tue, 12 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Tue"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Tue, 12 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Tue"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Wed, 13 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Wed"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Wed, 13 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": true,
+    "weekday": "Wed"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Wed, 13 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Wed"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Thu, 14 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": true,
+    "weekday": "Thr"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Thu, 14 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": true,
+    "weekday": "Thr"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Thu, 14 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Thr"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Fri, 15 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Fri"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Fri, 15 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Fri"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Fri, 15 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Fri"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sat, 16 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Sat"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sat, 16 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Sat"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sat, 16 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Sat"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sun, 17 Jan 2021 17:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": true,
+    "weekday": "Sun"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sun, 17 Jan 2021 19:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Sun"
+  },
+  {
+    "classroom_id": "R-001",
+    "datetime": "Sun, 17 Jan 2021 21:00:00 GMT",
+    "full": false,
+    "reservation_list": [],
+    "state": false,
+    "weekday": "Sun"
+  }
+]

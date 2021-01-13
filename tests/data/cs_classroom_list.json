@@ -1,0 +1,42 @@
+[
+  {
+    "capacity": 45,
+    "classroom_id": "R-002",
+    "name": "CS023"
+  },
+  {
+    "capacity": 49,
+    "classroom_id": "R-003",
+    "name": "CS087"
+  },
+  {
+    "capacity": 41,
+    "classroom_id": "R-004",
+    "name": "PE037"
+  },
+  {
+    "capacity": 44,
+    "classroom_id": "R-005",
+    "name": "ARHY169"
+  },
+  {
+    "capacity": 22,
+    "classroom_id": "R-006",
+    "name": "ANTH110"
+  },
+  {
+    "capacity": 48,
+    "classroom_id": "R-007",
+    "name": "Thea174"
+  },
+  {
+    "capacity": 34,
+    "classroom_id": "R-008",
+    "name": "ANTH215"
+  },
+  {
+    "capacity": 44,
+    "classroom_id": "R-001",
+    "name": "ARHY168"
+  }
+]

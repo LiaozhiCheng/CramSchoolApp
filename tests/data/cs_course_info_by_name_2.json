@@ -1,0 +1,14 @@
+[
+  {
+    "classroom": {
+      "capacity": 45,
+      "classroom_id": "R-002",
+      "name": "CS023"
+    },
+    "course_id": "C-001",
+    "course_time": "15:00~17:00-Sat",
+    "name": "1101數學",
+    "start_time": "Tue, 01 Sep 2020 00:00:00 GMT",
+    "teacher": "佩姬‧莫斯利"
+  }
+]

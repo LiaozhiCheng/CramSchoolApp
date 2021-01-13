@@ -388,7 +388,7 @@ class CheckCramSchoolAPI(SettingBase):
         self.signin()
         with open('/Users/linxiangling/Documents/GitHub/CramSchoolApp/tests/data/cs_classroom_info_by_name_2.json', 'r') as file:
             data = json.load(file)
-        response = self.client.get(url_for('cs_api.cs_classroom_info_by_name')+'?name=CS104')
+        response = self.client.get(url_for('cs_api.cs_classroom_info_by_name')+'?name=PE037')
         self.assertEquals(response.json, data)
     def test_insert_cs_classroom_info_1(self):
         self.user_id = "handsomeboy"

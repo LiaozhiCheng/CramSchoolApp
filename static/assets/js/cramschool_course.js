@@ -218,9 +218,9 @@ function add(){
 function addCourse(){
     var setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val();
     
-    var myselect=document.getElementById("teacher");
-    var index=myselect.selectedIndex;
-    var tea_id = myselect.options[index].id;
+//    var myselect=document.getElementById("teacher");
+//    var index=myselect.selectedIndex;
+//    var tea_id = myselect.options[index].id;
     
     myselect=document.getElementById("classroom");
     index=myselect.selectedIndex;

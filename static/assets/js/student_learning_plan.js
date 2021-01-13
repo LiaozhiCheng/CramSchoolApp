@@ -22,6 +22,8 @@ function getPlan(){
         contentType: "application/json; charset=utf-8",
         
         success: function(data){
+			
+			console.log(data);
             for(var i=0; i<data.length; i++){
                 setPlan(setLessonDate(data[i].lesson_time), data[i].progress, data[i].context, setLessonDate(data[i].deadline));
             }

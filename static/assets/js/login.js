@@ -18,6 +18,9 @@ function sendLoginRequest(){
 			else if(role == "teacher"){
 				window.location.href = "teacher";
 			}
+			else if(role == "boss"){
+				window.location.href = "cramschool";
+			}
 		},
 		error: function(){
 			var target = document.getElementById("alert");

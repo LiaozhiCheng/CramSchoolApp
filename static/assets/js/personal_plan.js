@@ -1,7 +1,9 @@
                     var ss=0;
                     var lessonid= new Array();
                     var addlessonid= new Array();
-                    var date= new Array()
+                    var date= new Array();
+                    var deldeadlinearr= new Array();
+                    var delcontextarr= new Array();
                     var studentid;
                     var courseid;
                     window.onload = function(){
@@ -32,6 +34,7 @@
 
                                 success: function(data){//這裡拿到的data是一個Object陣列
                                     console.log("success");
+                                    console.log(data);
                                     setSchedule(data);
                                 for(var i=0; i<data.length; i++){
                                     //利用key去找value
@@ -81,7 +84,7 @@
                             function setInfo(data){
                                 //for(var i=0; i<data.length; i++){
                                     //利用key去找value
-                                    document.getElementById("studentinfo").innerHTML= "<h2>" + data.name + "</h2><h2>" + data.user_id + "</h2><h2>" + data.phone + "</h2><h2>" + data.email + "</h2>";}
+                                    document.getElementById("studentinfo").innerHTML= "<h2>姓名: " + data.name + "</h2><h2>帳號: " + data.user_id + "</h2><h2>電話: " + data.phone + "</h2><h2>信箱: " + data.email + "</h2>";}
                                     //console.log("time: "+data[i].user_id);
                                     //console.log("name: "+data[i].name);
                                     //console.log("phone: "+data[i].phone);
@@ -107,9 +110,11 @@
                                 else
                                 {
                                     alert("send success!");
+                                    console.log(data);
+                                    getSavedData();
                                 }
                                     //console.log(data);
-                                    setSchedule(data);
+                                   
                                 },
                                 
                                 error: function(){
@@ -125,6 +130,8 @@
                                     //利用key去找value
                                     lessonid[i]=data[i].lesson_id;
                                     date[i]=data[i].lesson_time;
+                                    deldeadlinearr[i]=data[i].deadline;
+                                    delcontextarr[i]=data[i].context;
                                     //console.log("deadline: "+data[i].deadline);
                                     //console.log("context: "+data[i].context);
                                 }
@@ -155,6 +162,7 @@
                                 //console.log(ss);
                         var submitdeadline = document.getElementById("deadline").value;
                         var submitcontext = document.getElementById("context").value;
+                        console.log(submitcontext);
                         returndata(submitdeadline,submitcontext);
                         //document.getElementById(ss+"-0").innerHTML=submitdeadline;
                         //document.getElementById(ss+"-1").innerHTML=submitcontext;
@@ -166,12 +174,20 @@
                     }
                         $('#submit').click(function() {
                         $('#exampleModal').modal('hide');
+                        $('#context').val("");
+                        $('#deadline').val("");
+                    });
+                        $('#addsubmit').click(function() {
+                        $('#exampleModal2').modal('hide');
+                        $('#addcontext').val("");
+                        $('#adddeadline').val("");
                     });
                     function testdelete(clickedid) {
                          //var NewStringValue=document.getElementById("message-text").value;
                         ss=clickedid.slice(1,2);
-                        returndata("","");
-                        var dpp = { "lesson_id" : lessonid[ss], "student_id" : studentid , "deadline" : "" , "context" : ""};
+                        //returndata("","");
+                        console.log(deldeadlinearr[ss]);
+                        var dpp = { "lesson_id" : lessonid[ss], "student_id" : studentid , "deadline" : deldeadlinearr[ss] , "context" : delcontextarr[ss]};
                                     console.log(dpp);
                                     $.ajax({
                                 url: api_delete_personal_plan,
@@ -181,16 +197,9 @@
                                 contentType: "application/json; charset=utf-8",
                                 
                                 success: function(data){
-                                    if(data.message == "資料不得為空")
-                                {
-                                    window.alert("資料不得為空喔~~");
-                                }
-                                else
-                                {
+                                    console.log(data);
                                     alert("send success!");
-                                }
-                                    //console.log(data);
-                                    setSchedule(data);
+                                    window.location.reload();
                                 },
                                 
                                 error: function(){
@@ -214,6 +223,7 @@
                                 
                                 success: function(data){//這裡拿到的data是一個Object陣列
                                     console.log("success");
+                                    console.log(data);
                                     //setSchedule(data);
                                     temp += "<select id='selecttime' onclick='clicktime()'>";
                                 for(var i=0; i<data.length; i++){
@@ -223,7 +233,7 @@
                                     console.log("time: "+data[i].lesson_time);
                                 }//看到時候有沒有成功
                                 temp += "</select>";
-                                document.getElementById("addlessontime").innerHTML += temp;
+                                document.getElementById("addlessontime").innerHTML = "Lesson time: "+temp;
                                 
                                 },
 
@@ -247,9 +257,17 @@
                                 contentType: "application/json; charset=utf-8",
                                 
                                 success: function(data){
+                                    if(data.message == "資料不得為空")
+                                {
+                                    window.alert("資料不得為空喔~~");
+                                }
+                                else
+                                {
                                     alert("send success!");
-                                    //console.log(data);
-                                    setSchedule(data);
+                                    console.log(data);
+                                }
+
+                                    getSavedData();
                                 },
                                 
                                 error: function(){

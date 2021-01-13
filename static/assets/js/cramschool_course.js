@@ -187,7 +187,7 @@ function add(){
     //用選的
     content += '<div class="form-group"><label class="col-form-label">時間：<input type="time" class="form-control" id="start_time" value="">~<input type="time" class="form-control" id="end_time" value=""></label></div>';
 
-    content += '<div class="form-group"><label class="col-form-label">老師：<select class="form-control" id="teacher"></select></label></div>';
+//    content += '<div class="form-group"><label class="col-form-label">老師：<select class="form-control" id="teacher"></select></label></div>';
     
     //用選的
     content += '<div class="form-group"><label class="col-form-label">教室：<select class="form-control" id="classroom"></select></label></div>';
@@ -205,7 +205,7 @@ function add(){
     document.getElementById("week").innerHTML = temp;
     
     //拿到老師的選項
-    getTeacherOption("");
+//    getTeacherOption("");
     
     //拿到教室的選項
     getClassroomOption("");
@@ -255,7 +255,7 @@ function addCourse(){
                                     "classroom_id" : response.classroom_id,
                                     "name" : response.name};
                     //把所有參數傳到send
-                    sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, tea_id, summary, classroom, "add");
+                    sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, null, summary, classroom, "add");
                 }
                 else{
                     window.alert("出了點錯，請稍後再試！");
@@ -390,7 +390,6 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
             "name" : name,
             "start_time": start_time,//開始日期
             "course_time": course_time,//時間幾點～幾點
-            "teacher": teacher,
             "summary": summary,
             "classroom": classroom
         };

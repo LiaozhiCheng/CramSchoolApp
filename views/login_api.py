@@ -1,4 +1,4 @@
-from flask import request, Blueprint, redirect
+from flask import request, Blueprint, redirect, jsonify
 from flask_security import login_user, current_user
 from models import user
 from models import build_data
@@ -15,8 +15,7 @@ def validate():
 
     info = request.values.to_dict()
     info = request.get_json()
-    print(info2)
-
+    
     #email = request.values.get("user_id")
     #password = request.values.get("password")
     cur_user = user.validate_user(info['user_id'], info['password'])

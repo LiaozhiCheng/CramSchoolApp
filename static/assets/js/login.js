@@ -11,11 +11,13 @@ function sendLoginRequest(){
 		contentType: "application/json;charset=utf-8",
 		
 		success: function(data){
-			console.log(data);
-			console.log("login success");
-//			if(x == "student"){
-//				window.location.href = "student";
-//			}
+			var role = data.role;
+			if(role == "student"){
+				window.location.href = "student";
+			}
+			else if(role == "teacher"){
+				window.location.href = "teacher";
+			}
 		},
 		error: function(){
 			var target = document.getElementById("alert");

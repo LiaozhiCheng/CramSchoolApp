@@ -218,6 +218,12 @@ def delete_cs_course_info():
         temp.remove(course_id)
         user.update_user({'user_id':i}, {'course_list':temp})
         
+    #把teacher的course_list中的該course刪除
+    teacher_info = user.get_user_info_by_name(course_info['teacher'])
+    temp = teacher_info['course_id']  #老師沒有名字重複的問題
+    temp.remove(course_id) 
+    user.update_user({'user_id':teacher_info['user_id']}, {'course_list':temp})
+    
     courseid={'course_id':course_id}
     course.delete_course(courseid)
     return jsonify({'0':0})   #之後redirect

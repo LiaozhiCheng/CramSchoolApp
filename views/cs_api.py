@@ -182,24 +182,20 @@ def insert_cs_course_info():
     name=course_json['name']
     start_time=course_json['start_time']
     course_time=course_json['course_time']
-    teacher_id=course_json['teacher']  #改給id
+    #teacher_id=course_json['teacher']  #改給id
+    teacher_id="" #新增課程時不能選老師，否則會造成死結（新增老師時要選課程，但新增課程時要選老師）
     summary=course_json['summary']
     classroom=course_json['classroom']
     
     #name, start_time, course_time, teacher不得為空
-    if name=="" or start_time=="" or course_time=="" or teacher_id=="":
+    if name=="" or start_time=="" or course_time=="":
         return jsonify({'message':'資料不得為空'})
     #!!!!!!!!!!!!!!!!!先設null有用到再說，可設為course中lesson_list的最後一個
     current_lesson_id=""
-    teacher_data = user.get_user_info(teacher_id)
     student_list=[]
     
-    course_id = course.insert_course(name, start_time, course_time, teacher_data['name'], summary, current_lesson_id, student_list, classroom)
-    
-    #將teacher的course_list中，加入該course
-    teacher_course_list = teacher_data['course_list']
-    teacher_course_list.append(course_id)
-    user.update_user({'user_id':teacher_id}, {'course_list':teacher_course_list})
+    course.insert_course(name, start_time, course_time, teacher_id, summary, current_lesson_id, student_list, classroom)
+   
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_cs_course_info', methods=['get'])
@@ -444,6 +440,8 @@ def edit_cs_reschedule_list():
     #weekday, time, new_state不得為空
     if weekday=="" or time=="" or new_state=="":
         return jsonify({'message':'資料不得為空'})
+    if new_state == 0:
+        return jsonify({'message':'不可關閉補課時段'})
     reschedule.update_reschedule_state(weekday, time, new_state)
     return jsonify({'0':0})   #之後redirect
 

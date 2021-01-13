@@ -220,7 +220,7 @@ def delete_cs_course_info():
         
     #把teacher的course_list中的該course刪除
     teacher_info = user.get_user_info_by_name(course_info['teacher'])
-    temp = teacher_info['course_id']  #老師沒有名字重複的問題
+    temp = teacher_info['course_list']  #老師沒有名字重複的問題
     temp.remove(course_id) 
     user.update_user({'user_id':teacher_info['user_id']}, {'course_list':temp})
     

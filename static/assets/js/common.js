@@ -17,4 +17,7 @@ function setSideBar(){
     content += '<ul class="list-unstyled"><li><a href="'+url_cramschool+'">首頁</a></li><li><a href="'+url_cramschool_course+'">課程</a></li><li><a href="'+url_cramschool_staffstudent+'">成員列表</a></li><li><a href="'+url_cramschool_attendence+'">出缺勤</a></li><li><a href="'+url_cramschool_makeup_class+'">補課</a></li><li><a href="'+url_cramschool_classroom+'">教室</a></li></ul>';
     
     obj.innerHTML=content;
+    obj.innerHTML += "<footer class='m-3' style='position:fixed; bottom: 0; height: 40px; width:inherit;'>";
+     obj.innerHTML += "<a href='/logout' class='m-3' role='button' style='font-size: 20px;'>登出</a>";
+     obj.innerHTML += "</footer>";
 }

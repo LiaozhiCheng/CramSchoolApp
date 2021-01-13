@@ -53,7 +53,11 @@ function saveGrade(grade_no) {
     document.getElementById("testname" + grade_no).setAttribute("class", "gradeTestNameDisabled");
     document.getElementById("button" + String(grade_no)).innerHTML = "<button type='button' class='btn btn-outline-info' onclick='editGrade(" + grade_no + ")'>edit button</button>";
     for (var i = 0; i < globalData[grade_no].grade_list.length; i++) {
-        globalData[grade_no].grade_list[i].student_grade = parseInt(document.getElementById("row" + String(i) + "col" + String(grade_no)).value);
+        if(document.getElementById("row" + String(i) + "col" + String(grade_no)).value == ""){
+            globalData[grade_no].grade_list[i].student_grade = null;
+        }else{
+            globalData[grade_no].grade_list[i].student_grade = parseInt(document.getElementById("row" + String(i) + "col" + String(grade_no)).value);
+        }
         document.getElementById("row" + String(i) + "col" + String(grade_no)).disabled = true;
         document.getElementById("row" + String(i) + "col" + String(grade_no)).setAttribute("class", "gradeTextDisabled");
     }
@@ -135,7 +139,7 @@ function createTable(data) {
     for (var i = 0; i < data[0].grade_list.length; i++) {
         contentBody += "<tr><td>" + data[0].grade_list[i].student_name + "</td>";
         for (var j = 0; j < data.length; j++) {
-            if (data[j].grade_list[i].student_grade == "") {
+            if (data[j].grade_list[i].student_grade == null ) {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(j) + " class='gradeTextDisabled' type='text' placeholder='' value='' disabled></td>";
             } else {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(j) + " class='gradeTextDisabled' type='text' placeholder='' value=" + data[j].grade_list[i].student_grade + " disabled></td>";

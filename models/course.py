@@ -58,6 +58,7 @@ def insert_course(name, start_time, course_time, teacher, summary, current_lesso
     for i in range(10):      #預設新增10堂課(lesson)  
         insert_empty_lesson(course_id, start_lesson_time)
         start_lesson_time=start_lesson_time + timedelta(days = 7)
+    return course_id
         
 #新增空lesson（course新建時附帶預設新增十堂）
 def insert_empty_lesson(course_id, lesson_time):

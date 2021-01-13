@@ -188,17 +188,24 @@ def insert_cs_course_info():
     name=course_json['name']
     start_time=course_json['start_time']
     course_time=course_json['course_time']
-    teacher=course_json['teacher']
+    teacher_id=course_json['teacher']  #改給id
     summary=course_json['summary']
+    classroom=course_json['classroom']
+    
+    #name, start_time, course_time, teacher不得為空
+    if name=="" or start_time=="" or course_time=="" or teacher_id=="":
+        return jsonify({'message':'資料不得為空'})
     #!!!!!!!!!!!!!!!!!先設null有用到再說，可設為course中lesson_list的最後一個
     current_lesson_id=""
+    teacher_data = user.get_user_info(teacher_id)
     student_list=[]
     
-    classroom=course_json['classroom']
-    #name, start_time, course_time, teacher不得為空
-    if name=="" or start_time=="" or course_time=="" or teacher=="":
-        return jsonify({'message':'資料不得為空'})
-    course.insert_course(name, start_time, course_time, teacher, summary, current_lesson_id, student_list, classroom)
+    course_id = course.insert_course(name, start_time, course_time, teacher_data['name'], summary, current_lesson_id, student_list, classroom)
+    
+    #將teacher的course_list中，加入該course
+    teacher_course_list = teacher_data['course_list']
+    teacher_course_list.append(course_id)
+    user.update_user({'user_id':teacher_id}, {'course_list':teacher_course_list})
     return jsonify({'0':0})   #之後redirect
     
 @cs_api.route('delete_cs_course_info', methods=['get'])

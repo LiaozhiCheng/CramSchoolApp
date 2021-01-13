@@ -135,7 +135,7 @@ function createTable(data) {
     for (var i = 0; i < data[0].grade_list.length; i++) {
         contentBody += "<tr><td>" + data[0].grade_list[i].student_name + "</td>";
         for (var j = 0; j < data.length; j++) {
-            if (data[j].grade_list[i].student_grade == null) {
+            if (data[j].grade_list[i].student_grade == "") {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(j) + " class='gradeTextDisabled' type='text' placeholder='' value='' disabled></td>";
             } else {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(j) + " class='gradeTextDisabled' type='text' placeholder='' value=" + data[j].grade_list[i].student_grade + " disabled></td>";

@@ -12,6 +12,13 @@ class CheckUserAndLogin(SettingBase):
         self.password = '026'
         response = self.signin()
         self.assertEqual(response.status_code, 200) 
+        
     def test_logout(self):
         response = self.client.get(url_for('login_web.logout'))
         self.assertEqual(response.status_code, 302) 
+    def test_my_user(self):
+        self.user_id = '110-T-001'
+        self.password = '001'
+        #response = self.signin()
+        response = self.client.get('/my_user')
+        self.assertEqual(response.data, '100-T-001')

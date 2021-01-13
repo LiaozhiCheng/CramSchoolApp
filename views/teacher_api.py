@@ -23,13 +23,22 @@ def course_communication_book():
     items = lesson.get_by_courseid(course_id)
     com_book_list = []
     for i in items:
-        each_com_book = {
-                            "lesson_id" : i['lesson_id'],
-                            "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
-                            "progress" : i['progress'],
-                            "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
-                            "context" : i['homework']['context']
-        }
+        try :
+            each_com_book = {
+                                "lesson_id" : i['lesson_id'],
+                                "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
+                                "progress" : i['progress'],
+                                "deadline" : datetime.strftime(i['homework']['deadline'],"%Y-%m-%d"),
+                                "context" : i['homework']['context']
+            }
+        except:
+            each_com_book = {
+                                "lesson_id" : i['lesson_id'],
+                                "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d"),
+                                "progress" : i['progress'],
+                                "deadline" : "",
+                                "context" : i['homework']['context']
+            }
         com_book_list.append(each_com_book)
     return jsonify(com_book_list)
 
@@ -82,17 +91,18 @@ def course_personal_plan():
     student_id = request.values.get('student_id')
     target_student = user.get_by_userid(student_id)
     plan_list = []
-    for p in target_student['personal_plan']:
-        if p['lesson_id'][2:4]==course_id[2:4]:
-            # 要取得該 plan 所屬 lesson 的lesson_time
-            le = lesson.get_by_lessonid(p['lesson_id'])
-            each_plan = {
-                "lesson_id" : p['lesson_id'],
-                "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
-                "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
-                "context": p['context']
-            }
-            plan_list.append(each_plan)    
+    if target_student['personal_plan']!= None:
+        for p in target_student['personal_plan']:
+            if p['lesson_id'][2:4]==course_id[2:4]:
+                # 要取得該 plan 所屬 lesson 的lesson_time
+                le = lesson.get_by_lessonid(p['lesson_id'])
+                each_plan = {
+                    "lesson_id" : p['lesson_id'],
+                    "lesson_time" : datetime.strftime(le['lesson_time'],"%Y-%m-%d"),
+                    "deadline" : datetime.strftime(p['deadline'],"%Y-%m-%d"),
+                    "context": p['context']
+                }
+                plan_list.append(each_plan)    
     return jsonify(plan_list)
 #####################################################################
 # teacher get lesson list
@@ -106,13 +116,17 @@ def teacher_no_plan_lesson_time():
     target_student = user.get_by_userid(student_id)
     lesson_time_list = []
     for i in items:
+        exist = False
         for p in target_student['personal_plan']:
-            if datetime.strftime(p['lesson_time'],"%Y-%m-%d") == datetime.strftime(i['lesson_time'],"%Y-%m-%d") :
-                items.remove(i)
+            if p['lesson_id'] == i['lesson_id']:
+                exist = True
                 break
-    for i in items:    
-        lesson_time_list.append(datetime.strftime(i['lesson_time'],"%Y-%m-%d"))
-        
+        if exist == False:
+            each_loss = {
+            "lesson_id" : i['lesson_id'],
+            "lesson_time" : datetime.strftime(i['lesson_time'],"%Y-%m-%d")
+            }
+            lesson_time_list.append(each_loss)
     return jsonify(lesson_time_list)
 
 
@@ -126,18 +140,11 @@ def edit_course_personal_plan():
     for key,value in data.items():
         if value == '':
             return jsonify({"message" : "資料不得為空"})
-    try:
-        new_info = {
-                        "lesson_id" : data['lesson_id'],
-                        "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
-                        "context" : data['context']
-        }
-    except ValueError:
-        new_info = {
-                        "lesson_id" : data['lesson_id'],
-                        "deadline" : None,
-                        "context" : data['context']
-        }
+    new_info = {
+                    "lesson_id" : data['lesson_id'],
+                    "deadline" : datetime.strptime(data['deadline'],"%Y-%m-%d"),
+                    "context" : data['context']
+    }
     s = user.get_by_userid(data['student_id'])
     plan = s['personal_plan']
     exist = False
@@ -149,6 +156,7 @@ def edit_course_personal_plan():
             break
     if not exist:
         user.update_personal_plan(data['student_id'],new_info)
+    new_info['deadline'] = data['deadline']
     return jsonify(new_info)
 #####################################################################
 # teacher delete course personal plan

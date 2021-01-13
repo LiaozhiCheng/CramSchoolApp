@@ -15,6 +15,10 @@ function start() {
     setSideBar()
     var course_id = sessionStorage.getItem("course");
     console.log(course_id);
+    if(course_id==null){
+                            alert("未知課程，請回課表選擇課程");
+                            window.location.replace(url_teacher);
+                        }
     $.ajax({
 
         url: api_course_attendence + course_id, //放你的url，這裡先放本地端檔案
@@ -27,6 +31,7 @@ function start() {
         //如果成功的話
         success: function (data) {//這裡拿到的data是一個Object陣列
             console.log("success");//看到時候有沒有成功
+            console.log(data);
             sessionStorage.setItem("data", JSON.stringify(data));
             document.getElementById("iframeDiv").innerHTML = "<iframe id='iframe' src='/teacher_student_attendenceA' width='100%' height='600' overflow='scroll'></iframe>";
         },

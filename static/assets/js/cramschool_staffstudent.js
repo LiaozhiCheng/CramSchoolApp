@@ -287,7 +287,7 @@ function setForm(temp){
 //傳新增的成員資料到後端
 function addUser(){
     
-    var major=null, course_list=[]; 
+    var major="", course_list=[]; 
     var myselect, index, coures_id;
     
     myselect = document.getElementById("choose");
@@ -299,6 +299,7 @@ function addUser(){
         major = $("#major").val();
         //console.log("add_major: "+major);
     }
+    
     
     //送資料
     sendData(null, $("#password").val(), $("#user_name").val(), course_list, null, $("#phone").val(), $("#email").val(), major, null, $("#role").val(), "add");
@@ -452,11 +453,11 @@ function editUser(user_id, role){
     var name = $("#user_name").val();
     var phone = $("#phone").val();
     var email = $("#email").val();
-    var major;
+    var major="";
     
     if(role=="student"){
         console.log("edit_sendData");
-       sendData(user_id, null, name, edit_course, del_course, phone, email, null, null, role, "edit");
+       sendData(user_id, null, name, edit_course, del_course, phone, email, major, null, role, "edit");
     }
     else if(role=="teacher"){
         major = $("#major").val();

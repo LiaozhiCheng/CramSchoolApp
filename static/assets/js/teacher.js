@@ -49,6 +49,7 @@
                         console.log("name: "+data.name);
                         console.log("phone: "+data.phone);
                         console.log("email: "+data.email);
+                        console.log("email: "+data.major);
                     //}//看到時候有沒有成功
                 },
                 
@@ -61,7 +62,7 @@
                 function setInfo(data){
                    //for(var i=0; i<data.length; i++){
                         //利用key去找value
-                        document.getElementById("teacherinfo").innerHTML= "<h2>" + data.user_id + "</h2><h2>" + data.name + "</h2><h2>" + data.phone + "</h2><h2>" + data.email + "</h2>";
+                        document.getElementById("teacherinfo").innerHTML= "<h2>帳號: " + data.user_id + "</h2><h2>姓名: " + data.name + "</h2><h2>電話: " + data.phone + "</h2><h2>信箱: " + data.email + "</h2><h2>專業: " + data.major + "</h2>";
                         //console.log("time: "+data[i].user_id);
                         //console.log("name: "+data[i].name);
                         //console.log("phone: "+data[i].phone);

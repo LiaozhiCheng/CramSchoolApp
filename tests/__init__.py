@@ -5,6 +5,7 @@ from main import create_app
 
 #這邊是測試的基礎設置，先不要動
 class SettingBase(TestCase):
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
     def create_app(self):
 
         return create_app()

@@ -32,3 +32,4 @@ class Config(object):
     
     #test Config
     TESTING = True
+    

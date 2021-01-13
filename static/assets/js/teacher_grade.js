@@ -43,6 +43,11 @@ function deleteGrade(grade_no) {
 }
 
 function saveGrade(grade_no) {
+    if(document.getElementById("testname" + grade_no).value==""){
+        window.alert("考試範圍輸入錯誤");
+        createTable(globalData);
+        return;
+    }
     globalData[grade_no].quiz_name = document.getElementById("testname" + grade_no).value;
     document.getElementById("testname" + grade_no).disabled = true;
     document.getElementById("testname" + grade_no).setAttribute("class", "gradeTestNameDisabled");
@@ -159,7 +164,7 @@ function start() {
         //如果成功的話
         success: function (data) {//這裡拿到的data是一個Object陣列
             console.log("success");//看到時候有沒有成功
-
+            console.log(data);
             globalData = data;
             createTable(data);
         },

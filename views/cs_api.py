@@ -238,20 +238,33 @@ def edit_cs_course_info():
     name=course_json['name']
     start_time=course_json['start_time']
     course_time=course_json['course_time']
-    teacher=course_json['teacher']
+    old_teacher_id=course_json['old_teacher']  #改成id
+    new_teacher_id=course_json['new_teacher']
     summary=course_json['summary']
     #current_lesson_id=""        #!!!!!!!!!!!!!!!!!先設null有用到再說
     #student_list=course_json['student_list']
     classroom=course_json['classroom']
     
     #course_id, name, start_time, course_time, teacher不得為空
-    if course_id=="" or name=="" or start_time=="" or course_time=="" or teacher=="":
+    if course_id=="" or name=="" or start_time=="" or course_time=="" or new_teacher_id=="":
         return jsonify({'message':'資料不得為空'})
+    
+    old_teacher_data = user.get_user_info(old_teacher_id)
+    new_teacher_data = user.get_user_info(new_teacher_id)
     start_time=start_time.split("T")[0]     #拿到日期
     start_time=datetime. strptime(start_time, '%Y-%m-%d')
     courseid={'course_id':course_id}
-    coursedict={'course_id':course_id, 'name':name, 'start_time':start_time, 'course_time':course_time, 'teacher':teacher, 'summary':summary, 'classroom':classroom}
+    coursedict={'course_id':course_id, 'name':name, 'start_time':start_time, 'course_time':course_time, 'teacher':new_teacher_data['name'], 'summary':summary, 'classroom':classroom}
     course.update_course(courseid, coursedict)
+    
+    #把course從原teacher course_list中刪除
+    temp = old_teacher_data['course_list']
+    temp.remove(course_id)
+    user.update_user({'user_id':old_teacher_id}, {'course_list':temp})
+    #把course加入新teacher course_list中
+    temp = new_teacher_data['course_list']
+    temp.append(course_id)
+    user.update_user({'user_id':new_teacher_id}, {'course_list':temp})
     return jsonify({'0':0})   #之後redirect
 
 @cs_api.route('cs_course_attendence', methods=['get'])

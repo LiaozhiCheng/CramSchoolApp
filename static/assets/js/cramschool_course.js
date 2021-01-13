@@ -1,7 +1,8 @@
 //測試 done
 
 var weekday=['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
-
+//不要傳來傳去，太多function了，傳不完勒：）
+var old_tea_id = "";
 
 function init(){
     var myURL = ngrok + "cs_course_list";
@@ -12,12 +13,8 @@ function init(){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response[0].message == undefined){
-                createTable(response);
-            }
-            else{
-                window.alert("出了點錯，請稍後再試！");
-            }
+            createTable(response);
+
         },
         error: function(){
             console.log("error");
@@ -48,6 +45,8 @@ function createTable(data){
 function showStudent(course_id){
     document.getElementById("myContent").innerHTML = "";
     
+    document.getElementById("exampleModalLabel").innerHTML = "學生清單";
+    
     var content = "";
     var myURL = ngrok + "cs_course_student_list?course_id="+course_id;
     console.log("myURL: "+myURL);
@@ -57,34 +56,24 @@ function showStudent(course_id){
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
-            if(response.message == undefined){
-                //跳出表單
-                var content="";
-                content += '<form>';
-                content += '<div class="form-group"><label class="col-form-label">';
-                
-                if(response.length==0){
-                   content += "<h5>尚未有學生</h5>"
-                }
-                else{
-                    for(var i=0; i<response.length; i++){
-                    content += response[i] +"<br>";
-                    }
-                }
-                
-               
+            //跳出表單
+            var content="";
+            content += '<form>';
+            content += '<div class="form-group"><label class="col-form-label">';
 
-                content += '</label></div>';
-
-                content += '</form>';
-                document.getElementById("myContent").innerHTML = content;
-                document.getElementById("exampleModalLabel").innerHTML = "學生清單";
-                document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>';
+            if(response.length==0){
+               content += "<h5>尚未有學生</h5>"
             }
             else{
-                window.alert("出了點錯，請稍後再試！");
-            }   
-            
+                for(var i=0; i<response.length; i++){
+                content += response[i] +"<br>";
+                }
+            }
+            content += '</label></div>';
+
+            content += '</form>';
+            document.getElementById("myContent").innerHTML = content;
+            document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>';
         },
         error: function(){
             console.log("error");
@@ -94,20 +83,88 @@ function showStudent(course_id){
 
 //搜尋課程名稱＆顯示
 function search(){
-    var myURL = ngrok+"cs_course_info_by_name?name="+$("#myval").val();
-    console.log("myURL: "+myURL);
+    if($("#myval").val()==""){
+        window.alert("不是啊～ 你要告訴我你要查什麼課！！！\n請重新輸入：）");
+    }
+    else{
+        var myURL = ngrok+"cs_course_info_by_name?name="+$("#myval").val();
+        console.log("myURL: "+myURL);
+        $.ajax({
+            url: myURL,
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                if(response[0].message == undefined){
+                    createTable(response);
+                }
+                else{
+                    window.alert(response[0].message);
+                }
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
+    }   
+}
+
+//抓老師列表，放在表單
+function getTeacherOption(name){
+    var tea="";
+    old_tea_id = "";
     $.ajax({
-        url: myURL,
-        type: "GET",
+        url: ngrok+"tea_member_list",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         success: function(response){
             if(response[0].message == undefined){
-                createTable(response);
+                for(var i=0; i<response.length; i++){
+                    if(name == response[i].name){
+                        old_tea_id = response[i].user_id;
+                        tea += '<option id="'+response[i].user_id+'" selected>'+ response[i].name +"</option>";
+                    }
+                    else{
+                        tea += '<option id="'+response[i].user_id+'">'+ response[i].name +"</option>";
+                    }
+                }
+                document.getElementById("teacher").innerHTML = tea;
             }
             else{
                 window.alert("出了點錯，請稍後再試！");
             }
+        },
+        error: function(){
+            console.log("error");
+        }
+    })
+}
+
+//抓教室列表，放在表單
+function getClassroomOption(name){
+    //拿到教室的選項
+    var temp="";
+    $.ajax({
+        url: ngrok + "cs_classroom_list",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            if(response[0].message == undefined){
+                for(var i=0; i<response.length; i++){
+                    if(response[i].name == name){
+                       temp += "<option selected>"+ response[i].name +"</option>";
+                        temp += '<option id="'+response[i].classroom_id+'" selected>'+ response[i].name +"</option>";
+                    }
+                    else{
+                        temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
+                    }
+                }
+                document.getElementById("classroom").innerHTML = temp;
+            }
+            else{
+                window.alert("出了點錯，請稍後再試！");
+            }
+            
         },
         error: function(){
             console.log("error");
@@ -122,7 +179,7 @@ function add(){
     //跳出表單
     var content="";
     content += '<form>';
-    content += '<div class="form-group"><label class="col-form-label">課程名稱：<input type="text" class="form-control" id="course_name" value="課程名稱 ex.1101軟工"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">課程名稱：<input type="text" class="form-control" id="course_name" placeholder="課程名稱 ex.1101軟工"></label></div>';
     //用選的
     content += '<div class="form-group"><label class="col-form-label">開始日期：<input type="date" class="form-control" id="start_date" value=""></label></div>';
     //用選的
@@ -130,12 +187,12 @@ function add(){
     //用選的
     content += '<div class="form-group"><label class="col-form-label">時間：<input type="time" class="form-control" id="start_time" value="">~<input type="time" class="form-control" id="end_time" value=""></label></div>';
 
-    content += '<div class="form-group"><label class="col-form-label">老師：<input type="text" class="form-control" id="teacher" value="老師 ex.馬小彬"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">老師：<select class="form-control" id="teacher"></select></label></div>';
     
     //用選的
     content += '<div class="form-group"><label class="col-form-label">教室：<select class="form-control" id="classroom"></select></label></div>';
     
-    content += '<div class="form-group"><label class="col-form-label">總結：<input type="text" class="form-control" id="summary" value="總結"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">總結：<input type="text" class="form-control" id="summary" placeholder="總結"></label></div>';
 
     content += '</form>'
     document.getElementById("myContent").innerHTML = content;
@@ -147,27 +204,12 @@ function add(){
     }
     document.getElementById("week").innerHTML = temp;
     
+    //拿到老師的選項
+    getTeacherOption("");
+    
     //拿到教室的選項
-    temp="";
-    $.ajax({
-        url: ngrok+"cs_classroom_list",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            if(response[0].message == undefined){
-                for(var i=0; i<response.length; i++){
-                    temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
-                }
-                document.getElementById("classroom").innerHTML = temp;
-            }
-            else{
-                window.alert("出了點錯，請稍後再試！");
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    getClassroomOption("");
+    
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button type="button" class="btn btn-primary" onclick="addCourse()" data-dismiss="modal">Submit</button>';
 }
@@ -176,38 +218,54 @@ function add(){
 function addCourse(){
     var setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val();
     
-    var myselect=document.getElementById("classroom");
+    var myselect=document.getElementById("teacher");
     var index=myselect.selectedIndex;
+    var tea_id = myselect.options[index].id;
+    
+    myselect=document.getElementById("classroom");
+    index=myselect.selectedIndex;
     var classroom_id = myselect.options[index].id;
-    //拿到教室的詳細資訊
-    var temp="";
-    var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
-    $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            console.log("response.messag: "+response.messag);
-            if(response.message == undefined){
-                console.log("myURL: "+myURL);
-                var classroom = {"capacity" : response.capacity,
-                                "classroom_id" : response.classroom_id,
-                                "name" : response.name};
-                //把所有參數傳到send
-                sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, $("#teacher").val(), $("#summary").val(), classroom, "add");
-            }
-            else{
-                window.alert("出了點錯，請稍後再試！");
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
     
+    var summary;
     
+    if($("#summary").val()==null){
+        summary = "";
+    }
+    else{
+        summary = $("#summary").val();
+    }
+    
+    if($("#start_time").val()>$("#end_time").val()){
+        window.alert("你在跟我開玩笑？\n開始時間比結束時間晚誒！！\n請重新輸入");
+    }
+    else{
+        var temp="";
+        var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
+        $.ajax({
+            url: myURL,
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
 
+                //拿到教室的詳細資訊
+                if(response.message == undefined){
+                    console.log("myURL: "+myURL);
+                    var classroom = {"capacity" : response.capacity,
+                                    "classroom_id" : response.classroom_id,
+                                    "name" : response.name};
+                    //把所有參數傳到send
+                    sendData(null, $("#course_name").val(), $("#start_date").val(), setTime, tea_id, summary, classroom, "add");
+                }
+                else{
+                    window.alert("出了點錯，請稍後再試！");
+                }
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
+    }    
 }
 
 //編輯課程
@@ -222,8 +280,13 @@ function edit(id){
         end_time = document.getElementById(id+"_time").innerText.slice(6,11),
         classroom = document.getElementById(id+"_classroom").innerText;
     
+    if(parseInt(start_month)<10){
+        start_month = "0"+start_month;
+    }
+    
         var start_date = start_year+"-"+start_month+"-"+start_day;
     document.getElementById("exampleModalLabel").innerHTML = "編輯課程";
+
     
     content += '<form>';
     //編輯開始日期
@@ -236,7 +299,7 @@ function edit(id){
     content += '<div class="form-group"><label class="col-form-label">時間：<input type="time" class="form-control" id="start_time" value="'+start_time+'">~<input type="time" class="form-control" id="end_time" value="'+end_time+'"></label></div>';
     
     //編輯老師
-    content += '<div class="form-group"><label class="col-form-label">老師：<input type="text" class="form-control" id="teacher" value="'+teacher+'"></label></div>';
+    content += '<div class="form-group"><label class="col-form-label">老師：<select class="form-control" id="teacher"></select></label></div>';
     
     //編輯教室
     content += '<div class="form-group"><label class="col-form-label">教室：<select class="form-control" id="classroom"></select></label></div>';
@@ -259,34 +322,9 @@ function edit(id){
     }
     document.getElementById("week").innerHTML = choice;
     
-    //拿到教室的選項
-    temp="";
-    $.ajax({
-        url: ngrok + "cs_classroom_list",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            if(response[0].message == undefined){
-                for(var i=0; i<response.length; i++){
-                    if(classroom == response[i].name){
-                       //temp += "<option selected>"+ response[i].name +"</option>";
-                        temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
-                    }
-                    else{
-                        temp += '<option id="'+response[i].classroom_id+'">'+ response[i].name +"</option>";
-                    }
-                }
-                document.getElementById("classroom").innerHTML = temp;
-            }
-            else{
-                window.alert("出了點錯，請稍後再試！");
-            }
-            
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    getTeacherOption(teacher);
+    
+    getClassroomOption(classroom);
     
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button type="button" class="btn btn-primary" onclick="editCourse('+"'"+id+"'"+')" data-dismiss="modal">Submit</button>';
@@ -294,48 +332,58 @@ function edit(id){
 
 //把編輯的課程資料傳到後端
 function editCourse(id){
-    
-    var myselect=document.getElementById("classroom");
+    //要給後端舊老師的id
+    var myselect=document.getElementById("teacher");
     var index=myselect.selectedIndex;
+    var tea_id = myselect.options[index].id;
+    
+    myselect=document.getElementById("classroom");
+    index=myselect.selectedIndex;
     var classroom_id = myselect.options[index].id;
 
            
     var name=document.getElementById(id+"_name").innerText,
         startdate = $("#start_date").val(),
         setTime = $("#start_time").val()+"~"+$("#end_time").val()+"-"+$("#week").val(),
-        teacher = $("#teacher").val(),
+        teacher = tea_id,
         summary = $("#summary").val();
-        
-    //拿到教室的詳細資訊
-    var temp="";
-    var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
-    $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            
-            if(response.message == undefined){
-                var classroom = {"capacity" : response.capacity,
-                            "classroom_id" : response.classroom_id,
-                            "name" : response.name};
-                sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
+    
+    if($("#start_time").val()>$("#end_time").val()){
+        window.alert("你在跟我開玩笑？\n開始時間比結束時間晚誒！！\n請重新輸入");
+    }
+    else{
+        var temp="";
+        var myURL = ngrok+"cs_classroom_info?classroom_id="+classroom_id;
+        $.ajax({
+            url: myURL,
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+
+                //拿到教室的詳細資訊
+                if(response.message == undefined){
+                    var classroom = {"capacity" : response.capacity,
+                                "classroom_id" : response.classroom_id,
+                                "name" : response.name};
+                    sendData(id, name, startdate, setTime, teacher, summary, classroom, "edit");
+                }
+                else{
+                    window.alert("出了點錯，請稍後再試！");
+                }
+            },
+            error: function(){
+                console.log("error");
             }
-            else{
-                window.alert("出了點錯，請稍後再試！");
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+        });
+    }
         
 }
 
 //傳新增｜編輯的資料到後端
 function sendData(id, name, start_time, course_time, teacher, summary, classroom, choice){
     var myURL="";
+    
     if(choice=="add"){
         myURL = ngrok + "insert_cs_course_info";
         var send={
@@ -354,12 +402,12 @@ function sendData(id, name, start_time, course_time, teacher, summary, classroom
             "name" : name,
             "start_time": start_time,
             "course_time": course_time,
-            "teacher": teacher,
+            "new_teacher": teacher,
+            "old_teacher": old_tea_id,
             "summary": summary,
             "classroom": classroom
         };
     }
-    
     
     $.ajax({
         url: myURL,
@@ -383,7 +431,7 @@ function del(){
     //跳出表單
     var content="";
     content += '<form>';
-    content += '<div class="form-group"><label class="col-form-label">課程ID：<input type="text" class="form-control" id="course_id" value="課程ID ex.C-001"></label></div></form>';
+    content += '<div class="form-group"><label class="col-form-label">課程ID：<input type="text" class="form-control" id="course_id" placeholder="課程ID ex.C-001"></label></div></form>';
     
     document.getElementById("myContent").innerHTML = content;
     document.getElementById("exampleModalLabel").innerHTML = "刪除課程";

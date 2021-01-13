@@ -1,16 +1,22 @@
 from . import SettingBase
 from flask import url_for
+#from flask_login import current_user, login_required, login_user
 class CheckStudentAPI(SettingBase):
-    user_id = '110-S-011'
-    password = '011'
     
     def test_schedule(self):
+      
         self.user_id = '110-T-001'
         self.password = '001'
-        self.signin()
+        login_res = self.signin()
+
+
+        self.assertEqual(login_res.status_code,200)
         response = self.client.get(url_for('user_api.user_schedule'),follow_redirects=True)
-        expected_output = [{ "course" :  "1101地理" , "time" : "17:00~19:00-Sat" }]
+        print(response.data)
+        expected_output = [{ "course" :  "1101地理" ,'course_id': 'C-011', "time" : "17:00~19:00-Sat" }]
         self.assertEquals(response.json, expected_output)
+        self.logout()
+
     
     def test_personal_info_1(self):
         self.user_id = '110-S-011'
@@ -23,22 +29,27 @@ class CheckStudentAPI(SettingBase):
                           "email" : "S011@gmail.com.tw",
                           "role" : "student" }
         self.assertEqual(response.status_code, 200)
-        self.assertEquals(response.data, expected_output)
+        self.assertEquals(response.json, expected_output)
+        self.logout()
         
     def test_course_info(self):
-        response = self.client.get(url_for('user_api.course_info') + "/?course_id=C-019")
+        self.user_id = '110-S-011'
+        self.password = '011'
+        self.signin()
+        response = self.client.get(url_for('user_api.course_info') + "?course_id=C-019")
         expected_output = {"course" : "1101化學",
                   "teacher" : "佩姬‧莫斯利",
                   "summary" : "",
                   "classroom" : "CS087"}
         
         self.assertEquals(response.json, expected_output)
+        self.logout()
         
     def test_student_course_progress(self):
         self.user_id = '110-S-011'
         self.password = '011'
         self.signin()
-        response = self.client.get(url_for('student_api.stu_course_progress') + "/?course_id=C-019")
+        response = self.client.get(url_for('student_api.stu_course_progress') + "?course_id=C-019")
         expected_output = [{ "lesson_time" : "Tue, 01 Sep 2020 00:00:00 GMT" , "progress" : "" },
                 { "lesson_time" : "Tue, 08 Sep 2020 00:00:00 GMT" , "progress" : "" },
                 { "lesson_time" : "Tue, 15 Sep 2020 00:00:00 GMT" , "progress" : "" },
@@ -56,13 +67,13 @@ class CheckStudentAPI(SettingBase):
                 { "lesson_time" : "Tue, 08 Dec 2020 00:00:00 GMT" , "progress" : "" }]
         
         self.assertEquals(response.json, expected_output)
-        
+        self.logout()
     
     def test_student_course_homework(self):
         self.user_id = '110-S-011'
         self.password = '011'
         self.signin()
-        response = self.client.get(url_for('student_api.stu_course_homework') + "/?course_id=C-019")
+        response = self.client.get(url_for('student_api.stu_course_homework') + "?course_id=C-019" )
         expected_output = [{ "lesson_time" : "Tue, 01 Sep 2020 00:00:00 GMT" , "homework" : "" , "deadline" : "Mon, 01 Feb 2021 00:00:00 GMT" , "progress" : "" },
                 { "lesson_time" : "Tue, 08 Sep 2020 00:00:00 GMT" , "homework" : "" , "deadline" : "Mon, 01 Feb 2021 00:00:00 GMT" , "progress" : "" },
                 { "lesson_time" : "Tue, 15 Sep 2020 00:00:00 GMT" , "homework" : "" , "deadline" : "Mon, 01 Feb 2021 00:00:00 GMT" , "progress" : "" },
@@ -80,7 +91,7 @@ class CheckStudentAPI(SettingBase):
                 { "lesson_time" : "Tue, 08 Dec 2020 00:00:00 GMT" , "homework" : "" , "deadline" : "Mon, 01 Feb 2021 00:00:00 GMT" , "progress" : "" }]
         
         self.assertEquals(response.json, expected_output)
-
+        self.logout()
 
     # def test_student_course_grade(self):
     #     self.user_id = '110-S-011'

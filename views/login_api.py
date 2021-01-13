@@ -12,9 +12,13 @@ login_api = Blueprint("login_api", __name__)
 
 @login_api.route("/login_user", methods=["POST"])
 def validate():
-    email = request.values.get("user_id")
-    password = request.values.get("password")
-    cur_user = user.validate_user(email, password)
+    info = request.values.to_dict()
+    info2 = request.get_json()
+    print(info2)
+
+    #email = request.values.get("user_id")
+    #password = request.values.get("password")
+    cur_user = user.validate_user(info2['user_id'], info2['password'])
     remember = True if request.values.get("rememberMe", "n") == "y" else False
 
     if cur_user is None:

@@ -213,9 +213,17 @@ def insert_cs_course_info():
 #刪除課程   ok
 def delete_cs_course_info():
     course_id=request.values.get('course_id')
+    course_info = course.get_course_info(course_id)
     #course_id不得為空
     if course_id=="":
         return jsonify({'message':'資料不得為空'})
+    
+    #把student的course_list中的該course刪除
+    for i in course_info['student_list']:
+        temp = user.get_user_info(i)['course_list']
+        temp.remove(course_id)
+        user.update_user({'user_id':i}, {'course_list':temp})
+        
     courseid={'course_id':course_id}
     course.delete_course(courseid)
     return jsonify({'0':0})   #之後redirect

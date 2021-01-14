@@ -171,6 +171,7 @@ def delete_course_personal_plan():
                     "context" : data['context']
     }
     user.delete_personal_plan(data['student_id'],target_info)
+    target_info['deadline'] = datetime.strftime(target_info['deadline'],"%Y-%m-%d")
     return jsonify(target_info)  
 #####################################################################
 # teacher course student list

@@ -59,3 +59,5 @@
 + 系統品質
   + 所有api通過flask-testing測試並達成statement coverage的白箱測試
   + 使用JMeter對系統進行壓力測試
+## 系統展示影片
+[展示影片](https://www.youtube.com/watch?v=30EMtj8fYA8)

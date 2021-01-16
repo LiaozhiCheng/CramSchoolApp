@@ -32,7 +32,7 @@ function deleteGrade(grade_no) {
             console.log(data);//看到時候有沒有成功
 
             globalData[grade_no].grade_list = data.grade_list;
-            createTable(globalData);
+            showDate();
         },
 
         //如果失敗的話
@@ -45,7 +45,7 @@ function deleteGrade(grade_no) {
 function saveGrade(grade_no) {
     if(document.getElementById("testname" + grade_no).value==""){
         window.alert("考試範圍輸入錯誤");
-        createTable(globalData);
+        showDate();
         return;
     }
     globalData[grade_no].quiz_name = document.getElementById("testname" + grade_no).value;
@@ -113,7 +113,7 @@ function showDate() {
     for (var i = 0; i < globalData[0].grade_list.length; i++) {
         contentBody += "<tr><td>" + globalData[0].grade_list[i].student_name + "</td>";
         for (var j = 0; j < rangeData.length; j++) {
-            if (globalData[j].grade_list[i].student_grade == null) {
+            if (globalData[rangeData[j]].grade_list[i].student_grade == null) {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(rangeData[j]) + " class='gradeTextDisabled' type='text' placeholder='' value='' disabled></td>";
             } else {
                 contentBody += "<td><input id=row" + String(i) + "col" + String(rangeData[j]) + " class='gradeTextDisabled' type='text' placeholder='' value=" + globalData[rangeData[j]].grade_list[i].student_grade + " disabled></td>";

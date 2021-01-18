@@ -332,6 +332,7 @@ function edit(id){
 
 //把編輯的課程資料傳到後端
 function editCourse(id){
+    
     //要給後端舊老師的id
     var myselect=document.getElementById("teacher");
     var index=myselect.selectedIndex;
@@ -383,7 +384,6 @@ function editCourse(id){
 //傳新增｜編輯的資料到後端
 function sendData(id, name, start_time, course_time, teacher, summary, classroom, choice){
     var myURL="";
-    
     if(choice=="add"){
         myURL = ngrok + "insert_cs_course_info";
         var send={

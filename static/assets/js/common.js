@@ -1,5 +1,5 @@
 //var ngrok = "http://140.121.197.130:55001/";
-var ngrok = "http://127.0.0.1:5000/"
+var ngrok = "http://127.0.0.1:5000/";
 var month = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 //web url

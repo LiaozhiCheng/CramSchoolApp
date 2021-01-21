@@ -244,7 +244,6 @@ def edit_cs_course_info():
     #course_id, name, start_time, course_time, teacher不得為空
     if course_id=="" or name=="" or start_time=="" or course_time=="" or new_teacher_id=="":
         return jsonify({'message':'資料不得為空'})
-    
     old_teacher_data = user.get_user_info(old_teacher_id)
     new_teacher_data = user.get_user_info(new_teacher_id)
     start_time=start_time.split("T")[0]     #拿到日期
@@ -253,10 +252,11 @@ def edit_cs_course_info():
     coursedict={'course_id':course_id, 'name':name, 'start_time':start_time, 'course_time':course_time, 'teacher':new_teacher_data['name'], 'summary':summary, 'classroom':classroom}
     course.update_course(courseid, coursedict)
     
-    #把course從原teacher course_list中刪除
-    temp = old_teacher_data['course_list']
-    temp.remove(course_id)
-    user.update_user({'user_id':old_teacher_id}, {'course_list':temp})
+    if old_teacher_id!="":
+        #把course從原teacher course_list中刪除
+        temp = old_teacher_data['course_list']
+        temp.remove(course_id)
+        user.update_user({'user_id':old_teacher_id}, {'course_list':temp})
     #把course加入新teacher course_list中
     temp = new_teacher_data['course_list']
     temp.append(course_id)

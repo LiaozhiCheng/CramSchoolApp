@@ -7,7 +7,7 @@ Created on Sun Dec 13 15:46:25 2020
 """
 
 from bson.objectid import ObjectId
-from models import _db
+from models import _db, collectionid
 
 from flask_bcrypt import Bcrypt
 import sys
@@ -35,8 +35,11 @@ def get_classroom_info_by_name(name):
 
 #新增教室資訊
 def insert_classroom(name, capacity):
-    #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
-    classroom_id="R-"+str(_db.CLASSROOM_COLLECTION.count_documents({})+1).zfill(3)
+    #取得目前classroom id值
+    classroom_now=collectionid.get_collection_id()['classroom_now']
+    classroom_id="R-"+str(classroom_now+1).zfill(3)
+    collectionid.update_collection_id(3, classroom_now)
+    
     classroomdict={'classroom_id':classroom_id, 'name':name, 'capacity':capacity}
     _db.CLASSROOM_COLLECTION.insert_one(classroomdict)
     

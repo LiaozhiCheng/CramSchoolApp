@@ -7,7 +7,7 @@ Created on Sun Dec 13 15:43:44 2020
 """
 
 from bson.objectid import ObjectId
-from models import _db
+from models import _db, collectionid
 
 from flask_bcrypt import Bcrypt
 import sys
@@ -44,9 +44,11 @@ def get_course_info(course_id):
 
 #新增課程
 def insert_course(name, start_time, course_time, teacher, summary, current_lesson_id, student_list, classroom):
-    #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
-    course_id="C-"+str(_db.COURSE_COLLECTION.count_documents({})+1).zfill(3)
-                       
+    #取得目前course id值
+    course_now=collectionid.get_collection_id()['course_now']
+    course_id="C-"+str(course_now+1).zfill(3)
+    collectionid.update_collection_id(1, course_now)
+
     start_time=datetime.strptime(start_time, '%Y-%m-%d')
     lesson_list=[]
     

@@ -4,7 +4,7 @@ from flask_security import (
     hash_password,
     verify_password,
 )
-from . import _db
+from . import _db, collectionid
 from flask_security.forms import LoginForm
 from wtforms import StringField
 from wtforms.validators import InputRequired
@@ -130,16 +130,16 @@ def insert_user(password, name, course_list, phone, email, major, personal_plan,
     now=datetime.now()
     #用民國年份當id開頭
     register_year= now.year - 1911
+    #取得目前user id值
+    user_now=collectionid.get_collection_id()['user_now']
     if role == 'teacher':
-        #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
-        user_id= str(register_year) + str("-") + "T-"+ str(_db.USER_COLLECTION.count_documents({})+1).zfill(3)
+        user_id= str(register_year) + str("-") + "T-"+ str(user_now+1).zfill(3)
     else:
-        #用資料庫筆數當id後綴，會有問題，之後改用static變數一直往上累計
-        user_id= str(register_year) + str("-") + "S-"+ str(_db.USER_COLLECTION.count_documents({})+1).zfill(3)
+        user_id= str(register_year) + str("-") + "S-"+ str(user_now+1).zfill(3)
     create_user(name,password,phone,user_id,email,role,major,course_list,personal_plan)
+    collectionid.update_collection_id(2, user_now)
     return user_id
     
-
 #刪除成員（教師）
 def delete_user(userid):
     _db.USER_COLLECTION.delete_one(userid)

@@ -174,6 +174,9 @@ function getClassroomOption(name){
 
 //新增課程
 function add(){
+    document.getElementById("exampleModalLabel").innerHTML = "新增課程";
+    document.getElementById("myContent").innerHTML = "";
+    
     var temp = "";
     
     //跳出表單
@@ -196,7 +199,7 @@ function add(){
 
     content += '</form>'
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "新增課程";
+    
     
     //拿到星期幾的選項
     for(var i=0; i<weekday.length; i++){
@@ -286,6 +289,7 @@ function edit(id){
     
         var start_date = start_year+"-"+start_month+"-"+start_day;
     document.getElementById("exampleModalLabel").innerHTML = "編輯課程";
+    document.getElementById("myContent").innerHTML = "";
 
     
     content += '<form>';

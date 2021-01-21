@@ -114,6 +114,7 @@ function createTable(data, role){
 //按點我之後拿到，他有上/教的課
 function showCourse(name, role){
     document.getElementById("myContent").innerHTML = "";
+    document.getElementById("exampleModalLabel").innerHTML = "課程清單";
     var content = "";
     var myURL = ngrok + "user_detail_info?name="+name;
     $.ajax({
@@ -142,7 +143,6 @@ function showCourse(name, role){
 
                 content += '</form>';
                 document.getElementById("myContent").innerHTML = content;
-                document.getElementById("exampleModalLabel").innerHTML = "課程清單";
 
                 document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>';
             }
@@ -185,6 +185,7 @@ function search(){
 //新增成員
 function add(){
     document.getElementById("myContent").innerHTML = "";
+    document.getElementById("exampleModalLabel").innerHTML = "";
     var temp = "";
     
     //跳出表單
@@ -542,13 +543,13 @@ function sendData(id, password, name, course, del_course, phone, email, major, p
 //刪除成員
 function del(){
     document.getElementById("myContent").innerHTML = "";
+    document.getElementById("exampleModalLabel").innerHTML = "刪除成員";
     //跳出表單
     var content="";
     content += '<form>';
     content += '<div class="form-group"><label class="col-form-label">成員ID：<input type="text" class="form-control" id="user_id" value="成員ID"></label></div></form>';
     
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "刪除成員";
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="delUser()" data-dismiss="modal">Submit</button>';
 }

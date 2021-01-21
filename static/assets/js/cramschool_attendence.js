@@ -210,6 +210,9 @@ function getByName(){
 //按下編輯按鈕後，跳出表單提供編輯
 //choice = name/lesson
 function edit(myID, choice){
+    document.getElementById("exampleModalLabel").innerHTML = "編輯出缺席";
+    document.getElementById("myContent").innerHTML = "";
+    
     var attend;
     if(choice=="name"){
         sessionStorage.setItem("method", "name");
@@ -238,7 +241,7 @@ function edit(myID, choice){
     
     
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "編輯出缺席";
+    
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="editAtt('+"'"+myID+"'"+')" data-dismiss="modal">Submit</button>';
 }

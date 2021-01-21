@@ -49,7 +49,7 @@ function init(){
 
 //點了那個格子，要show出詳細資訊 ex.誰來補什麼時候的課 未完成
 function show(id){
-    
+    document.getElementById("exampleModalLabel").innerHTML = "詳細資訊";
     var content="", myURL = ngrok+"cs_reschedule_info?weekday="+week[id%7]+"&time="+(Math.floor(id/7)*2+17)+":00";
     console.log("myURL: "+myURL);
     
@@ -85,8 +85,6 @@ function show(id){
             console.log("error");
         }
     });
-    
-    document.getElementById("exampleModalLabel").innerHTML = "詳細資訊";
     
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="miss()">Cancle</button>';
 }

@@ -78,7 +78,8 @@ function search(){
 //新增教室
 function add(){
     var temp = "";
-    
+    document.getElementById("myContent").innerHTML = "";
+    document.getElementById("exampleModalLabel").innerHTML = "新增課程";
     //跳出表單
     var content="";
     content += '<form>';
@@ -90,7 +91,6 @@ function add(){
 
     content += '</form>'
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "新增課程";
     
      document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button type="button" class="btn btn-primary" data-dismiss="modal" id="addButton">Submit</button>';
@@ -101,6 +101,8 @@ function add(){
 
 //編輯教室
 function edit(id){
+    document.getElementById("exampleModalLabel").innerHTML = "編輯教室";
+    document.getElementById("myContent").innerHTML = "";
     
     var name = document.getElementById(id+"_name").innerText;
     capacity = document.getElementById(id+"_capacity").innerText;
@@ -117,7 +119,7 @@ function edit(id){
 
     content += '</form>'
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "編輯教室";
+    
     
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button type="button" class="btn btn-primary" id="editButton" data-dismiss="modal" onclick="init()">Submit</button>';
@@ -159,13 +161,16 @@ function sendData(id, name, capacity, choice){
 
 //刪除課程
 function del(){
+    document.getElementById("exampleModalLabel").innerHTML = "刪除教室";
+    document.getElementById("myContent").innerHTML = "";
+    
     //跳出表單
     var content="";
     content += '<form>';
     content += '<div class="form-group"><label class="col-form-label">教室ID：<input type="text" class="form-control" id="classroom_id" value="教室ID ex.R-001"></label></div></form>';
     
     document.getElementById("myContent").innerHTML = content;
-    document.getElementById("exampleModalLabel").innerHTML = "刪除教室";
+    
     document.getElementById("cancleSubmit").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>'
         +'<button id="submit" type="button" class="btn btn-primary" onclick="delRoom()" data-dismiss="modal">Submit</button>';
 }
